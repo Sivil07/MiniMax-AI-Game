@@ -33,10 +33,17 @@ const GameBoardModule = (function () {
     setupBoard()
 
     const getBoard = () => board; 
+
+    const boardWithSquareValues = () => {
+        return board.map(row => row.map( square => square.getSquareValue()))
+    }
+
+    const displayBoard = () => console.log(boardWithSquareValues())
     
 })();
 
 const GameConstraintsModule = (function () {
+
 
 })();
 
