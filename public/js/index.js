@@ -9,10 +9,10 @@ function createPlayer(playerName, marker) {
 }
 
 function createSquare() {
-    let cellValue = "." // "." represents an empty/unfilled cell
+    let squareValue = "." // "." represents an empty/unfilled cell
 
-    const getSquareValue = () => cellValue;
-    const updateSquareValue = (newValue) => cellValue = newValue;
+    const getSquareValue = () => squareValue;
+    const updateSquareValue = (newValue) => squareValue = newValue;
 
     return { getSquareValue, updateSquareValue };
 }
