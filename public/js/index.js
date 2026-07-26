@@ -39,11 +39,20 @@ const GameBoardModule = (function () {
     }
 
     const displayBoard = () => console.log(boardWithSquareValues())
-    
+
 })();
 
 const GameConstraintsModule = (function () {
 
+    const isSquareNotEmpty = (square) => square !== "."
+
+    const outOfBounds = (board, row, col) => {
+        board[row] === undefined || board[row][col] === undefined
+    }
+
+    const isBoardFull = (board) => {
+        return board.every((row) => row.every((square) => square !== "."))
+    }
 
 })();
 
