@@ -14,7 +14,7 @@ function createSquare() {
     const getSquareValue = () => cellValue;
     const updateSquareValue = (newValue) => cellValue = newValue;
 
-    return { getCellValue: getSquareValue, updateCellValue: updateSquareValue };
+    return { getSquareValue, updateSquareValue };
 }
 
 const GameBoardModule = (function () {
