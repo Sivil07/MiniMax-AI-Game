@@ -11,10 +11,10 @@ function createPlayer(playerName, marker) {
 function createSquare() {
     let cellValue = "." // "." represents an empty/unfilled cell
 
-    const getCellValue = () => cellValue;
-    const updateCellValue = (newValue) => cellValue = newValue;
+    const getSquareValue = () => cellValue;
+    const updateSquareValue = (newValue) => cellValue = newValue;
 
-    return { getCellValue, updateCellValue };
+    return { getCellValue: getSquareValue, updateCellValue: updateSquareValue };
 }
 
 const GameBoardModule = (function () {
