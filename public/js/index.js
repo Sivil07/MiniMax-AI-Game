@@ -4,7 +4,7 @@ function createPlayer(playerName, marker) {
 
     const getName = () => name;
     const getMark = () => token;
-    
+
     return { getName, getMark };
 }
 
@@ -18,7 +18,22 @@ function createSquare() {
 }
 
 const GameBoardModule = (function () {
+    const rows = 3 
+    const cols = 3;
+    const board = []
 
+    const setupBoard = () => {
+        for (let row = 0; row < rows; row++) {
+            board[row] = [];
+            for (let col = 0; col < cols; col++) {
+                board[row].push(createSquare())
+            }
+        }
+    };
+    setupBoard()
+
+    const getBoard = () => board; 
+    
 })();
 
 const GameConstraintsModule = (function () {
