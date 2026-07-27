@@ -82,5 +82,10 @@ const WinDetectionModule = (function () {
 })();
 
 const GameMasterModule = (function () {
+    const playerOne = createPlayer("Rachel", "X")
+    const playerTwo = createPlayer("Computer", "O")
+    let activePlayer = playerOne;
+    let gameOver = false;
+
 
 })();
