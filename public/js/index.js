@@ -78,6 +78,27 @@ const GameConstraintsModule = (function () {
 })();
 
 const WinDetectionModule = (function () {
+    const horizontalChecks = (board, mark) => {
+        const rowNum = board.length;
+
+        for (let row = 0; row < rowNum; row++) {
+            const [squareOne, squareTwo, squareThree] = board[row];
+            if ( squareOne === mark && squareTwo === mark && squareThree === mark ) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    const isWinnerFound = (mark) => {
+        // Call the boardWithSquareValues function and store the board
+        // Pass the board and mark into the checks below
+        // If the horizontal checks, vertical checks or diagonal checks
+        /// come back as true, then a winner is found
+        // If they don't a winner is not found
+    } 
+
+
 
 })();
 
