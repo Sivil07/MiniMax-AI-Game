@@ -112,14 +112,16 @@ const WinDetectionModule = (function () {
     }
 
     const isWinnerFound = (mark) => {
-        // Call the boardWithSquareValues function and store the board
-        // Pass the board and mark into the checks below
-        // If the horizontal checks, vertical checks or diagonal checks
-        /// come back as true, then a winner is found
-        // If they don't a winner is not found
+        const board = GameBoardModule.boardWithSquareValues();
+        const checkHorizontal = horizontalChecks(board, mark);
+        const checkVertical = verticalChecks(board, mark);
+        const checkDiagonal = diagonalChecks(board, mark);
+
+        if (checkHorizontal || checkVertical || checkDiagonal) {
+            return true;
+        }
+        return false;
     }
-
-
 
 })();
 
