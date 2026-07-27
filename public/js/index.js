@@ -40,6 +40,25 @@ const GameBoardModule = (function () {
 
     const displayBoard = () => console.log(boardWithSquareValues());
 
+        const placeSquare = (row, col, mark) => {
+
+        if (GameConstraintsModule.outOfBounds(board, row, col)) {
+            return { message: "Board limit Exceeded", success: false};
+        }
+
+        const square = board[row][col]
+
+        if (GameConstraintsModule.isSquareNotEmpty(square.getSquareValue())) {
+            return { message: "Square already filled with mark", success: false};
+        }
+
+        square.updateSquareValue(mark)
+        
+        return { message: "Value placed", success: true }
+    }
+
+    return { placeSquare }
+
 })();
 
 const GameConstraintsModule = (function () {
