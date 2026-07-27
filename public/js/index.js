@@ -87,5 +87,12 @@ const GameMasterModule = (function () {
     let activePlayer = playerOne;
     let gameOver = false;
 
+    const getActivePlayer = () => activePlayer;
+
+    const switchPlayers = () => {
+        activePlayer = activePlayer === playerOne ? playerTwo : playerOne;
+    }
+
+
 
 })();
