@@ -145,15 +145,16 @@ const GameMasterModule = (function () {
         activePlayer = activePlayer === playerOne ? playerTwo : playerOne;
     }
 
-    const applyMove = (row, col, mark) => {
-        const result = GameBoardModule.placeSquare(row, col, mark);
+    const applyMove = (row, col) => {
+        const result = GameBoardModule.placeSquare(row, col, getActivePlayer().getMark());
+        const board = GameBoardModule.boardWithSquareValues();
 
         if (!result.success) {
             console.log(result.message)
-        } else if (WinDetectionModule.isWinnerFound(mark)) {
+        } else if (WinDetectionModule.isWinnerFound(getActivePlayer().getMark())) {
             gameOver = true;
             console.log(`${getActivePlayer().getName()} won!`)
-        } else if (GameConstraintsModule.isBoardFull()) {
+        } else if (GameConstraintsModule.isBoardFull(board)) {
             gameOver = true;
             console.log("It's a tie.")
         } else {
@@ -172,12 +173,12 @@ const GameMasterModule = (function () {
         GameBoardModule.displayBoard()
     }
 
-    const playMove = (row, col, mark) => {
+    const playMove = (row, col) => {
         if (gameOver) {
             console.log("The game has ended.")
             return;
         }
-        applyMove(row, col, mark)
+        applyMove(row, col)
     }
 
     GameBoardModule.displayBoard()
