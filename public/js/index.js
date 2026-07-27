@@ -1,9 +1,9 @@
 function createPlayer(playerName, marker) {
     const name = playerName;
-    const token = tokenValue
+    const mark = marker
 
     const getName = () => name;
-    const getMark = () => token;
+    const getMark = () => mark;
 
     return { getName, getMark };
 }
