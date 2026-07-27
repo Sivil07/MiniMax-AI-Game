@@ -40,20 +40,20 @@ const GameBoardModule = (function () {
 
     const displayBoard = () => console.log(boardWithSquareValues());
 
-        const placeSquare = (row, col, mark) => {
+    const placeSquare = (row, col, mark) => {
 
         if (GameConstraintsModule.outOfBounds(board, row, col)) {
-            return { message: "Board limit Exceeded", success: false};
+            return { message: "Board limit Exceeded", success: false };
         }
 
         const square = board[row][col]
 
         if (GameConstraintsModule.isSquareNotEmpty(square.getSquareValue())) {
-            return { message: "Square already filled with mark", success: false};
+            return { message: "Square already filled with mark", success: false };
         }
 
         square.updateSquareValue(mark)
-        
+
         return { message: "Value placed", success: true }
     }
 
@@ -83,11 +83,32 @@ const WinDetectionModule = (function () {
 
         for (let row = 0; row < rowNum; row++) {
             const [squareOne, squareTwo, squareThree] = board[row];
-            if ( squareOne === mark && squareTwo === mark && squareThree === mark ) {
+            if (squareOne === mark && squareTwo === mark && squareThree === mark) {
                 return true;
             }
         }
         return false;
+    }
+
+    const verticalChecks = (board, mark) => {
+        const colNum = board[0].length;
+
+        for (let col = 0; col < colNum; col++) {
+            const colOne = board[0][col];
+            const colTwo = board[1][col];
+            const colThree = board[2][col];
+            if (colOne === mark && colTwo === mark && colThree === mark) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    const diagonalChecks = (board, mark) => {
+        const topRightDiagonal = board[0][0] === mark && board[1][1] === mark && board[2][2] === mark;
+        const topLeftDiagonal = board[0][2] === mark && board[1][1] === mark && board[2][0] === mark;
+
+        return topRightDiagonal || topLeftDiagonal;
     }
 
     const isWinnerFound = (mark) => {
@@ -96,7 +117,7 @@ const WinDetectionModule = (function () {
         // If the horizontal checks, vertical checks or diagonal checks
         /// come back as true, then a winner is found
         // If they don't a winner is not found
-    } 
+    }
 
 
 
