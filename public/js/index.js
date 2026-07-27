@@ -18,9 +18,9 @@ function createSquare() {
 }
 
 const GameBoardModule = (function () {
-    const rows = 3 
+    const rows = 3;
     const cols = 3;
-    const board = []
+    const board = [];
 
     const setupBoard = () => {
         for (let row = 0; row < rows; row++) {
@@ -30,15 +30,15 @@ const GameBoardModule = (function () {
             }
         }
     };
-    setupBoard()
+    setupBoard();
 
-    const getBoard = () => board; 
+    const getBoard = () => board;
 
     const boardWithSquareValues = () => {
-        return board.map(row => row.map( square => square.getSquareValue()))
+        return board.map(row => row.map(square => square.getSquareValue()));
     }
 
-    const displayBoard = () => console.log(boardWithSquareValues())
+    const displayBoard = () => console.log(boardWithSquareValues());
 
 })();
 
@@ -47,12 +47,14 @@ const GameConstraintsModule = (function () {
     const isSquareNotEmpty = (square) => square !== "."
 
     const outOfBounds = (board, row, col) => {
-        board[row] === undefined || board[row][col] === undefined
+        return board[row] === undefined || board[row][col] === undefined
     }
 
     const isBoardFull = (board) => {
         return board.every((row) => row.every((square) => square !== "."))
     }
+
+    return { isSquareNotEmpty, outOfBounds, isBoardFull }
 
 })();
 
