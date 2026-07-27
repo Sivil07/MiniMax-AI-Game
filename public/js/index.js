@@ -156,6 +156,14 @@ const GameMasterModule = (function () {
         GameBoardModule.displayBoard()
     }
 
-    
+    const playMove = (row, col, mark) => {
+        if (gameOver) {
+            console.log("The game has ended.")
+            return;
+        }
+        applyMove(row, col, mark)
+    }
+
+    return { playMove }
 
 }) ();
