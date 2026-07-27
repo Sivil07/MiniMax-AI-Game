@@ -123,6 +123,7 @@ const WinDetectionModule = (function () {
         return false;
     }
 
+    return { isWinnerFound }
 })();
 
 const GameMasterModule = (function () {
@@ -137,6 +138,24 @@ const GameMasterModule = (function () {
         activePlayer = activePlayer === playerOne ? playerTwo : playerOne;
     }
 
+    const applyMove = (row, col, mark) => {
+        const result = GameBoardModule.placeSquare(row, col, mark);
 
+        if (!result.success) {
+            console.log(result.message)
+        } else if (WinDetectionModule.isWinnerFound(mark)) {
+            gameOver = true;
+            console.log(`${getActivePlayer().getName()} won!`)
+        } else if (GameConstraintsModule.isBoardFull()) {
+            gameOver = true;
+            console.log("It's a tie.")
+        } else {
+            switchPlayers();
+            console.log(`${getActivePlayer().getName()}'s turn.`)
+        }
+        GameBoardModule.displayBoard()
+    }
 
-})();
+    
+
+}) ();
