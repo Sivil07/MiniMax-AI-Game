@@ -57,7 +57,7 @@ const GameBoardModule = (function () {
         return { message: "Value placed", success: true }
     }
 
-    return { placeSquare }
+    return { placeSquare, displayBoard, boardWithSquareValues, getBoard }
 
 })();
 
