@@ -40,6 +40,13 @@ const GameBoardModule = (function () {
 
     const displayBoard = () => console.log(boardWithSquareValues());
 
+
+    const resetBoard = () => {
+        board.forEach((row) =>
+            row.forEach((square) =>
+                square.updateSquareValue(".")));
+    }
+
     const placeSquare = (row, col, mark) => {
 
         if (GameConstraintsModule.outOfBounds(board, row, col)) {
@@ -57,7 +64,7 @@ const GameBoardModule = (function () {
         return { message: "Value placed", success: true }
     }
 
-    return { placeSquare, displayBoard, boardWithSquareValues, getBoard }
+    return { placeSquare, displayBoard, boardWithSquareValues, resetBoard }
 
 })();
 
@@ -156,6 +163,15 @@ const GameMasterModule = (function () {
         GameBoardModule.displayBoard()
     }
 
+    const restartGame = () => {
+        GameBoardModule.resetBoard();
+        activePlayer = playerOne;
+        gameOver = false;
+
+        console.log(`${getActivePlayer().getName()}'s turn`)
+        GameBoardModule.displayBoard()
+    }
+
     const playMove = (row, col, mark) => {
         if (gameOver) {
             console.log("The game has ended.")
@@ -164,6 +180,7 @@ const GameMasterModule = (function () {
         applyMove(row, col, mark)
     }
 
-    return { playMove }
+    GameBoardModule.displayBoard()
+    return { playMove, restartGame }
 
-}) ();
+})();
