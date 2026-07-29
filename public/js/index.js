@@ -134,6 +134,17 @@ const WinDetectionModule = (function () {
 })();
 
 const AIModelModule = (function () {
+    const winningScore = 20000;
+    const topScore = 100;
+    const greatScore = 75;
+    const lowScore = 25;
+    const worstScore = 0;
+
+    const getWinningScore = () => winningScore;
+    const getTopScore = () => topScore;
+    const getGreatScore = () => greatScore;
+    const getLowScore = () => lowScore;
+    const getWorstScore = () => worstScore;
 
 })();
 
