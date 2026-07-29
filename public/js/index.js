@@ -169,8 +169,8 @@ const AIModelModule = (function () {
         const humanCount = groupCount[humanMarker]
         const emptyCount = groupCount["."]
 
-        if (aiCount > 0 && humanCount > 0) return getWorstScore(); // blocked move;
-        
+        if (aiCount > 0 && humanCount > 0) return getWorstScore(); // blocked move
+
         // Tracks AI advantage
         if (aiCount === 2 && emptyCount === 1) return getGreatScore(); // Strong AI Advantage
         if (aiCount === 1 && emptyCount === 2) return getLowScore(); // Weak AI Advantage
@@ -180,6 +180,36 @@ const AIModelModule = (function () {
         if (humanCount === 1 && emptyCount === 2) return -getLowScore(); // Weak Human Advantage
 
         return getWorstScore(); // necessary for missed cases
+    }
+
+    const evaluateHorizontals = (board, aiMarker, humanMarker) => {
+        let score = 0;
+        const rowNum = board.length;
+        for (let row = 0; row < rowNum; row++) {
+            const group = board[row];
+            score += evaluateGroup(group, aiMarker, humanMarker)
+        }
+        return score
+    }
+
+    const evaluateVerticals = (board, aiMarker, humanMarker) => {
+        let score = 0;
+        const colNum = board[0].length;
+
+        for (let col = 0; col < colNum; col++) {
+            const group = [board[0][col], board[1][col], board[2][col]];
+            score += evaluateGroup(group, aiMarker, humanMarker)
+        }
+        return score;
+    }
+
+    const evaluateDiagonals = (board, aiMarker, humanMarker) => {
+        const diagonalGroupOne = [board[0][0], board[1][1], board[2][2]];
+        const diagonalGroupTwo = [board[0][2], board[1][1], board[2][0]];
+        const groupOneScore = evaluateGroup(diagonalGroupOne, aiMarker, humanMarker);
+        const groupTwoScore = evaluateGroup(diagonalGroupTwo, aiMarker, humanMarker);
+
+        return groupOneScore + groupTwoScore;
     }
 
 })();
