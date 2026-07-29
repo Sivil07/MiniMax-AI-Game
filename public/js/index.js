@@ -44,6 +44,21 @@ const GameBoardModule = (function () {
         return board.map(row => [...row])
     }
 
+    const getAvailableMoves = (board) => {
+        const availableMoves = [];
+        const rowNum = board.length;
+        const colNum = board[0].length;
+
+        for (let row = 0; row < rowNum; row++) {
+            for (let col = 0; col < colNum; col++) {
+                if (board[row][col] === ".") {
+                    availableMoves.push([row, col]);
+                }
+            }
+        }
+        return availableMoves;
+    }
+
     const resetBoard = () => {
         board.forEach((row) =>
             row.forEach((square) =>
@@ -73,6 +88,7 @@ const GameBoardModule = (function () {
         boardWithSquareValues,
         resetBoard,
         cloneBoard,
+        getAvailableMoves,
     }
 
 })();
