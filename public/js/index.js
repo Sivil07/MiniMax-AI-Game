@@ -44,7 +44,6 @@ const GameBoardModule = (function () {
         return board.map(row => [...row])
     }
 
-
     const resetBoard = () => {
         board.forEach((row) =>
             row.forEach((square) =>
@@ -68,11 +67,11 @@ const GameBoardModule = (function () {
         return { message: "Value placed", success: true }
     }
 
-    return { 
-        placeSquare, 
-        displayBoard, 
-        boardWithSquareValues, 
-        resetBoard, 
+    return {
+        placeSquare,
+        displayBoard,
+        boardWithSquareValues,
+        resetBoard,
         cloneBoard,
     }
 
@@ -155,6 +154,14 @@ const AIModelModule = (function () {
     const getGreatScore = () => greatScore;
     const getLowScore = () => lowScore;
     const getWorstScore = () => worstScore;
+
+    const getGroupCount = (group) => {
+        const markerCount = {}
+        for (const squareValue of group) {
+            markerCount[squareValue] = (markerCount[squareValue] || 0) + 1
+        }
+        return markerCount
+    }
 
 })();
 
