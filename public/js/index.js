@@ -40,6 +40,10 @@ const GameBoardModule = (function () {
 
     const displayBoard = () => console.log(boardWithSquareValues());
 
+    const cloneBoard = (board) => {
+        return board.map(row => [...row])
+    }
+
 
     const resetBoard = () => {
         board.forEach((row) =>
@@ -64,7 +68,13 @@ const GameBoardModule = (function () {
         return { message: "Value placed", success: true }
     }
 
-    return { placeSquare, displayBoard, boardWithSquareValues, resetBoard }
+    return { 
+        placeSquare, 
+        displayBoard, 
+        boardWithSquareValues, 
+        resetBoard, 
+        cloneBoard,
+    }
 
 })();
 
