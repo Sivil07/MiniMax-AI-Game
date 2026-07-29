@@ -259,6 +259,10 @@ const AIModelModule = (function () {
 
     }
 
+    const findBestMove = (board, aiMarker, humanMarker) => {
+        
+    }
+
 
 })();
 
