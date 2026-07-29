@@ -263,6 +263,12 @@ const AIModelModule = (function () {
         let bestScore = -Infinity
         let bestMove;
 
+        const availableMoves = GameBoardModule.getAvailableMoves(board)
+        availableMoves.forEach(([row, col]) => {
+            const simulatedAIMove = simulateMove(board, row, col, aiMarker);
+
+        })
+
     }
 
 
