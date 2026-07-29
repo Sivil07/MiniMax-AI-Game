@@ -260,7 +260,9 @@ const AIModelModule = (function () {
     }
 
     const findBestMove = (board, aiMarker, humanMarker) => {
-        
+        let bestScore = -Infinity
+        let bestMove;
+
     }
 
 
