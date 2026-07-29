@@ -245,6 +245,17 @@ const AIModelModule = (function () {
     }
 
     const minMax = (board, level, alpha, beta, maximizingAIPlayer, aiMarker, humanMarker) => {
+        // Terminal Checks (Game Over Conditions)
+        if (WinDetectionModule.isWinnerFound(aiMarker, board)) return getWinningScore();
+        if (WinDetectionModule.isWinnerFound(humanMarker, board)) return -getWinningScore();
+        if (GameConstraintsModule.isBoardFull(board)) return getWorstScore();
+
+        if (level === 0) {
+            return evaluateBoard(board, aiMarker, humanMarker);
+        }
+
+
+
 
     }
 
