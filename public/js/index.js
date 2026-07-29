@@ -133,6 +133,10 @@ const WinDetectionModule = (function () {
     return { isWinnerFound }
 })();
 
+const AIModelModule = (function () {
+
+})();
+
 const GameMasterModule = (function () {
     const playerOne = createPlayer("Rachel", "X")
     const playerTwo = createPlayer("Computer", "O")
@@ -161,7 +165,7 @@ const GameMasterModule = (function () {
             switchPlayers();
             console.log(`${getActivePlayer().getName()}'s turn.`)
         }
-        GameBoardModule.displayBoard()
+        GameBoardModule.displayBoard();
     }
 
     const restartGame = () => {
