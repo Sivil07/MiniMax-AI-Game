@@ -143,8 +143,7 @@ const WinDetectionModule = (function () {
         return topRightDiagonal || topLeftDiagonal;
     }
 
-    const isWinnerFound = (mark) => {
-        const board = GameBoardModule.boardWithSquareValues();
+    const isWinnerFound = (mark, board) => {
         const checkHorizontal = horizontalChecks(board, mark);
         const checkVertical = verticalChecks(board, mark);
         const checkDiagonal = diagonalChecks(board, mark);
@@ -245,6 +244,10 @@ const AIModelModule = (function () {
         return simulatedBoard;
     }
 
+    const minMax = (board, level, alpha, beta, maximizingAIPlayer, aiMarker, humanMarker) => {
+
+    }
+
 
 })();
 
@@ -266,7 +269,7 @@ const GameMasterModule = (function () {
 
         if (!result.success) {
             console.log(result.message)
-        } else if (WinDetectionModule.isWinnerFound(getActivePlayer().getMark())) {
+        } else if (WinDetectionModule.isWinnerFound(getActivePlayer().getMark(), board)) {
             gameOver = true;
             console.log(`${getActivePlayer().getName()} won!`)
         } else if (GameConstraintsModule.isBoardFull(board)) {
