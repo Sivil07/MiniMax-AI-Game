@@ -156,11 +156,30 @@ const AIModelModule = (function () {
     const getWorstScore = () => worstScore;
 
     const getGroupCount = (group) => {
-        const markerCount = {}
+        const markerCount = {};
         for (const squareValue of group) {
             markerCount[squareValue] = (markerCount[squareValue] || 0) + 1
         }
-        return markerCount
+        return markerCount;
+    }
+
+    const evaluateGroup = (group, aiMarker, humanMarker) => {
+        const groupCount = getGroupCount(group);
+        const aiCount = groupCount[aiMarker];
+        const humanCount = groupCount[humanMarker]
+        const emptyCount = groupCount["."]
+
+        if (aiCount > 0 && humanCount > 0) return getWorstScore(); // blocked move;
+        
+        // Tracks AI advantage
+        if (aiCount === 2 && emptyCount === 1) return getGreatScore(); // Strong AI Advantage
+        if (aiCount === 1 && emptyCount === 2) return getLowScore(); // Weak AI Advantage
+
+        // Tracks human advantage
+        if (humanCount === 2 && emptyCount === 1) return -getGreatScore(); // Strong Human Advantage
+        if (humanCount === 1 && emptyCount === 2) return -getLowScore(); // Weak Human Advantage
+
+        return getWorstScore(); // necessary for missed cases
     }
 
 })();
