@@ -212,6 +212,18 @@ const AIModelModule = (function () {
         return groupOneScore + groupTwoScore;
     }
 
+    const evaluateBoard = (board, aiMarker, humanMarker) => {
+        let boardScore = 0;
+
+        const horizontalScore = evaluateHorizontals(board, aiMarker, humanMarker);
+        const verticalScore = evaluateVerticals(board, aiMarker, humanMarker);
+        const diagonalScore = evaluateDiagonals(board, aiMarker, humanMarker);
+
+        boardScore = horizontalScore + verticalScore + diagonalScore;
+        return boardScore;
+    }
+
+
 })();
 
 const GameMasterModule = (function () {
