@@ -239,6 +239,12 @@ const AIModelModule = (function () {
         return boardScore;
     }
 
+    const simulateMove = (board, row, col, mark) => {
+        const simulatedBoard = GameBoardModule.cloneBoard(board);
+        simulatedBoard[row][col] = mark;
+        return simulatedBoard;
+    }
+
 
 })();
 
