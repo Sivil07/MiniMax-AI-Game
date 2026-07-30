@@ -68,4 +68,10 @@ body {
     border-radius: 2rem;
     text-transform: uppercase;
     font-family: "SpaceMono";
+    transition: all 0.3s ease;
+}
+
+.options:hover {
+    color: #000000;
+    background-color: #00E5FF;
 }
