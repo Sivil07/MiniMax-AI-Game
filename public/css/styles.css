@@ -28,12 +28,12 @@ body {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(5, auto);
     gap: 2rem;
-    grid-template-areas: 
-    "title"
-    "details"
-    "player-options"
-    "player-cards"
-    "start-game";
+    grid-template-areas:
+        "title"
+        "details"
+        "player-options"
+        "player-cards"
+        "start-game";
 }
 
 #landing-title {
@@ -85,13 +85,16 @@ body {
 .players {
     font-family: "Inter", sans-serif;
     display: grid;
+    background-color: #12161F;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
     gap: 2rem;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3, auto);
-    grid-template-areas: 
-    "player-name"
-    "player-input"
-    "mark-selection";
+    grid-template-areas:
+        "player-name"
+        "player-input"
+        "mark-selection";
 }
 
 .player-name {
@@ -103,13 +106,13 @@ body {
 .player-input {
     background-color: var(--body-bg-clr);
     padding: 1.5rem;
-    border: 1px solid #2a2f3a  ;
+    border: 1px solid #2a2f3a;
     border-radius: 1.5rem;
     font-size: 1.5rem;
     width: 500px;
     color: var(--details-clr);
     caret-color: var(--universal-clr);
-    
+
 }
 
 .player-input::placeholder {
