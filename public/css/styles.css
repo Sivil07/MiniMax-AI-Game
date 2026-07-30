@@ -83,11 +83,19 @@ body {
 }
 
 .players {
+    font-family: "Inter", sans-serif;
     display: grid;
+    gap: 2rem;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3, auto);
     grid-template-areas: 
     "player-name"
     "player-input"
     "mark-selection";
+}
+
+.player-name {
+    color: var(--details-clr);
+    font-size: 1.5rem;
+    text-transform: uppercase;
 }
