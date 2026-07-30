@@ -152,3 +152,15 @@ body {
     color: #00E5FF;
     background-color: rgba(61, 220, 224, 0.25);
 }
+
+.start-game {
+    font-family: "SpaceMono";
+    padding: 1rem;
+    letter-spacing: 1rem;
+    font-size: 1.5rem;
+    background-image: linear-gradient(to right, #FF4D8D, #00E5FF);
+    border-radius: 0.5rem;
+    border: none;
+    text-transform: uppercase;
+    font-weight: bold;
+}
