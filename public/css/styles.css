@@ -123,3 +123,13 @@ body {
 .player-input:focus {
     outline: none;
 }
+
+.mark-selections {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.mark-selections > * {
+    flex: 1;
+}
