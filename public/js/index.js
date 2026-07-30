@@ -254,9 +254,34 @@ const AIModelModule = (function () {
             return evaluateBoard(board, aiMarker, humanMarker);
         }
 
+        const availableMoves = GameBoardModule.getAvailableMoves(board)
 
+        if (maximizingAIPlayer) {
+            let highestScore = -Infinity;
+            for (const [row, col] of availableMoves) {
+                const aiSimulatedMove = simulateMove(board, row, col, aiMarker);
+                let currentAIScore = minMax(aiSimulatedMove, level - 1, alpha, beta, false, aiMarker, humanMarker);
+                highestScore = Math.max(highestScore, currentAIScore)
+                alpha = Math.max(alpha, currentAIScore);
+                if (alpha >= beta) {
+                    break;
+                }
+            }
+            return highestScore
 
-
+        } else {
+            let lowestScore = Infinity;
+            for (const [row, col] of availableMoves) {
+                const humanSimulatedMove = simulateMove(board, row, col, humanMarker);
+                let currentHumanScore = minMax(humanSimulatedMove, level - 1, alpha, beta, true, aiMarker, humanMarker);
+                lowestScore = Math.min(lowestScore, currentHumanScore);
+                beta = Math.min(beta, currentHumanScore);
+                if (alpha >= beta) {
+                    break;
+                }
+            }
+            return lowestScore;
+        }
     }
 
     const findBestMove = (board, aiMarker, humanMarker) => {
