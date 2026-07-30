@@ -51,3 +51,20 @@ body {
     color: var(--details-clr);
     text-align: center;
 }
+
+.player-options {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.options {
+    color: var(--details-clr);
+    background-color: transparent;
+    font-size: 1.5rem;
+    border: 1px solid #2a2f3a;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    font-family: "SpaceMono";
+}
