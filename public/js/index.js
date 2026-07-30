@@ -343,6 +343,10 @@ const GameMasterModule = (function () {
             console.log(`${getActivePlayer().getName()}'s turn.`)
         }
         GameBoardModule.displayBoard();
+
+        if (!gameOver && getActivePlayer() === playerTwo) {
+            playAI(board)
+        }
     }
 
     const restartGame = () => {
