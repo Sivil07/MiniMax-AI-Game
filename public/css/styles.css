@@ -6,9 +6,14 @@
 
 :root {
     --body-bg-clr: rgb(11, 14, 20);
-    --grid-pattern: #2a2f3a 1px, transparent 1px;
+    --border-clr:  #2a2f3a;
+    --grid-pattern: var(--border-clr) 1px, transparent 1px;
     --universal-clr: #ffffff;
-    --details-clr: #6B7280;
+    --primary-clr: #6B7280;
+    --o-mark-clr: #00E5FF;
+    --x-mark-clr: #FF4D8D;
+    --card-bg-clr: #12161F;
+    
 }
 
 body {
@@ -49,7 +54,7 @@ body {
 .landing-details {
     font-family: "Inter", sans-serif;
     font-size: 1.5rem;
-    color: var(--details-clr);
+    color: var(--primary-clr);
     text-align: center;
 }
 
@@ -60,10 +65,10 @@ body {
 }
 
 .options {
-    color: var(--details-clr);
+    color: var(--primary-clr);
     background-color: transparent;
     font-size: 1.5rem;
-    border: 2px solid #2a2f3a;
+    border: 2px solid var(--border-clr);
     padding: 1rem 2rem;
     border-radius: 2rem;
     text-transform: uppercase;
@@ -73,7 +78,7 @@ body {
 
 .options:hover {
     color: #000000;
-    background-color: #00E5FF;
+    background-color: var(--o-mark-clr);
 }
 
 .player-cards {
@@ -85,7 +90,7 @@ body {
 .players {
     font-family: "Inter", sans-serif;
     display: grid;
-    background-color: #12161F;
+    background-color: var(--card-bg-clr);
     padding: 1.5rem;
     border-radius: 1.5rem;
     gap: 2rem;
@@ -98,7 +103,7 @@ body {
 }
 
 .player-name {
-    color: var(--details-clr);
+    color: var(--primary-clr);
     font-size: 1.5rem;
     text-transform: uppercase;
 }
@@ -106,17 +111,17 @@ body {
 .player-input {
     background-color: var(--body-bg-clr);
     padding: 1.5rem;
-    border: 1px solid #2a2f3a;
+    border: 1px solid var(--border-clr);
     border-radius: 1.5rem;
     font-size: 1.5rem;
     width: 500px;
-    color: var(--details-clr);
+    color: var(--primary-clr);
     caret-color: var(--universal-clr);
 
 }
 
 .player-input::placeholder {
-    color: var(--details-clr);
+    color: var(--primary-clr);
     font-size: 1.5rem;
 }
 
@@ -134,23 +139,23 @@ body {
     flex: 1;
     font-family: "SpaceMono";
     font-size: 1rem;
-    background-color: #12161F;
-    border: 1px solid #2a2f3a;
+    background-color: var(--card-bg-clr);
+    border: 1px solid var(--border-clr);
     border-radius: 1rem;
-    color: var(--details-clr);
+    color: var(--primary-clr);
     padding: 1rem;
     transition: all 0.3s ease;
 }
 
 .x-mark:hover {
-    border: 1px solid #FF4D8D;
-    color: #FF4D8D;
+    border: 1px solid var(--x-mark-clr);
+    color: var(--x-mark-clr);
     background-color: rgba(255, 77, 141, 0.25); 
 }
 
 .o-mark:hover {
-    border: 1px solid #00E5FF;
-    color: #00E5FF;
+    border: 1px solid var(--o-mark-clr);
+    color: var(--o-mark-clr);
     background-color: rgba(61, 220, 224, 0.25);
 }
 
@@ -159,7 +164,7 @@ body {
     padding: 1rem;
     letter-spacing: 1rem;
     font-size: 1.5rem;
-    background-image: linear-gradient(to right, #FF4D8D, #00E5FF);
+    background-image: linear-gradient(to right, var(--x-mark-clr), var(--o-mark-clr));
     border-radius: 0.5rem;
     border: none;
     text-transform: uppercase;
