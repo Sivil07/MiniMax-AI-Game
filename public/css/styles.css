@@ -81,3 +81,13 @@ body {
     justify-content: center;
     gap: 2rem;
 }
+
+.players {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, auto);
+    grid-template-areas: 
+    "player-name"
+    "player-input"
+    "mark-selection";
+}
