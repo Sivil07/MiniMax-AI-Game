@@ -99,3 +99,24 @@ body {
     font-size: 1.5rem;
     text-transform: uppercase;
 }
+
+.player-input {
+    background-color: var(--body-bg-clr);
+    padding: 1.5rem;
+    border: 1px solid #2a2f3a  ;
+    border-radius: 1.5rem;
+    font-size: 1.5rem;
+    width: 500px;
+    color: var(--details-clr);
+    caret-color: var(--universal-clr);
+    
+}
+
+.player-input::placeholder {
+    color: var(--details-clr);
+    font-size: 1.5rem;
+}
+
+.player-input:focus {
+    outline: none;
+}
