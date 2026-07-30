@@ -130,6 +130,13 @@ body {
     gap: 1rem;
 }
 
-.mark-selections > * {
+.mark {
     flex: 1;
+    font-family: "SpaceMono";
+    font-size: 1rem;
+    background-color: #12161F;
+    border: 1px solid #2a2f3a;
+    border-radius: 1rem;
+    color: var(--details-clr);
+    padding: 1rem;
 }
