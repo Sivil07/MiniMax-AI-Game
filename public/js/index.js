@@ -319,6 +319,13 @@ const GameMasterModule = (function () {
         activePlayer = activePlayer === playerOne ? playerTwo : playerOne;
     }
 
+    const playAI = (board) => {
+        const humanMarker = playerOne.getMark();
+        const aiMarker = playerTwo.getMark();
+        const [row, col] = AIModelModule.findBestMove(board, aiMarker, humanMarker)
+        applyMove(row, col);
+    }
+
     const applyMove = (row, col) => {
         const result = GameBoardModule.placeSquare(row, col, getActivePlayer().getMark());
         const board = GameBoardModule.boardWithSquareValues();
