@@ -139,6 +139,7 @@ body {
     border-radius: 1rem;
     color: var(--details-clr);
     padding: 1rem;
+    transition: all 0.3s ease;
 }
 
 .x-mark:hover {
