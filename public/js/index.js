@@ -291,10 +291,18 @@ const AIModelModule = (function () {
         const availableMoves = GameBoardModule.getAvailableMoves(board)
         availableMoves.forEach(([row, col]) => {
             const simulatedAIMove = simulateMove(board, row, col, aiMarker);
+            const score = minMax(simulatedAIMove, 4, -Infinity, Infinity, false, aiMarker, humanMarker);
 
+            if (score > bestScore) {
+                bestScore = score;
+                bestMove = [row, col]
+            }
         })
 
+        return bestMove;
     }
+
+    return { findBestMove }
 
 
 })();
