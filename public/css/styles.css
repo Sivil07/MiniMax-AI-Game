@@ -27,6 +27,7 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(5, auto);
+    gap: 2rem;
     grid-template-areas: 
     "title"
     "details"
@@ -48,4 +49,5 @@ body {
     font-family: "Inter", sans-serif;
     font-size: 1.5rem;
     color: var(--details-clr);
+    text-align: center;
 }
