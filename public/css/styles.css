@@ -75,3 +75,9 @@ body {
     color: #000000;
     background-color: #00E5FF;
 }
+
+.player-cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
