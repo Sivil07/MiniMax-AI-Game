@@ -7,6 +7,8 @@
 :root {
     --body-bg-clr: rgb(11, 14, 20);
     --grid-pattern: #2a2f3a 1px, transparent 1px;
+    --universal-clr: #ffffff;
+    --details-clr: #6B7280;
 }
 
 body {
@@ -19,4 +21,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#landing-title {
+    color: var(--universal-clr);
+    font-family: "SpaceMono";
+    font-size: 2.5rem;
+    word-spacing: 2rem;
+    letter-spacing: 1.5rem;
+    text-transform: uppercase;
+}
+
+.landing-details {
+    font-family: "Inter", sans-serif;
+    font-size: 1.5rem;
+    color: var(--details-clr);
 }
