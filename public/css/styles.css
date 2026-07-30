@@ -140,3 +140,15 @@ body {
     color: var(--details-clr);
     padding: 1rem;
 }
+
+.x-mark:hover {
+    border: 1px solid #FF4D8D;
+    color: #FF4D8D;
+    background-color: rgba(255, 77, 141, 0.25); 
+}
+
+.o-mark:hover {
+    border: 1px solid #00E5FF;
+    color: #00E5FF;
+    background-color: rgba(61, 220, 224, 0.25);
+}
