@@ -1,0 +1,19 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --body-bg-clr: rgb(11, 14, 20);
+    --grid-pattern: #2a2f3a 1px, transparent 1px;
+}
+
+body {
+    height: 100vh;
+    background-color: var(--body-bg-clr);
+    background-image:
+        linear-gradient(to right, var(--grid-pattern)),
+        linear-gradient(to bottom, var(--grid-pattern));
+    background-size: 50px 50px;
+}
