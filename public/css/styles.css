@@ -177,6 +177,7 @@ body {
     color: var(--primary-clr);
     padding: 1rem;
     transition: all 0.3s ease;
+    text-align: center;
 }
 
 .mark-selections input:checked + .x-mark {
