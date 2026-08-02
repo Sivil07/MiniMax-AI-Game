@@ -14,9 +14,15 @@
         <h1 id="landing-title">Tic Tac Toe</h1>
         <p class="landing-details">Choose your fighters</p>
         <div class="player-options">
-            <button type="button" class="options">Player vs Bot</button>
-            <button type="button" class="options">Player vs Player</button>
-            <button type="button" class="options">Difficulty</button>
+            <div class="option-one">
+                <input id="radio-one" type="radio" name="opponent-type" value="bot-opponent" checked>
+                <label class="options" for="radio-one">Player Vs Bot</label>
+            </div>
+            <div class="option-two">
+                <input id="radio-two" type="radio" name="opponent-type" value="human-opponent">
+                <label class="options" for="radio-two">Player Vs Player</label>
+            </div>
+
         </div>
         <div class="player-cards">
             <div class="players">
@@ -40,4 +46,5 @@
     </form>
     <script src="./public/js/index.js"></script>
 </body>
+
 </html>
