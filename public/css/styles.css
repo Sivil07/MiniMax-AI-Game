@@ -113,6 +113,10 @@ body {
     position: absolute;
 }
 
+/* .hidden {
+    display: none; 
+} */
+
 .player-cards {
     display: flex;
     justify-content: center;
