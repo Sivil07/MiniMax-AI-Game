@@ -97,8 +97,19 @@ body {
     border-radius: 2rem;
 }
 
+.container {
+    position: relative;
+}
+
 .difficulty-action {
     border-radius: 1rem 1rem 0 0;
+}
+
+.difficulty-group {
+    display: flex;
+    justify-content: space-around;
+    border-radius: 0 0 1rem 2rem;
+    position: absolute;
 }
 
 .player-cards {
