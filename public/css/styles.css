@@ -107,6 +107,7 @@ body {
 
 .difficulty-group {
     display: flex;
+    width: 100%;
     justify-content: space-around;
     border-radius: 0 0 1rem 2rem;
     position: absolute;
