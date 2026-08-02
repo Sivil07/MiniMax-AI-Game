@@ -69,21 +69,30 @@ body {
     gap: 2rem;
 }
 
+.options, 
+.difficulty-action,
+.difficulty-group {
+    color: var(--primary-clr);
+    background-color: transparent;
+    font-size: 1.5rem;
+    border: 2px solid var(--border-clr);
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    font-family: "SpaceMono";
+    transition: all 0.3s ease;
+}
+
 .option-one,
 .option-two {
     display: flex;
 }
 
 .options {
-    color: var(--primary-clr);
-    background-color: transparent;
-    font-size: 1.5rem;
-    border: 2px solid var(--border-clr);
-    padding: 1rem 2rem;
     border-radius: 2rem;
-    text-transform: uppercase;
-    font-family: "SpaceMono";
-    transition: all 0.3s ease;
+}
+
+.difficulty-action {
+    border-radius: 1rem 1rem 0 0;
 }
 
 .options:hover {
