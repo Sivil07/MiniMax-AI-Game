@@ -28,9 +28,9 @@ body {
     align-items: center;
 }
 
-input[type="radio"] {
+/* input[type="radio"] {
     display: none;
-}
+} */
 
 
 #landing-page {
@@ -67,6 +67,11 @@ input[type="radio"] {
     display: flex;
     justify-content: center;
     gap: 2rem;
+}
+
+.option-one,
+.option-two {
+    display: flex;
 }
 
 .options {
