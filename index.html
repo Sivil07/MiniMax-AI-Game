@@ -38,19 +38,23 @@
         </div>
         <div class="player-cards">
             <div class="players">
-                <p class="player-name">Player One</p>
-                <input class="player-input" type="text" placeholder="Enter name">
+                <label class="player-name" for="player-one">Player One</label>
+                <input id="player-one" class="player-input" type="text" placeholder="Enter name" name="player-one-name">
                 <div class="mark-selections">
-                    <button type="button" class="mark x-mark">X</button>
-                    <button type="button" class="mark o-mark">O</button>
+                    <input id="player-radio-one" type="radio" name="player-one-mark" value="X" checked>
+                    <label class="mark x-mark" for="player-radio-one">X</label>
+                    <input id="player-radio-two" type="radio" name="player-one-mark" value="O">
+                    <label class="mark o-mark" for="player-radio-two">O</label>
                 </div>
             </div>
             <div class="players">
-                <p class="player-name">Player One</p>
-                <input class="player-input" type="text" placeholder="Enter name">
+                <label class="player-name" for="player-two">Player Two</label>
+                <input id="player-two" class="player-input" type="text" placeholder="Enter name" name="player-two-name">
                 <div class="mark-selections">
-                    <button type="button" class="mark x-mark">X</button>
-                    <button type="button" class="mark o-mark">O</button>
+                    <input id="radio-five" type="radio" name="player-two-mark" value="X">
+                    <label class="mark x-mark" for="radio-five">X</label>
+                    <input id="radio-six" type="radio" name="player-two-mark" value="O" checked>
+                    <label class="mark o-mark" for="radio-six">O</label>
                 </div>
             </div>
         </div>
