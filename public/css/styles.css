@@ -69,6 +69,11 @@ body {
     gap: 2rem;
 }
 
+.player-options input:checked + .options {
+    color: #000000;
+    background-color: var(--o-mark-clr);
+}
+
 .options, 
 .difficulty-action,
 .difficulty-group {
@@ -94,11 +99,6 @@ body {
 
 .difficulty-action {
     border-radius: 1rem 1rem 0 0;
-}
-
-.options:hover {
-    color: #000000;
-    background-color: var(--o-mark-clr);
 }
 
 .player-cards {
