@@ -28,6 +28,11 @@ body {
     align-items: center;
 }
 
+input[type="radio"] {
+    display: none;
+}
+
+
 #landing-page {
     display: grid;
     grid-template-columns: 1fr;
