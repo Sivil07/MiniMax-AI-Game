@@ -33,6 +33,15 @@ body {
 } */
 
 
+/* Utility Styles */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* Normal Styles */
+
 #landing-page {
     display: grid;
     grid-template-columns: 1fr;
@@ -101,6 +110,12 @@ body {
     position: relative;
 }
 
+.difficulty-types input:checked + label {
+    color: var(--o-mark-clr);
+    border-bottom: 1px solid var(--universal-clr);
+    transition: all 0.3s ease;
+}
+
 .difficulty-action {
     border-radius: 1rem 1rem 0 0;
 }
@@ -111,11 +126,10 @@ body {
     justify-content: space-around;
     border-radius: 0 0 1rem 2rem;
     position: absolute;
+    background-color: var(--card-bg-clr);
 }
 
-/* .hidden {
-    display: none; 
-} */
+
 
 .player-cards {
     display: flex;
