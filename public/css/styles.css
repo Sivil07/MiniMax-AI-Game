@@ -60,7 +60,7 @@ body {
     grid-template-areas:
         "title"
         "details"
-        "player-options"
+        "Match-Options"
         "player-cards"
         "start-game";
 }
@@ -82,18 +82,18 @@ body {
     text-align: center;
 }
 
-.player-options {
+.match-options {
     display: flex;
     justify-content: center;
     gap: 2rem;
 }
 
-.player-options input:checked+.options {
+.match-options input:checked+.mode-labels {
     color: #000000;
     background-color: var(--o-mark-clr);
 }
 
-.options,
+.mode-labels,
 .difficulty-action,
 .difficulty-group {
     color: var(--primary-clr);
@@ -106,21 +106,20 @@ body {
     transition: all 0.3s ease;
 }
 
-.option-one,
-.option-two {
+.mode-options {
     display: flex;
     height: max-content;
 }
 
-.options {
+.mode-labels {
     border-radius: 2rem;
 }
 
-.container {
+.difficulty-dropdown {
     position: relative;
 }
 
-.difficulty-types input:checked+label {
+.difficulty-choice input:checked+label {
     color: var(--o-mark-clr);
     border-bottom: 1px solid var(--universal-clr);
     transition: all 0.3s ease;
@@ -168,7 +167,7 @@ body {
     text-transform: uppercase;
 }
 
-.player-input {
+.player-inputs {
     background-color: var(--body-bg-clr);
     padding: 1.5rem;
     border: 1px solid var(--border-clr);
@@ -179,12 +178,12 @@ body {
     caret-color: var(--universal-clr);
 }
 
-.player-input::placeholder {
+.player-inputs::placeholder {
     color: var(--primary-clr);
     font-size: 1.5rem;
 }
 
-.player-input:focus {
+.player-inputs:focus {
     outline: none;
 }
 
