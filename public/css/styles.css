@@ -39,6 +39,16 @@ body {
     display: none;
 }
 
+.highlight-container.highlight-container {
+    border: 2px solid var(--o-mark-clr);
+    color: var(--o-mark-clr);
+    background-color: rgba(61, 220, 224, 0.25);
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
 
 /* Normal Styles */
 
