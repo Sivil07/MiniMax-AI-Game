@@ -6,14 +6,14 @@
 
 :root {
     --body-bg-clr: rgb(11, 14, 20);
-    --border-clr:  #2a2f3a;
+    --border-clr: #2a2f3a;
     --grid-pattern: var(--border-clr) 1px, transparent 1px;
     --universal-clr: #ffffff;
     --primary-clr: #6B7280;
     --o-mark-clr: #00E5FF;
     --x-mark-clr: #FF4D8D;
     --card-bg-clr: #12161F;
-    
+
 }
 
 body {
@@ -35,8 +35,8 @@ body {
 
 /* Utility Styles */
 
-.hidden {
-    display: none !important;
+.hidden.hidden {
+    display: none;
 }
 
 
@@ -78,12 +78,12 @@ body {
     gap: 2rem;
 }
 
-.player-options input:checked + .options {
+.player-options input:checked+.options {
     color: #000000;
     background-color: var(--o-mark-clr);
 }
 
-.options, 
+.options,
 .difficulty-action,
 .difficulty-group {
     color: var(--primary-clr);
@@ -110,7 +110,7 @@ body {
     position: relative;
 }
 
-.difficulty-types input:checked + label {
+.difficulty-types input:checked+label {
     color: var(--o-mark-clr);
     border-bottom: 1px solid var(--universal-clr);
     transition: all 0.3s ease;
@@ -167,7 +167,6 @@ body {
     width: 500px;
     color: var(--primary-clr);
     caret-color: var(--universal-clr);
-
 }
 
 .player-input::placeholder {
@@ -198,13 +197,13 @@ body {
     text-align: center;
 }
 
-.mark-selections input:checked + .x-mark {
+.mark-selections input:checked+.x-mark {
     border: 1px solid var(--x-mark-clr);
     color: var(--x-mark-clr);
     background-color: rgba(255, 77, 141, 0.25);
 }
 
-.mark-selections input:checked + .o-mark {
+.mark-selections input:checked+.o-mark {
     border: 1px solid var(--o-mark-clr);
     color: var(--o-mark-clr);
     background-color: rgba(61, 220, 224, 0.25);
