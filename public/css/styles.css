@@ -58,11 +58,11 @@ body {
     grid-template-rows: repeat(5, auto);
     gap: 3rem;
     grid-template-areas:
-        "title"
-        "details"
+        "Landing-Title"
+        "Landing-Details"
         "Match-Options"
-        "player-cards"
-        "start-game";
+        "Player-Cards"
+        "Start-Game";
 }
 
 #landing-title {
@@ -156,9 +156,9 @@ body {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3, auto);
     grid-template-areas:
-        "player-name"
-        "player-input"
-        "mark-selection";
+        "Player-Name"
+        "Player-Input"
+        "Mark-Selection";
 }
 
 .player-name {
