@@ -1,8 +1,11 @@
+/* 1. Reset */
 * {
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
 }
+
+/* 2. Custom Variables */
 
 :root {
     --body-bg-clr: rgb(11, 14, 20);
@@ -15,6 +18,8 @@
     --card-bg-clr: #12161F;
 
 }
+
+/* 3. Base */
 
 body {
     height: 100vh;
@@ -33,25 +38,7 @@ body {
 } */
 
 
-/* Utility Styles */
-
-.hidden.hidden {
-    display: none;
-}
-
-.highlight-container.highlight-container {
-    border: 2px solid var(--o-mark-clr);
-    color: var(--o-mark-clr);
-    background-color: rgba(61, 220, 224, 0.25);
-}
-
-.disabled {
-    opacity: 0.5;
-    pointer-events: none;
-}
-
-/* Normal Styles */
-
+/* 4. Layout - Landing Page */
 #landing-page {
     display: grid;
     grid-template-columns: 1fr;
@@ -64,6 +51,8 @@ body {
         "Player-Cards"
         "Start-Game";
 }
+
+/* 4.1 (Landing Page) - Title / Details */
 
 #landing-title {
     color: var(--universal-clr);
@@ -81,6 +70,8 @@ body {
     color: var(--primary-clr);
     text-align: center;
 }
+
+/* 4.2 (Landing Page) - Mode and Difficulty Options*/
 
 .match-options {
     display: flex;
@@ -138,7 +129,7 @@ body {
     background-color: var(--card-bg-clr);
 }
 
-
+/* 4.3 (Landing Page) - Player Cards*/
 
 .player-cards {
     display: flex;
@@ -218,6 +209,8 @@ body {
     background-color: rgba(61, 220, 224, 0.25);
 }
 
+/* 4.4 (Landing Page) - Start Game Button */
+
 .start-game {
     font-family: "SpaceMono";
     padding: 1rem;
@@ -228,4 +221,21 @@ body {
     border: none;
     text-transform: uppercase;
     font-weight: bold;
+}
+
+/* Utilities */
+
+.hidden {
+    display: none;
+}
+
+.highlight-container {
+    border: 2px solid var(--o-mark-clr);
+    color: var(--o-mark-clr);
+    background-color: rgba(61, 220, 224, 0.25);
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
 }
