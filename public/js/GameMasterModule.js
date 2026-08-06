@@ -29,6 +29,13 @@ const GameMasterModule = (function () {
         getInactivePlayer().incrementPlayerLosses(1);
     }
 
+    const isAIActive = (opponentType, difficulty) => {
+        if (opponentType === "bot-opponent") {
+            isAIOn = true;
+            setDifficulty(difficulty)
+        }
+    }
+
     const playAI = (board) => {
         const humanMarker = playerOne.getMark();
         const aiMarker = playerTwo.getMark();
