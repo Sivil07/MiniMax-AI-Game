@@ -125,7 +125,7 @@ const GameMasterModule = (function () {
         }
         GameBoardModule.displayBoard();
 
-        if (!gameOver && getActivePlayer() === playerTwo) {
+        if (!gameOver && isAIOn && getActivePlayer() === playerTwo) {
             playAI(board)
         }
     }
