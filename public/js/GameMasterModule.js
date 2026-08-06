@@ -43,6 +43,13 @@ const GameMasterModule = (function () {
         applyMove(row, col);
     }
 
+    const setupGame = ({ difficultyOption, opponentType, playerOneMark, playerOneName, playerTwoMark, playerTwoName }) => {
+        playerOne = createPlayer(playerOneName, playerOneMark);
+        playerTwo = createPlayer(playerTwoName, playerTwoMark);
+        activePlayer = playerOne;
+        inactivePlayer = playerTwo;
+        isAIActive(opponentType, difficultyOption);
+    }
 
     const setDifficulty = (difficultyOption) => {
         switch (difficultyOption) {
