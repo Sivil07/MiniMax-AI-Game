@@ -24,7 +24,7 @@
             </div>
             <div class="difficulty-dropdown">
                 <button type="button" class="difficulty-action">Select Difficulty</button>
-                <div class="difficulty-group hidden">
+                <div class="difficulty-group">
                     <div class="difficulty-choice">
                         <input type="radio" id="difficulty-easy" name="difficulty-option" value="Easy">
                         <label for="difficulty-easy">Easy</label>
@@ -39,9 +39,9 @@
         <div class="player-cards">
             <div id="player-one-card" class="players">
                 <label class="player-name" for="player-one-input">Player One</label>
-                <input id="player-one-input" class="player-inputs" type="text" placeholder="Enter name" name="player-one-name">
+                <input id="player-one-input" class="player-inputs" type="text" placeholder="Enter name" name="player-one-name" required>
                 <div class="mark-selections">
-                    <input id="player-one-mark-x" type="radio" name="player-one-mark" value="X" checked>
+                    <input id="player-one-mark-x" type="radio" name="player-one-mark" value="X" checked required>
                     <label class="mark x-mark" for="player-one-mark-x">X</label>
                     <input id="player-one-mark-o" type="radio" name="player-one-mark" value="O">
                     <label class="mark o-mark" for="player-one-mark-o">O</label>
