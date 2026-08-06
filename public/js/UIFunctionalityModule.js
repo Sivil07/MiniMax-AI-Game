@@ -1,29 +1,37 @@
 const UIFunctionalityModule = (function () {
 
+    // Adds/removes the highlight style on an element
     const toggleActionHighlight = (element, isHighlight) => {
         element.classList.toggle("highlight-container", isHighlight);
     }
 
+    // Adds/Removes the "disabled" look on an element (greyed out)
     const toggleDifficultyDisabled = (element, isDisable) => {
         element.classList.toggle("disabled", isDisable);
     }
 
+    // Greys out Player 2 card when "Player vs Bot" option is selected
     const disablePlayerCardTwo = (isDisabled) => {
         const playerCardTwo = document.querySelector("#player-two-card");
         playerCardTwo.classList.toggle("disabled", isDisabled)
     }
 
+    // Shows/hide the difficulty group ("Easy", "Expert") when (Player vs Player) is selected
     const toggleDifficultyGroupVisibility = (isHidden) => {
         const difficultyGroup = document.querySelector(".difficulty-group");
         difficultyGroup.classList.toggle("hidden", isHidden);
     }
 
+    // Combines the disabled highlight state changes for the
+    // difficulty action so they can be used in one function call
     const updateDifficultyActionState = (isDisabled, isHighlighted) => {
         const difficultyAction = document.querySelector(".difficulty-action");
         toggleActionHighlight(difficultyAction, isHighlighted);
         toggleDifficultyDisabled(difficultyAction, isDisabled);
     }
 
+    // Converts the form into an object and normalizes the 
+    // difficulty value before using it to setup the game
     const getLandingPageFormData = (form) => {
         const rawData = new FormData(form);
         const data = Object.fromEntries(rawData.entries());
@@ -31,6 +39,8 @@ const UIFunctionalityModule = (function () {
         return cleanedData;
     }
 
+    // Marks the difficulty group fields (Easy, Expert) and player two card fields
+    // as required or not. Based on the mode (bot) or (pvp) mode
     const setRequiredFields = (requiredDifficulty, requirePlayerTwoInput) => {
         const playerTwoInput = document.querySelector("#player-two");
         const difficultyEasy = document.querySelector("#difficulty-easy");
@@ -39,6 +49,8 @@ const UIFunctionalityModule = (function () {
         return;
     }
 
+    // Difficulty only applies in bot mode. When the opponent is human,
+    // force difficultyOption to "N/A" so no irrelevant value is carried forward
     const clearDifficultyForHumanMode = (data) => {
         for (const key in data) {
             if (data[key] === "human-opponent") {
@@ -49,6 +61,9 @@ const UIFunctionalityModule = (function () {
         return data;
     }
 
+    // Fills in "Bot" as player two's name/label when bot mode is enabled.
+    // and reverts back to the blank "Player Two" input otherwise. Also,
+    // the mark selection will be re-synced to reflect the changes.
     const setPlayerTwoBotMode = (isBot) => {
         const playerTwoInput = document.querySelector("#player-two")
         const playerTwoLabel = playerTwoInput.previousElementSibling;
@@ -61,6 +76,8 @@ const UIFunctionalityModule = (function () {
         return;
     }
 
+    // Sets up the form's starting state when the page first loads.
+    // Starting state: bot mode one, player one as X, difficulty set to easy
     const initializeDefaultFormState = () => {
         const modeBot = document.querySelector("#mode-bot");
         const playerOneXMark = document.querySelector("#player-one-mark-x");
@@ -76,15 +93,22 @@ const UIFunctionalityModule = (function () {
         return;
     }
 
+    // Runs whenever the user switches between bot mode and PvP mode
+    // Parts of the form will be updated based on the choice.
     const handleModeChange = (element) => {
 
         if (element.matches("#mode-bot") && element.checked) {
+            // Bot mode: difficulty options (Easy, Expert) becomes usable, player two is
+            // locked in as "Bot" and greyed.
             updateDifficultyActionState(false, true)
             disablePlayerCardTwo(true)
             setPlayerTwoBotMode(true)
             toggleDifficultyGroupVisibility(false);
             setRequiredFields(true, false)
+
         } else if (element.matches("#mode-pvp") && element.checked) {
+            // Pvp mode: difficulty options (Easy, Expert) disappears (becomes
+            // unusable) and the player two card can now be edited (now longer greyed out).
             updateDifficultyActionState(true, false)
             disablePlayerCardTwo(false)
             setPlayerTwoBotMode(false)
@@ -95,6 +119,9 @@ const UIFunctionalityModule = (function () {
 
     }
 
+    // Keeps player one and player two's marks mutually exclusive.
+    // So whenever mark one player picks, the other player automatically
+    // gets the opposite mark.
     const handleMarkSelections = (element) => {
         const playerOneXMark = document.querySelector("#player-one-mark-x");
         const playerOneOMark = document.querySelector("#player-one-mark-o");
@@ -113,6 +140,7 @@ const UIFunctionalityModule = (function () {
         return;
     }
 
+    // Sets up all the event listeners
     const attachEventListeners = () => {
         const form = document.querySelector("#landing-page");
 
