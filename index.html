@@ -15,22 +15,22 @@
         <p class="landing-details">Choose your fighters</p>
         <div class="match-options">
             <div class="mode-options">
-                <input id="mode-bot" type="radio" name="opponent-type" value="bot-opponent">
+                <input id="mode-bot" type="radio" name="opponentType" value="bot-opponent">
                 <label class="mode-labels" for="mode-bot">Player Vs Bot</label>
             </div>
             <div class="mode-options">
-                <input id="mode-pvp" type="radio" name="opponent-type" value="human-opponent">
+                <input id="mode-pvp" type="radio" name="opponentType" value="human-opponent">
                 <label class="mode-labels" for="mode-pvp">Player Vs Player</label>
             </div>
             <div class="difficulty-dropdown">
                 <button type="button" class="difficulty-action">Select Difficulty</button>
                 <div class="difficulty-group">
                     <div class="difficulty-choice">
-                        <input type="radio" id="difficulty-easy" name="difficulty-option" value="Easy">
+                        <input type="radio" id="difficulty-easy" name="difficultyOption" value="Easy">
                         <label for="difficulty-easy">Easy</label>
                     </div>
                     <div class="difficulty-choice">
-                        <input type="radio" id="difficulty-expert" name="difficulty-option" value="Expert">
+                        <input type="radio" id="difficulty-expert" name="difficultyOption" value="Expert">
                         <label for="difficulty-expert">Expert</label>
                     </div>
                 </div>
@@ -39,27 +39,28 @@
         <div class="player-cards">
             <div id="player-one-card" class="players">
                 <label class="player-name" for="player-one-input">Player One</label>
-                <input id="player-one-input" class="player-inputs" type="text" placeholder="Enter name" name="player-one-name" required>
+                <input id="player-one-input" class="player-inputs" type="text" placeholder="Enter name" name="playerOneName" required>
                 <div class="mark-selections">
-                    <input id="player-one-mark-x" type="radio" name="player-one-mark" value="X" checked required>
+                    <input id="player-one-mark-x" type="radio" name="playerOneMark" value="X" checked required>
                     <label class="mark x-mark" for="player-one-mark-x">X</label>
-                    <input id="player-one-mark-o" type="radio" name="player-one-mark" value="O">
+                    <input id="player-one-mark-o" type="radio" name="playerOneMark" value="O">
                     <label class="mark o-mark" for="player-one-mark-o">O</label>
                 </div>
             </div>
             <div id="player-two-card" class="players">
                 <label class="player-name" for="player-two">Player Two</label>
-                <input id="player-two" class="player-inputs" type="text" placeholder="Enter name" name="player-two-name">
+                <input id="player-two" class="player-inputs" type="text" placeholder="Enter name" name="playerTwoName">
                 <div class="mark-selections">
-                    <input id="player-two-mark-x" type="radio" name="player-two-mark" value="X">
+                    <input id="player-two-mark-x" type="radio" name="playerTwoMark" value="X">
                     <label class="mark x-mark" for="player-two-mark-x">X</label>
-                    <input id="player-two-mark-o" type="radio" name="player-two-mark" value="O" checked>
+                    <input id="player-two-mark-o" type="radio" name="playerTwoMark" value="O" checked>
                     <label class="mark o-mark" for="player-two-mark-o">O</label>
                 </div>
             </div>
         </div>
         <button type="submit" class="start-game">Start Game</button>
     </form>
+    <script src="./public/js/UIModule.js"></script>
     <script src="./public/js/createPlayer.js"></script>
     <script src="./public/js/createSquare.js"></script>
     <script src="./public/js/GameConstraintsModule.js"></script>
@@ -67,6 +68,7 @@
     <script src="./public/js/WinDetectionModule.js"></script>
     <script src="./public/js/AIModelModule.js"></script>
     <script src="./public/js/GameMasterModule.js"></script>
+    <script src="./public/js/UIFunctionalityModule.js"></script>
     
     <!-- <script src="./public/js/index.js"></script> -->
 </body>
