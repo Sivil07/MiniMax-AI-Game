@@ -226,13 +226,22 @@ body {
 /* Utilities */
 
 .hidden {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .highlight-container {
     border: 2px solid var(--o-mark-clr);
     color: var(--o-mark-clr);
     background-color: rgba(61, 220, 224, 0.25);
+}
+
+.highlight-card-red {
+    border: 1px solid rgba(255, 77, 141, 0.25);
+}
+
+.highlight-card-blue {
+    border: 1px solid rgba(61, 220, 224, 0.25);
 }
 
 .disabled {
