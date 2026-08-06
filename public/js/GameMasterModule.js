@@ -36,6 +36,20 @@ const GameMasterModule = (function () {
         applyMove(row, col);
     }
 
+
+    const setDifficulty = (difficultyOption) => {
+        switch (difficultyOption) {
+            case "Easy":
+                difficulty = 1;
+                break;
+            case "Expert":
+                difficulty = 9;
+                break;
+            default:
+                break;
+        }
+    }
+
     const restartGame = () => {
         GameBoardModule.resetBoard();
         activePlayer.resetPlayer();
