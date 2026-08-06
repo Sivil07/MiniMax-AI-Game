@@ -1,11 +1,13 @@
 const GameMasterModule = (function () {
-    const playerOne = createPlayer("Rachel", "X")
-    const playerTwo = createPlayer("Computer", "O")
+    let playerOne;
+    let playerTwo;
+    let activePlayer;
+    let inactivePlayer;
+    let difficulty;
     const maxRounds = 3;
     let roundCount = 0;
-    let activePlayer = playerOne;
-    let inactivePlayer = playerTwo
     let gameOver = false;
+    let isAIOn = false;
 
     const getActivePlayer = () => activePlayer;
     const getInactivePlayer = () => inactivePlayer;
