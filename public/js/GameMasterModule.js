@@ -1,13 +1,30 @@
 const GameMasterModule = (function () {
     const playerOne = createPlayer("Rachel", "X")
     const playerTwo = createPlayer("Computer", "O")
+    const maxRounds = 3;
+    let roundCount = 0;
     let activePlayer = playerOne;
+    let inactivePlayer = playerTwo
     let gameOver = false;
 
     const getActivePlayer = () => activePlayer;
+    const getInactivePlayer = () => inactivePlayer;
+    const hasReachedMaxRounds = () => roundCount === maxRounds;
+    const incrementCount = (num) => roundCount += num;
 
     const switchPlayers = () => {
         activePlayer = activePlayer === playerOne ? playerTwo : playerOne;
+        inactivePlayer = activePlayer === playerOne ? playerTwo : playerOne;
+    }
+
+    const resetPlayerActiveStates = () => {
+        activePlayer = playerOne;
+        inactivePlayer = playerTwo;
+    }
+
+    const recordWinLoss = () => {
+        getActivePlayer().incrementPlayerWins(1);
+        getInactivePlayer().incrementPlayerLosses(1);
     }
 
     const playAI = (board) => {
@@ -15,6 +32,42 @@ const GameMasterModule = (function () {
         const aiMarker = playerTwo.getMark();
         const [row, col] = AIModelModule.findBestMove(board, aiMarker, humanMarker)
         applyMove(row, col);
+    }
+
+    const restartGame = () => {
+        GameBoardModule.resetBoard();
+        activePlayer.resetPlayer();
+        inactivePlayer.resetPlayer();
+        resetPlayerActiveStates();
+        roundCount = 0;
+        gameOver = false;
+
+        console.log(`${getActivePlayer().getName()}'s turn`)
+        GameBoardModule.displayBoard()
+    }
+
+    const newRound = () => {
+        GameBoardModule.resetBoard();
+        console.log(`${playerOne.getName()} (Wins: ${playerOne.getPlayerWins()} Losses: ${playerOne.getPlayerLosses()} Streak: ${playerOne.getPlayerStreak()})`)
+        console.log(`${playerTwo.getName()} (Wins: ${playerTwo.getPlayerWins()} Losses: ${playerTwo.getPlayerLosses()} Streak: ${playerTwo.getPlayerStreak()})`)
+        resetPlayerActiveStates();
+        gameOver = false;
+        console.log(`${getActivePlayer().getName()}'s turn`)
+        GameBoardModule.displayBoard()
+    }
+
+    const playMove = (row, col) => {
+        if (gameOver && hasReachedMaxRounds()) {
+            console.log("The game has ended. No More Rounds")
+            return;
+        }
+
+        if (gameOver && !hasReachedMaxRounds()) {
+            console.log("Start new round");
+            return;
+
+        }
+        applyMove(row, col)
     }
 
     const applyMove = (row, col) => {
@@ -25,9 +78,16 @@ const GameMasterModule = (function () {
             console.log(result.message)
         } else if (WinDetectionModule.isWinnerFound(getActivePlayer().getMark(), board)) {
             gameOver = true;
+            recordWinLoss();
+            getActivePlayer().updateStreak("win")
+            getInactivePlayer().updateStreak("loss");
+            incrementCount(1)
             console.log(`${getActivePlayer().getName()} won!`)
         } else if (GameConstraintsModule.isBoardFull(board)) {
             gameOver = true;
+            getActivePlayer().updateStreak("draw");
+            getInactivePlayer().updateStreak("draw")
+            incrementCount(1);
             console.log("It's a tie.")
         } else {
             switchPlayers();
@@ -40,24 +100,7 @@ const GameMasterModule = (function () {
         }
     }
 
-    const restartGame = () => {
-        GameBoardModule.resetBoard();
-        activePlayer = playerOne;
-        gameOver = false;
-
-        console.log(`${getActivePlayer().getName()}'s turn`)
-        GameBoardModule.displayBoard()
-    }
-
-    const playMove = (row, col) => {
-        if (gameOver) {
-            console.log("The game has ended.")
-            return;
-        }
-        applyMove(row, col)
-    }
-
     GameBoardModule.displayBoard()
-    return { playMove, restartGame }
+    return { playMove, restartGame, newRound }
 
 })();
