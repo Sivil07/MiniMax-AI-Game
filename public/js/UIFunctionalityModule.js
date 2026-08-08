@@ -10,6 +10,18 @@ const UIFunctionalityModule = (function () {
         element.classList.toggle("disabled", isDisable);
     }
 
+    // Set a player card's highlight color to match its player's chosen mark (red)
+    const toggleHighlightRed = (element) => {
+        element.classList.remove("highlight-card-blue")
+        element.classList.add("highlight-card-red")
+    }
+
+    // Set a player card's highlight color to match its player's chosen mark (blue)
+    const toggleHighlightBlue = (element) => {
+        element.classList.remove("highlight-card-red")
+        element.classList.add("highlight-card-blue")
+    }
+
     // Greys out Player 2 card when "Player vs Bot" option is selected
     const disablePlayerCardTwo = (isDisabled) => {
         const playerCardTwo = document.querySelector("#player-two-card");
@@ -122,7 +134,11 @@ const UIFunctionalityModule = (function () {
     // Keeps player one and player two's marks mutually exclusive.
     // So whenever mark one player picks, the other player automatically
     // gets the opposite mark.
+    // Also updates each player's card highlight to match their newly assigned
+    // marks.
     const handleMarkSelections = (element) => {
+        const playerOneCard = document.querySelector("#player-one-card");
+        const playerTwoCard = document.querySelector("#player-two-card");
         const playerOneXMark = document.querySelector("#player-one-mark-x");
         const playerOneOMark = document.querySelector("#player-one-mark-o");
         const playerTwoXMark = document.querySelector("#player-two-mark-x");
@@ -130,12 +146,20 @@ const UIFunctionalityModule = (function () {
 
         if (element.matches("#player-one-mark-x") && element.checked) {
             playerTwoOMark.checked = true
+            toggleHighlightRed(playerOneCard)
+            toggleHighlightBlue(playerTwoCard)
         } else if (element.matches("#player-one-mark-o") && element.checked) {
             playerTwoXMark.checked = true;
+            toggleHighlightBlue(playerOneCard);
+            toggleHighlightRed(playerTwoCard)
         } else if (element.matches("#player-two-mark-x") && element.checked) {
             playerOneOMark.checked = true;
+            toggleHighlightRed(playerTwoCard);
+            toggleHighlightBlue(playerOneCard)
         } else if (element.matches("#player-two-mark-o") && element.checked) {
             playerOneXMark.checked = true;
+            toggleHighlightBlue(playerTwoCard);
+            toggleHighlightRed(playerOneCard)
         }
         return;
     }
