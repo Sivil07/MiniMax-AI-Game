@@ -125,14 +125,14 @@ const AIModelModule = (function () {
         }
     }
 
-    const findBestMove = (board, aiMarker, humanMarker) => {
+    const findBestMove = (board, difficulty, aiMarker, humanMarker) => {
         let bestScore = -Infinity
         let bestMove;
 
         const availableMoves = GameBoardModule.getAvailableMoves(board)
         availableMoves.forEach(([row, col]) => {
             const simulatedAIMove = simulateMove(board, row, col, aiMarker);
-            const score = minMax(simulatedAIMove, 4, -Infinity, Infinity, false, aiMarker, humanMarker);
+            const score = minMax(simulatedAIMove, difficulty, -Infinity, Infinity, false, aiMarker, humanMarker);
 
             if (score > bestScore) {
                 bestScore = score;

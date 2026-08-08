@@ -1,13 +1,13 @@
 const GameMasterModule = (function () {
+    const maxRounds = 3;
+    let roundCount = 0;
+    let gameOver = false;
+    let isAIOn = false;
     let playerOne;
     let playerTwo;
     let activePlayer;
     let inactivePlayer;
     let difficulty;
-    const maxRounds = 3;
-    let roundCount = 0;
-    let gameOver = false;
-    let isAIOn = false;
 
     const getActivePlayer = () => activePlayer;
     const getInactivePlayer = () => inactivePlayer;
@@ -39,7 +39,7 @@ const GameMasterModule = (function () {
     const playAI = (board) => {
         const humanMarker = playerOne.getMark();
         const aiMarker = playerTwo.getMark();
-        const [row, col] = AIModelModule.findBestMove(board, aiMarker, humanMarker)
+        const [row, col] = AIModelModule.findBestMove(board, difficulty, aiMarker, humanMarker)
         applyMove(row, col);
     }
 
@@ -131,6 +131,6 @@ const GameMasterModule = (function () {
     }
 
     GameBoardModule.displayBoard()
-    return { playMove, restartGame, newRound }
+    return { playMove, restartGame, newRound, setupGame }
 
 })();
