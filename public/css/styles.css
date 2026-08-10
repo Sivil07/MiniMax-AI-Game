@@ -225,8 +225,13 @@ body {
 
 /* Utilities */
 
-.hidden {
+.is-invisible {
     opacity: 0;
+    pointer-events: none;
+}
+
+.is-faded {
+    opacity: 0.5;
     pointer-events: none;
 }
 
@@ -242,9 +247,4 @@ body {
 
 .highlight-card-blue {
     border: 1px solid rgba(61, 220, 224, 0.25);
-}
-
-.disabled {
-    opacity: 0.5;
-    pointer-events: none;
 }

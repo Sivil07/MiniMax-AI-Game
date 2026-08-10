@@ -5,9 +5,9 @@ const UIFunctionalityModule = (function () {
         element.classList.toggle("highlight-container", isHighlight);
     }
 
-    // Adds/Removes the "disabled" look on an element (greyed out)
-    const toggleDifficultyDisabled = (element, isDisable) => {
-        element.classList.toggle("disabled", isDisable);
+    // Adds/Removes the "faded" look on an element (greyed out)
+    const toggleDifficultyFaded = (element, isFaded) => {
+        element.classList.toggle("is-faded", isFaded);
     }
 
     // Set a player card's highlight color to match its player's chosen mark (red)
@@ -23,23 +23,23 @@ const UIFunctionalityModule = (function () {
     }
 
     // Greys out Player 2 card when "Player vs Bot" option is selected
-    const disablePlayerCardTwo = (isDisabled) => {
+    const fadePlayerCardTwo = (isFaded) => {
         const playerCardTwo = document.querySelector("#player-two-card");
-        playerCardTwo.classList.toggle("disabled", isDisabled)
+        playerCardTwo.classList.toggle("is-faded", isFaded)
     }
 
     // Shows/hide the difficulty group ("Easy", "Expert") when (Player vs Player) is selected
-    const toggleDifficultyGroupVisibility = (isHidden) => {
+    const toggleDifficultyGroupVisibility = (isInvisible) => {
         const difficultyGroup = document.querySelector(".difficulty-group");
-        difficultyGroup.classList.toggle("hidden", isHidden);
+        difficultyGroup.classList.toggle("is-invisible", isInvisible);
     }
 
-    // Combines the disabled highlight state changes for the
+    // Combines the faded highlight state changes for the
     // difficulty action so they can be used in one function call
-    const updateDifficultyActionState = (isDisabled, isHighlighted) => {
+    const updateDifficultyActionState = (isFaded, isHighlighted) => {
         const difficultyAction = document.querySelector(".difficulty-action");
         toggleActionHighlight(difficultyAction, isHighlighted);
-        toggleDifficultyDisabled(difficultyAction, isDisabled);
+        toggleDifficultyFaded(difficultyAction, isFaded);
     }
 
     // Converts the form into an object and normalizes the 
@@ -113,7 +113,7 @@ const UIFunctionalityModule = (function () {
             // Bot mode: difficulty options (Easy, Expert) becomes usable, player two is
             // locked in as "Bot" and greyed.
             updateDifficultyActionState(false, true)
-            disablePlayerCardTwo(true)
+            fadePlayerCardTwo(true)
             setPlayerTwoBotMode(true)
             toggleDifficultyGroupVisibility(false);
             setRequiredFields(true, false)
@@ -122,7 +122,7 @@ const UIFunctionalityModule = (function () {
             // Pvp mode: difficulty options (Easy, Expert) disappears (becomes
             // unusable) and the player two card can now be edited (now longer greyed out).
             updateDifficultyActionState(true, false)
-            disablePlayerCardTwo(false)
+            fadePlayerCardTwo(false)
             setPlayerTwoBotMode(false)
             toggleDifficultyGroupVisibility(true);
             setRequiredFields(false, true);
@@ -175,7 +175,7 @@ const UIFunctionalityModule = (function () {
             console.log(cleanData);
 
             form.remove();
-        })
+        });
 
         document.body.addEventListener("change", (e) => {
             const element = e.target;
