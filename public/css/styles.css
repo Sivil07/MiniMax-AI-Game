@@ -228,6 +228,18 @@ input[type="radio"] {
     cursor: pointer;
 }
 
+/* 5. Layout - Loading Screen */
+
+#loading-screen {
+    display: flex;
+    font-family: "SpaceMono";
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    font-size: 4rem;
+    color: var(--primary-clr);
+}
+
 /* Utilities */
 
 @keyframes animateGradient {
