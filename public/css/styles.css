@@ -14,7 +14,10 @@
     --universal-clr: #ffffff;
     --primary-clr: #6B7280;
     --o-mark-clr: #00E5FF;
+    --o-highlight: rgba(61, 220, 224, 0.25);;
     --x-mark-clr: #FF4D8D;
+    --x-highlight: rgba(255, 77, 141, 0.25);
+    --dual-mark-clr: linear-gradient(to right, var(--x-mark-clr), var(--o-mark-clr));
     --card-bg-clr: #12161F;
 
 }
@@ -200,13 +203,13 @@ body {
 .mark-selections input:checked+.x-mark {
     border: 1px solid var(--x-mark-clr);
     color: var(--x-mark-clr);
-    background-color: rgba(255, 77, 141, 0.25);
+    background-color: var(--x-highlight);
 }
 
 .mark-selections input:checked+.o-mark {
     border: 1px solid var(--o-mark-clr);
     color: var(--o-mark-clr);
-    background-color: rgba(61, 220, 224, 0.25);
+    background-color: var(--o-highlight);
 }
 
 /* 4.4 (Landing Page) - Start Game Button */
@@ -216,7 +219,7 @@ body {
     padding: 1rem;
     letter-spacing: 1rem;
     font-size: 1.5rem;
-    background-image: linear-gradient(to right, var(--x-mark-clr), var(--o-mark-clr));
+    background-image: var(--dual-mark-clr);
     border-radius: 0.5rem;
     border: none;
     text-transform: uppercase;
@@ -238,13 +241,13 @@ body {
 .highlight-container {
     border: 2px solid var(--o-mark-clr);
     color: var(--o-mark-clr);
-    background-color: rgba(61, 220, 224, 0.25);
+    background-color: var(--o-highlight);
 }
 
 .highlight-card-red {
-    border: 1px solid rgba(255, 77, 141, 0.25);
+    border: 1px solid var(--x-highlight)
 }
 
 .highlight-card-blue {
-    border: 1px solid rgba(61, 220, 224, 0.25);
+    border: 1px solid var(--o-highlight);
 }
