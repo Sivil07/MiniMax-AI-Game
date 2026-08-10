@@ -323,6 +323,30 @@ input[type="radio"] {
     animation-timing-function: linear;
 }
 
+@keyframes pulseOMark {
+    0% { opacity: 1;}
+    50% { opacity: 0.5;}
+    100% { opacity: 1;}
+}
+
+.pulse-O {
+    animation-name: pulseOMark;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes pulseXMark {
+    0% { opacity: 0.5;}
+    50% { opacity: 1;}
+    100% { opacity: 0.5;}
+}
+
+.pulse-X {
+    animation-name: pulseXMark;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
 .remove-node {
     display: none;
 }
