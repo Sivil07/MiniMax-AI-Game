@@ -1,4 +1,8 @@
 const UIFunctionalityModule = (function () {
+    const toggleRemoveNode = (element) => {
+        element.classList.toggle("remove-node")
+    }
+
     /*  Landing Page Functionality */
 
     // Adds/removes the highlight style on an element
@@ -179,7 +183,9 @@ const UIFunctionalityModule = (function () {
         });
 
         form.addEventListener("animationend", () => {
+            const loadingScreen = document.querySelector(".loading-screen");
             form.classList.add("remove-node")
+            toggleRemoveNode(loadingScreen);
         })
 
         document.body.addEventListener("change", (e) => {
@@ -197,6 +203,9 @@ const UIFunctionalityModule = (function () {
         })
     }
 
+    /*  Loading Page Functionality */
+
+    // Sets up loading screen listeners
     const loadingScreenListeners = () => {
         const loadingScreen = document.querySelector(".loading-screen");
         const progressFill = document.querySelector(".progress-fill");
@@ -214,11 +223,11 @@ const UIFunctionalityModule = (function () {
 
     // Sets up all the event listeners
     const attachEventListeners = () => {
-        // landingPageListeners();
+        landingPageListeners();
         loadingScreenListeners();
     }
 
-    // initializeDefaultFormState();
+    initializeDefaultFormState();
     attachEventListeners();
 
 })();
