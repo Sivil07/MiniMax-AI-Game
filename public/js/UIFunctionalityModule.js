@@ -204,6 +204,12 @@ const UIFunctionalityModule = (function () {
         progressFill.addEventListener("animationend", () => {
             loadingScreen.classList.add("shrink-fade")
         })
+
+        loadingScreen.addEventListener(("animationend"), (e) => {
+            if (e.animationName === "shrinkFade") {
+                loadingScreen.classList.add("remove-node")
+            } 
+        })
     }
 
     // Sets up all the event listeners
