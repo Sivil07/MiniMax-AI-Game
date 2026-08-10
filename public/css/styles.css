@@ -230,7 +230,7 @@ input[type="radio"] {
 
 /* 5. Layout - Loading Screen */
 
-#loading-screen {
+.loading-screen {
     display: flex;
     font-family: "SpaceMono";
     flex-direction: column;
