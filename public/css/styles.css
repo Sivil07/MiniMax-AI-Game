@@ -43,7 +43,7 @@ input[type="radio"] {
 
 
 /* 4. Layout - Landing Page */
-#landing-page {
+.landing-page {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(5, auto);

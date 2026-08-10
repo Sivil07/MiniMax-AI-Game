@@ -166,7 +166,7 @@ const UIFunctionalityModule = (function () {
 
     // Sets up all the event listeners
     const attachEventListeners = () => {
-        const form = document.querySelector("#landing-page");
+        const form = document.querySelector(".landing-page");
 
         form.addEventListener("submit", (e) => {
             e.preventDefault();
