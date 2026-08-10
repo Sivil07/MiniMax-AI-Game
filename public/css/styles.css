@@ -279,6 +279,21 @@ input[type="radio"] {
     grid-column: -1 / 2;
 }
 
+.progress-track {
+    width: 500px;
+    height: 15px;
+    border-radius: 1rem;
+    background-color: var(--border-clr);
+    position: relative;
+}
+
+.progress-fill {
+    position: absolute;
+    height: 100%;
+    border-radius: 1rem;
+    background-image: var(--dual-mark-clr);
+}
+
 /* Utilities */
 
 @keyframes animateGradient {
