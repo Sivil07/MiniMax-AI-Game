@@ -1,4 +1,5 @@
 const UIFunctionalityModule = (function () {
+    /*  Landing Page Functionality */
 
     // Adds/removes the highlight style on an element
     const toggleActionHighlight = (element, isHighlight) => {
@@ -164,8 +165,8 @@ const UIFunctionalityModule = (function () {
         return;
     }
 
-    // Sets up all the event listeners
-    const attachEventListeners = () => {
+    // Sets Up Landing Page Listeners
+    const landingPageListeners = () => {
         const form = document.querySelector(".landing-page");
 
         form.addEventListener("submit", (e) => {
@@ -194,6 +195,11 @@ const UIFunctionalityModule = (function () {
                 return;
             }
         })
+    }
+
+    // Sets up all the event listeners
+    const attachEventListeners = () => {
+        landingPageListeners()
     }
 
     initializeDefaultFormState();
