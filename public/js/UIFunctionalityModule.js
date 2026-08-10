@@ -197,12 +197,22 @@ const UIFunctionalityModule = (function () {
         })
     }
 
-    // Sets up all the event listeners
-    const attachEventListeners = () => {
-        landingPageListeners()
+    const loadingScreenListeners = () => {
+        const loadingScreen = document.querySelector(".loading-screen");
+        const progressFill = document.querySelector(".progress-fill");
+
+        progressFill.addEventListener("animationend", () => {
+            loadingScreen.classList.add("shrink-fade")
+        })
     }
 
-    initializeDefaultFormState();
+    // Sets up all the event listeners
+    const attachEventListeners = () => {
+        // landingPageListeners();
+        loadingScreenListeners();
+    }
+
+    // initializeDefaultFormState();
     attachEventListeners();
 
 })();
