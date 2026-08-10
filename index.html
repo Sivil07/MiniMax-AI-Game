@@ -39,7 +39,8 @@
         <div class="player-cards">
             <div id="player-one-card" class="players">
                 <label class="player-name" for="player-one-input">Player One</label>
-                <input id="player-one-input" class="player-inputs" type="text" placeholder="Enter name" name="playerOneName" required>
+                <input id="player-one-input" class="player-inputs" type="text" placeholder="Enter name"
+                    name="playerOneName" required>
                 <div class="mark-selections">
                     <input id="player-one-mark-x" type="radio" name="playerOneMark" value="X" checked required>
                     <label class="mark x-mark" for="player-one-mark-x">X</label>
@@ -60,6 +61,19 @@
         </div>
         <button type="submit" class="start-game animate-gradient">Start Game</button>
     </form>
+    <div id="loading-screen" class="remove-node">
+        <div class="spinner-container">
+            <div class="spinner-ring"></div>
+            <div class="mark-display">
+                <p id="x-mark" class="pulse-x">X</p>
+                <p id="o-mark" class="pulse-y">O</p>
+            </div>
+        </div>
+        <p class="loading-text">Loading</p>
+        <div class="progress-track">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
     <script src="./public/js/UIModule.js"></script>
     <script src="./public/js/createPlayer.js"></script>
     <script src="./public/js/createSquare.js"></script>
@@ -69,7 +83,7 @@
     <script src="./public/js/AIModelModule.js"></script>
     <script src="./public/js/GameMasterModule.js"></script>
     <script src="./public/js/UIFunctionalityModule.js"></script>
-    
+
     <!-- <script src="./public/js/index.js"></script> -->
 </body>
 
