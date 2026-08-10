@@ -362,6 +362,17 @@ input[type="radio"] {
     animation-iteration-count: infinite;
 }
 
+@keyframes loadingBar {
+    0% { width: 0% }
+    100% {width: 100%}
+}
+
+.loading-bar {
+    animation-name: loadingBar;
+    animation-duration: 2.5s;
+    animation-iteration-count: 1;
+}
+
 .remove-node {
     display: none;
 }
