@@ -309,19 +309,19 @@ input[type="radio"] {
     background-size: 200%;
 }
 
-@keyframes shrinkFadeOut {
+@keyframes shrinkFade {
     0% { 
         opacity: 1;
         transform: scale(1);
     }
     100% { 
         opacity: 0; 
-        transform: scale(0);
+        transform: scale(0.9);
     }
 }
 
-.shrink-fade-out {
-    animation-name: shrinkFadeOut;
+.shrink-fade {
+    animation-name: shrinkFade;
     animation-duration: 1.5s;
     animation-iteration-count: 1;
 }

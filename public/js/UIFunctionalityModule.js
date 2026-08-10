@@ -174,7 +174,7 @@ const UIFunctionalityModule = (function () {
             const cleanData = getLandingPageFormData(form);
             console.log(cleanData);
 
-            form.classList.add("shrink-fade-out")
+            form.classList.add("shrink-fade")
         });
 
         form.addEventListener("animationend", () => {
