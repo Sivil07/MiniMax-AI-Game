@@ -14,7 +14,8 @@
     --universal-clr: #ffffff;
     --primary-clr: #6B7280;
     --o-mark-clr: #00E5FF;
-    --o-highlight: rgba(61, 220, 224, 0.25);;
+    --o-highlight: rgba(61, 220, 224, 0.25);
+    ;
     --x-mark-clr: #FF4D8D;
     --x-highlight: rgba(255, 77, 141, 0.25);
     --dual-mark-clr: linear-gradient(to right, var(--x-mark-clr), var(--o-mark-clr));
@@ -36,9 +37,9 @@ body {
     align-items: center;
 }
 
-/* input[type="radio"] {
+input[type="radio"] {
     display: none;
-} */
+}
 
 
 /* 4. Layout - Landing Page */
@@ -46,7 +47,7 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(5, auto);
-    gap: 3rem;
+    gap: 5rem;
     grid-template-areas:
         "Landing-Title"
         "Landing-Details"
@@ -224,9 +225,23 @@ body {
     border: none;
     text-transform: uppercase;
     font-weight: bold;
+    cursor: pointer;
 }
 
 /* Utilities */
+
+@keyframes animateGradient {
+    0%   { background-position: 0%; }
+    100% { background-position: 100%; }
+}
+
+.animate-gradient {
+    animation-name: animateGradient;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    background-size: 200%;
+}
 
 .is-invisible {
     opacity: 0;
