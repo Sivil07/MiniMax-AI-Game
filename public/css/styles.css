@@ -311,6 +311,9 @@ input[type="radio"] {
         "Board-Controls";
 }
 
+
+/* 6.1 (Game Screen) - Round Info Container */
+
 .round-info-container {
     color: var(--primary-clr);
     background-color: transparent;
@@ -326,6 +329,8 @@ input[type="radio"] {
     justify-content: center;
 }
 
+/* 6.2 (Game Screen) - Game Container */
+
 .game {
     font-family: "Inter", sans-serif;
     display: grid;
@@ -335,6 +340,8 @@ input[type="radio"] {
     grid-template-areas:
         "Player-One Board Player-Two";
 }
+
+/* 6.2.1 (Game Container) - Player Content and Container Styles */
 
 .side {
     background-color: var(--card-bg-clr);
@@ -381,6 +388,8 @@ input[type="radio"] {
     color: var(--primary-clr);
 }
 
+/* 6.2.2 (Game Container) - Board Section Styles */
+
 #board-section {
     color: var(--universal-clr);
     display: flex;
@@ -412,6 +421,30 @@ input[type="radio"] {
     background-color: black;
     border-radius: 1rem;
     border: 1px solid var(--border-clr);
+}
+
+/* 6.3 (Game Screen) - Game Controls */
+
+#game-controls {
+    display: flex;
+    justify-content: center;
+}
+
+.control-item {
+    font-size: 1.5rem;
+    color: var(--primary-clr);
+    background-color: transparent;
+    border: none;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.control-item:hover {
+    color: var(--o-mark-clr)
+}
+
+#next-round {
+    border-left: 1px solid var(--border-clr);
 }
 
 /* Utilities */
