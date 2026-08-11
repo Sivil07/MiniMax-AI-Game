@@ -351,6 +351,23 @@ input[type="radio"] {
         "Score-Info";
 }
 
+.player-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border-clr);
+    padding: 1rem;  
+}
+
+.player-streak-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    color: var(--primary-clr);
+}
+
 /* Utilities */
 
 @keyframes shrinkFade {
