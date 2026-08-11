@@ -311,6 +311,21 @@ input[type="radio"] {
         "Board-Controls";
 }
 
+.round-info-container {
+    color: var(--primary-clr);
+    background-color: transparent;
+    font-size: 1.5rem;
+    border: 2px solid var(--border-clr);
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    font-family: "SpaceMono";
+    display: flex;
+    border-radius: 2rem;
+    gap: 5rem;
+    color: var(--universal-clr);
+    justify-content: center;
+}
+
 /* Utilities */
 
 @keyframes shrinkFade {
