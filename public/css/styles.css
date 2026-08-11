@@ -360,6 +360,18 @@ input[type="radio"] {
     padding: 1rem;  
 }
 
+.mark-badge {
+    color: var(--x-mark-clr);
+    border: 1px solid var(--x-mark-clr);
+    border-radius: 1.5rem;
+    padding: 1rem;
+    background-color: var(--x-highlight);
+}
+
+.score {
+    color: var(--x-mark-clr)
+} 
+
 .player-streak-info {
     display: flex;
     flex-direction: column;
@@ -367,6 +379,7 @@ input[type="radio"] {
     padding: 1rem;
     color: var(--primary-clr);
 }
+
 
 /* Utilities */
 
