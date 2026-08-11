@@ -327,6 +327,7 @@ input[type="radio"] {
 }
 
 .game {
+    font-family: "Inter", sans-serif;
     display: grid;
     gap: 3rem;
     grid-template-columns: 1fr 2.5fr 1fr;
@@ -380,6 +381,38 @@ input[type="radio"] {
     color: var(--primary-clr);
 }
 
+#board-section {
+    color: var(--universal-clr);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+#player-turn {
+    align-self: center;
+    background-color: var(--x-highlight);
+    color: var(--x-mark-clr);
+    padding: 0.5rem 6rem;
+    border-radius: 2rem;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1rem;
+    flex: 1;
+}
+
+.square {
+    color: var(--universal-clr);
+    background-color: transparent;
+    border: none;
+    font-size: 3rem;
+    background-color: black;
+    border-radius: 1rem;
+    border: 1px solid var(--border-clr);
+}
 
 /* Utilities */
 
