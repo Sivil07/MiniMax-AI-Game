@@ -326,6 +326,15 @@ input[type="radio"] {
     justify-content: center;
 }
 
+.game {
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: 1fr 2.5fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "Player-One Board Player-Two";
+}
+
 /* Utilities */
 
 @keyframes shrinkFade {
