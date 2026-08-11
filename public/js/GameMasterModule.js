@@ -8,6 +8,7 @@ const GameMasterModule = (function () {
     let activePlayer;
     let inactivePlayer;
     let difficulty;
+    let mode;
 
     const getActivePlayer = () => activePlayer;
     const getInactivePlayer = () => inactivePlayer;
@@ -31,9 +32,12 @@ const GameMasterModule = (function () {
 
     const isAIActive = (opponentType, difficulty) => {
         if (opponentType === "bot-opponent") {
+            mode = "Player Vs Bot"
             isAIOn = true;
             setDifficulty(difficulty)
+            return;
         }
+        mode = "Player vs Player"
     }
 
     const playAI = (board) => {
@@ -49,6 +53,7 @@ const GameMasterModule = (function () {
         activePlayer = playerOne;
         inactivePlayer = playerTwo;
         isAIActive(opponentType, difficultyOption);
+        GameBoardModule.displayBoard()
     }
 
     const setDifficulty = (difficultyOption) => {
@@ -130,7 +135,23 @@ const GameMasterModule = (function () {
         }
     }
 
-    GameBoardModule.displayBoard()
-    return { playMove, restartGame, newRound, setupGame }
+    const getGameData = () => {
+        return {
+            "mode": mode,
+            "roundCount": roundCount,
+            "playerOneName": playerOne.getName(),
+            "playerOneMark": playerOne.getMark(),
+            "playerOneWins": playerOne.getPlayerWins(),
+            "playerOneLosses": playerOne.getPlayerLosses(),
+            "playerOneStreak": playerOne.getPlayerStreak(),
+            "playerTwoName": playerTwo.getName(),
+            "playerTwoMark": playerTwo.getMark(),
+            "playerTwoWins": playerTwo.getPlayerWins(),
+            "playerTwoLosses": playerTwo.getPlayerLosses(),
+            "playerTwoStreak": playerTwo.getPlayerStreak(),
+        }
+    }
+
+    return { playMove, restartGame, newRound, setupGame, getGameData }
 
 })();
