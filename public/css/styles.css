@@ -240,6 +240,8 @@ input[type="radio"] {
     color: var(--primary-clr);
 }
 
+/* 5.1 (Loading Screen) - Spinner Container */
+
 .spinner-container {
     position: relative;
     width: 239px;
@@ -279,6 +281,8 @@ input[type="radio"] {
     grid-column: -1 / 2;
 }
 
+/* 5.2 (Loading Screen) - Progress Track */
+
 .progress-track {
     width: 500px;
     height: 15px;
@@ -294,20 +298,20 @@ input[type="radio"] {
     background-image: var(--dual-mark-clr);
 }
 
+/* 6. Layout - Game Screen */
+
+.game-container {
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: auto;
+    grid-template-rows: repeat(3, auto);
+    grid-template-areas:
+        "Round-Info"
+        "Board"
+        "Board-Controls";
+}
+
 /* Utilities */
-
-@keyframes animateGradient {
-    0%   { background-position: 0%; }
-    100% { background-position: 100%; }
-}
-
-.animate-gradient {
-    animation-name: animateGradient;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    background-size: 200%;
-}
 
 @keyframes shrinkFade {
     0% { 
@@ -325,6 +329,51 @@ input[type="radio"] {
     animation-duration: 1.5s;
     animation-iteration-count: 1;
 }
+
+.remove-node {
+    display: none;
+}
+
+.is-invisible {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.is-faded {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.highlight-container {
+    border: 2px solid var(--o-mark-clr);
+    color: var(--o-mark-clr);
+    background-color: var(--o-highlight);
+}
+
+.highlight-card-red {
+    border: 1px solid var(--x-highlight)
+}
+
+.highlight-card-blue {
+    border: 1px solid var(--o-highlight);
+}
+
+/* Landing Page Animations */
+
+@keyframes animateGradient {
+    0%   { background-position: 0%; }
+    100% { background-position: 100%; }
+}
+
+.animate-gradient {
+    animation-name: animateGradient;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    background-size: 200%;
+}
+
+/* Loading Page Animations */
 
 @keyframes spinRing {
   0% { transform: rotate(0deg); }
@@ -371,32 +420,4 @@ input[type="radio"] {
     animation-name: loadingBar;
     animation-duration: 2.5s;
     animation-iteration-count: 1;
-}
-
-.remove-node {
-    display: none;
-}
-
-.is-invisible {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.is-faded {
-    opacity: 0.5;
-    pointer-events: none;
-}
-
-.highlight-container {
-    border: 2px solid var(--o-mark-clr);
-    color: var(--o-mark-clr);
-    background-color: var(--o-highlight);
-}
-
-.highlight-card-red {
-    border: 1px solid var(--x-highlight)
-}
-
-.highlight-card-blue {
-    border: 1px solid var(--o-highlight);
 }
