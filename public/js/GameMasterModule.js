@@ -53,6 +53,7 @@ const GameMasterModule = (function () {
         activePlayer = playerOne;
         inactivePlayer = playerTwo;
         isAIActive(opponentType, difficultyOption);
+        console.log(`${getActivePlayer().getName()}'s turn.`)
         GameBoardModule.displayBoard()
     }
 
@@ -102,17 +103,22 @@ const GameMasterModule = (function () {
             return;
 
         }
-        applyMove(row, col)
+        return applyMove(row, col)
     }
 
     const applyMove = (row, col) => {
         const result = GameBoardModule.placeSquare(row, col, getActivePlayer().getMark());
         const board = GameBoardModule.boardWithSquareValues();
+        let turnFailed = false;
+        let isWinnerFound = false;
+        let isBoardFull = false;
+        let currentActivePlayerMark = activePlayer.getMark();
 
         if (!result.success) {
-            console.log(result.message)
+            turnFailed = true;
         } else if (WinDetectionModule.isWinnerFound(getActivePlayer().getMark(), board)) {
             gameOver = true;
+            isWinnerFound = true;
             recordWinLoss();
             getActivePlayer().updateStreak("win")
             getInactivePlayer().updateStreak("loss");
@@ -120,10 +126,10 @@ const GameMasterModule = (function () {
             console.log(`${getActivePlayer().getName()} won!`)
         } else if (GameConstraintsModule.isBoardFull(board)) {
             gameOver = true;
+            isBoardFull = true;
             getActivePlayer().updateStreak("draw");
             getInactivePlayer().updateStreak("draw")
             incrementCount(1);
-            console.log("It's a tie.")
         } else {
             switchPlayers();
             console.log(`${getActivePlayer().getName()}'s turn.`)
@@ -133,6 +139,8 @@ const GameMasterModule = (function () {
         if (!gameOver && isAIOn && getActivePlayer() === playerTwo) {
             playAI(board)
         }
+
+        return { turnFailed, isWinnerFound, isBoardFull, currentActivePlayerMark };
     }
 
     const getGameData = () => {
@@ -152,6 +160,13 @@ const GameMasterModule = (function () {
         }
     }
 
-    return { playMove, restartGame, newRound, setupGame, getGameData, getActivePlayer }
+    return {
+        playMove,
+        restartGame,
+        newRound,
+        setupGame,
+        getGameData,
+        getActivePlayer,
+    }
 
 })();
