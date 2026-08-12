@@ -4,6 +4,7 @@ const GameScreenFunctionalityModule = (function () {
     const playerWinLosses = document.querySelectorAll(".win-loss");
     const roundInfoContainer = document.querySelector(".round-info-container");
     const gameMode = document.querySelector("#static-mode-label");
+    const boardSection = document.querySelector("#board-section");
     const p1Mark = document.querySelector("#static-player-one-mark");
     const p1Name = document.querySelector("#static-player-one-name");
     const p2Mark = document.querySelector("#static-player-two-mark");
@@ -12,6 +13,13 @@ const GameScreenFunctionalityModule = (function () {
     const initializeGameScreen = () => {
         setupStaticUI(GameMasterModule.getGameData());
         setupDynamicUI(GameMasterModule.getGameData());
+    }
+
+    const createActivePlayer = (activePlayerName) => {
+        const activePlayer = document.createElement("p");
+        activePlayer.id = "player-turn"
+        activePlayer.textContent = `${activePlayerName}'s Turn!`
+        return activePlayer;
     }
 
     const createWinScore = (textContent, className) => {
@@ -38,6 +46,11 @@ const GameScreenFunctionalityModule = (function () {
     const loadIntoRoundInfoContainer = (roundCount) => {
         const roundNumNode = createRoundNumber(roundCount);
         roundInfoContainer.prepend(roundNumNode);
+    }
+
+    const loadIntoBoardSection = (activePlayerName) => {
+        const activePName = createActivePlayer(activePlayerName);
+        boardSection.prepend(activePName);
     }
 
     const loadIntoPlayerInfos = (playerOneWins, playerTwoWins) => {
@@ -84,6 +97,7 @@ const GameScreenFunctionalityModule = (function () {
         loadIntoPlayerInfos(playerOneWins, playerTwoWins)
         loadIntoPlayerStreakInfos(playerOneStreak, playerTwoStreak);
         loadIntoPlayerWinLosses(playerOneWins, playerOneLosses, playerTwoWins, playerTwoLosses);
+        loadIntoBoardSection(GameMasterModule.getActivePlayer().getName());
     }
 
     return { initializeGameScreen }
