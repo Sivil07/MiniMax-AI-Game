@@ -22,6 +22,12 @@ const GameScreenFunctionalityModule = (function () {
         return activePlayer;
     }
 
+    const updateActivePlayer = () => {
+        const activePlayerNode = document.querySelector("#player-turn");
+        activePlayerNode.remove();
+        loadIntoBoardSection(GameMasterModule.getActivePlayer().getName());
+    }
+
     const createWinScore = (textContent, className) => {
         const winScore = document.createElement("p");
         winScore.classList.add(className);
