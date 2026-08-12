@@ -152,6 +152,6 @@ const GameMasterModule = (function () {
         }
     }
 
-    return { playMove, restartGame, newRound, setupGame, getGameData }
+    return { playMove, restartGame, newRound, setupGame, getGameData, getActivePlayer }
 
 })();
