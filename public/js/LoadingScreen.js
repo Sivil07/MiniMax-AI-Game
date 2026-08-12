@@ -10,7 +10,9 @@ const LoadingScreenFunctionalityModule = (function () {
 
         loadingScreen.addEventListener(("animationend"), (e) => {
             if (e.animationName === "shrinkFade") {
-                LandingScreenFunctionalityModule.toggleRemoveNode(loadingScreen)
+                const gameContainer = document.querySelector(".game-container")
+                LandingScreenFunctionalityModule.toggleRemoveNode(loadingScreen);
+                LandingScreenFunctionalityModule.toggleRemoveNode(gameContainer);
             }
         });
     }
