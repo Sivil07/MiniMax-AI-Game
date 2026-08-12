@@ -9,6 +9,11 @@ const GameScreenFunctionalityModule = (function () {
     const p2Mark = document.querySelector("#static-player-two-mark");
     const p2Name = document.querySelector("#static-player-two-name");
 
+    const initializeGameScreen = () => {
+        setupStaticUI(GameMasterModule.getGameData());
+        setupDynamicUI(GameMasterModule.getGameData());
+    }
+
     const createWinScore = (textContent, className) => {
         const winScore = document.createElement("p");
         winScore.classList.add(className);
@@ -81,7 +86,6 @@ const GameScreenFunctionalityModule = (function () {
         loadIntoPlayerWinLosses(playerOneWins, playerOneLosses, playerTwoWins, playerTwoLosses);
     }
 
-
-
+    return { initializeGameScreen }
 
 })();
