@@ -177,6 +177,7 @@ const LandingScreenFunctionalityModule = (function () {
 
             const cleanData = getLandingPageFormData(form);
             console.log(cleanData);
+            GameMasterModule.setupGame(cleanData);
 
             form.classList.add("shrink-fade")
         });
