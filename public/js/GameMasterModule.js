@@ -94,13 +94,11 @@ const GameMasterModule = (function () {
 
     const playMove = (row, col) => {
         if (gameOver && hasReachedMaxRounds()) {
-            console.log("The game has ended. No More Rounds")
-            return;
+            return { gameEnded: true }
         }
 
         if (gameOver && !hasReachedMaxRounds()) {
-            console.log("Start new round");
-            return;
+            return { roundEnded: true }
 
         }
         return applyMove(row, col)
@@ -168,5 +166,4 @@ const GameMasterModule = (function () {
         getGameData,
         getActivePlayer,
     }
-
 })();
