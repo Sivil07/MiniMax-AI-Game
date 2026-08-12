@@ -5,6 +5,7 @@ const GameScreenFunctionalityModule = (function () {
     const roundInfoContainer = document.querySelector(".round-info-container");
     const gameMode = document.querySelector("#static-mode-label");
     const boardSection = document.querySelector("#board-section");
+    const board = document.querySelector(".board");
     const p1Mark = document.querySelector("#static-player-one-mark");
     const p1Name = document.querySelector("#static-player-one-name");
     const p2Mark = document.querySelector("#static-player-two-mark");
@@ -15,17 +16,17 @@ const GameScreenFunctionalityModule = (function () {
         setupDynamicUI(GameMasterModule.getGameData());
     }
 
+    const updateActivePlayer = () => {
+        const activePlayerNode = document.querySelector("#player-turn");
+        activePlayerNode.remove();
+        loadIntoBoardSection(GameMasterModule.getActivePlayer().getName());
+    }
+
     const createActivePlayer = (activePlayerName) => {
         const activePlayer = document.createElement("p");
         activePlayer.id = "player-turn"
         activePlayer.textContent = `${activePlayerName}'s Turn!`
         return activePlayer;
-    }
-
-    const updateActivePlayer = () => {
-        const activePlayerNode = document.querySelector("#player-turn");
-        activePlayerNode.remove();
-        loadIntoBoardSection(GameMasterModule.getActivePlayer().getName());
     }
 
     const createWinScore = (textContent, className) => {
@@ -105,6 +106,25 @@ const GameScreenFunctionalityModule = (function () {
         loadIntoPlayerWinLosses(playerOneWins, playerOneLosses, playerTwoWins, playerTwoLosses);
         loadIntoBoardSection(GameMasterModule.getActivePlayer().getName());
     }
+
+    const gameBoardListeners = () => {
+        board.addEventListener("click", (e) => {
+            const element = e.target;
+            const { turnFailed, isWinnerFound, isBoardFull, currentActivePlayerMark } = GameMasterModule.playMove(element.dataset.row, element.dataset.col);
+            if (turnFailed) {
+                console.log("The turn failed")
+            } else if (isWinnerFound) {
+                console.log("winnerFound")
+            } else if (isBoardFull) {
+                console.log("Board Full")
+            } else {
+                element.textContent = currentActivePlayerMark;
+                updateActivePlayer();
+            }
+        })
+    }
+
+    gameBoardListeners()
 
     return { initializeGameScreen }
 
