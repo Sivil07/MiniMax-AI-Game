@@ -66,6 +66,21 @@ const GameScreenFunctionalityModule = (function () {
         p2WinLoss.append(p2Wins, p2Losses);
     }
 
+    const setupStaticUI = ({ mode, playerOneName, playerOneMark, playerTwoName, playerTwoMark }) => {
+        gameMode.textContent = mode;
+        p1Name.textContent = playerOneName;
+        p2Name.textContent = playerTwoName;
+        p1Mark.textContent = playerOneMark;
+        p2Mark.textContent = playerTwoMark;
+    }
+
+    const setupDynamicUI = ({ roundCount, playerOneWins, playerTwoWins, playerOneStreak, playerTwoStreak, playerOneLosses, playerTwoLosses }) => {
+        loadIntoRoundInfoContainer(roundCount);
+        loadIntoPlayerInfos(playerOneWins, playerTwoWins)
+        loadIntoPlayerStreakInfos(playerOneStreak, playerTwoStreak);
+        loadIntoPlayerWinLosses(playerOneWins, playerOneLosses, playerTwoWins, playerTwoLosses);
+    }
+
 
 
 
