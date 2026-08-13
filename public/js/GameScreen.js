@@ -146,6 +146,7 @@ const GameScreenFunctionalityModule = (function () {
         p2Name.textContent = playerTwoName;
         p1Mark.textContent = playerOneMark;
         p2Mark.textContent = playerTwoMark;
+        endGame.disabled = false;
     }
 
     const setupDynamicUI = ({ roundCount, playerOneWins, playerTwoWins, playerOneStreak, playerTwoStreak, playerOneLosses, playerTwoLosses }) => {
@@ -198,6 +199,7 @@ const GameScreenFunctionalityModule = (function () {
         endGame.addEventListener("click", () => {
             GameMasterModule.resetGame();
             LandingScreenFunctionalityModule.toggleShrinkFade(gameContainer)
+            endGame.disabled = true;
         })
 
         gameContainer.addEventListener("animationend", () => {
