@@ -25,6 +25,17 @@ const GameMasterModule = (function () {
         inactivePlayer = playerTwo;
     }
 
+    const resetGameSettings = () => {
+        roundCount = 0;
+        isAIOn = false;
+        playerOne = undefined;
+        playerTwo = undefined;
+        activePlayer = undefined;
+        inactivePlayer = undefined;
+        difficulty = undefined;
+        mode = undefined;
+    }
+
     const recordWinLoss = () => {
         getActivePlayer().incrementPlayerWins(1);
         getInactivePlayer().incrementPlayerLosses(1);
@@ -70,16 +81,13 @@ const GameMasterModule = (function () {
         }
     }
 
-    const restartGame = () => {
+    const resetGame = () => {
         GameBoardModule.resetBoard();
-        activePlayer.resetPlayer();
-        inactivePlayer.resetPlayer();
-        resetPlayerActiveStates();
-        roundCount = 0;
+        resetGameSettings()
         gameOver = false;
 
-        console.log(`${getActivePlayer().getName()}'s turn`)
-        GameBoardModule.displayBoard()
+        // console.log(`${getActivePlayer().getName()}'s turn`)
+        // GameBoardModule.displayBoard()
     }
 
     const newRound = () => {
@@ -159,7 +167,7 @@ const GameMasterModule = (function () {
 
     return {
         playMove,
-        restartGame,
+        resetGame,
         newRound,
         setupGame,
         getGameData,
