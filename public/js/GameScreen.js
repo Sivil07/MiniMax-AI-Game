@@ -30,6 +30,14 @@ const GameScreenFunctionalityModule = (function () {
         }
     }
 
+    const resetStaticNodes = () => {
+        gameMode.textContent = "";
+        p1Name.textContent = "";
+        p2Name.textContent = "";
+        p1Mark.textContent = "";
+        p2Mark.textContent = "";
+    }
+
     const createActivePlayer = (activePlayerName) => {
         const activePlayer = document.createElement("p");
         activePlayer.id = "player-turn"
