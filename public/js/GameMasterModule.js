@@ -14,6 +14,7 @@ const GameMasterModule = (function () {
     const getInactivePlayer = () => inactivePlayer;
     const hasReachedMaxRounds = () => roundCount === maxRounds;
     const incrementCount = (num) => roundCount += num;
+    const getRoundNumber = () => roundCount;
 
     const switchPlayers = () => {
         activePlayer = activePlayer === playerOne ? playerTwo : playerOne;
@@ -87,6 +88,7 @@ const GameMasterModule = (function () {
         console.log(`${playerOne.getName()} (Wins: ${playerOne.getPlayerWins()} Losses: ${playerOne.getPlayerLosses()} Streak: ${playerOne.getPlayerStreak()})`)
         console.log(`${playerTwo.getName()} (Wins: ${playerTwo.getPlayerWins()} Losses: ${playerTwo.getPlayerLosses()} Streak: ${playerTwo.getPlayerStreak()})`)
         resetPlayerActiveStates();
+        incrementCount(1);
         gameOver = false;
         console.log(`${getActivePlayer().getName()}'s turn`)
         GameBoardModule.displayBoard()
@@ -120,14 +122,12 @@ const GameMasterModule = (function () {
             recordWinLoss();
             getActivePlayer().updateStreak("win")
             getInactivePlayer().updateStreak("loss");
-            incrementCount(1)
             console.log(`${getActivePlayer().getName()} won!`)
         } else if (GameConstraintsModule.isBoardFull(board)) {
             gameOver = true;
             isBoardFull = true;
             getActivePlayer().updateStreak("draw");
             getInactivePlayer().updateStreak("draw")
-            incrementCount(1);
         } else {
             switchPlayers();
             console.log(`${getActivePlayer().getName()}'s turn.`)
@@ -165,5 +165,6 @@ const GameMasterModule = (function () {
         setupGame,
         getGameData,
         getActivePlayer,
+        hasReachedMaxRounds,
     }
 })();
