@@ -14,7 +14,6 @@ const GameMasterModule = (function () {
     const getInactivePlayer = () => inactivePlayer;
     const hasReachedMaxRounds = () => roundCount === maxRounds;
     const incrementCount = (num) => roundCount += num;
-    const getRoundNumber = () => roundCount;
 
     const switchPlayers = () => {
         activePlayer = activePlayer === playerOne ? playerTwo : playerOne;
