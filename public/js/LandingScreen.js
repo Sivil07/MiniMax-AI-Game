@@ -185,7 +185,6 @@ const LandingScreenFunctionalityModule = (function () {
             e.preventDefault();
 
             const cleanData = getLandingPageFormData(form);
-            console.log(cleanData);
             GameMasterModule.setupGame(cleanData);
             GameScreenFunctionalityModule.initializeGameScreen();
 
@@ -194,6 +193,7 @@ const LandingScreenFunctionalityModule = (function () {
 
         form.addEventListener("animationend", () => {
             const loadingScreen = document.querySelector(".loading-screen");
+            initializeDefaultFormState();
             toggleRemoveNode(form)
             toggleShrinkFade(form)
             toggleRemoveNode(loadingScreen);
