@@ -4,6 +4,10 @@ const LandingScreenFunctionalityModule = (function () {
         element.classList.toggle("remove-node")
     }
 
+    const toggleShrinkFade = (element) => {
+        element.classList.toggle("shrink-fade");
+    }
+
     // Adds/removes the highlight style on an element
     const toggleActionHighlight = (element, isHighlight) => {
         element.classList.toggle("highlight-container", isHighlight);
@@ -180,12 +184,13 @@ const LandingScreenFunctionalityModule = (function () {
             GameMasterModule.setupGame(cleanData);
             GameScreenFunctionalityModule.initializeGameScreen();
 
-            form.classList.add("shrink-fade")
+            toggleShrinkFade(form);
         });
 
         form.addEventListener("animationend", () => {
             const loadingScreen = document.querySelector(".loading-screen");
             form.classList.add("remove-node")
+            form.classList.toggle("shrink-fade")
             toggleRemoveNode(loadingScreen);
         })
 
@@ -206,5 +211,5 @@ const LandingScreenFunctionalityModule = (function () {
     initializeDefaultFormState();
     attachLandingListeners();
 
-    return { toggleRemoveNode }
+    return { toggleRemoveNode, toggleShrinkFade }
 })();

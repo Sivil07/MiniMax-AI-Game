@@ -5,13 +5,14 @@ const LoadingScreenFunctionalityModule = (function () {
         const progressFill = document.querySelector(".progress-fill");
 
         progressFill.addEventListener("animationend", () => {
-            loadingScreen.classList.add("shrink-fade")
+            LandingScreenFunctionalityModule.toggleShrinkFade(loadingScreen);
         })
 
         loadingScreen.addEventListener(("animationend"), (e) => {
             if (e.animationName === "shrinkFade") {
                 const gameContainer = document.querySelector(".game-container")
                 LandingScreenFunctionalityModule.toggleRemoveNode(loadingScreen);
+                LandingScreenFunctionalityModule.toggleShrinkFade(loadingScreen);
                 LandingScreenFunctionalityModule.toggleRemoveNode(gameContainer);
             }
         });
