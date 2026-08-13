@@ -58,6 +58,32 @@ const GameScreenFunctionalityModule = (function () {
         return statistic;
     }
 
+    const createSquare = (row, col) => {
+        const square = document.createElement("button");
+        square.classList.add("square")
+        square.type = "button";
+        square.dataset.row = row;
+        square.dataset.col = col;
+        return square;
+    }
+
+    const setupSquares = () => {
+        const squareNodes = [];
+        for (let row = 0; row < 3; row++) {
+            for (let col = 0; col < 3; col++) {
+                const square = createSquare(row, col);
+                dynamicNodes.push(square);
+                squareNodes.push(square);
+            }
+        }
+        return squareNodes;
+    }
+
+    const loadIntoBoard = () => {
+        board.append(...setupSquares())
+    }
+
+
     const loadIntoRoundInfoContainer = (roundCount) => {
         const roundNumNode = createRoundNumber(roundCount);
         dynamicNodes.push(roundNumNode);
@@ -118,6 +144,7 @@ const GameScreenFunctionalityModule = (function () {
         loadIntoPlayerStreakInfos(playerOneStreak, playerTwoStreak);
         loadIntoPlayerWinLosses(playerOneWins, playerOneLosses, playerTwoWins, playerTwoLosses);
         loadIntoBoardSection(GameMasterModule.getActivePlayer().getName());
+        loadIntoBoard();
     }
 
     const gameBoardListeners = () => {
