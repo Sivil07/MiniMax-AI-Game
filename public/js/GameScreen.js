@@ -148,6 +148,13 @@ const GameScreenFunctionalityModule = (function () {
     }
 
     const gameBoardListeners = () => {
+        nextRound.addEventListener("click", (e) => {
+            removeDynamicNodes();
+            dynamicNodes = [];
+            GameMasterModule.newRound();
+            setupDynamicUI(GameMasterModule.getGameData());
+        })
+
         board.addEventListener("click", (e) => {
             const element = e.target;
             const { turnFailed, gameEnded, roundEnded, isWinnerFound, isBoardFull, currentActivePlayerMark } = GameMasterModule.playMove(element.dataset.row, element.dataset.col);
