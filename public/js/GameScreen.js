@@ -2,6 +2,7 @@ const GameScreenFunctionalityModule = (function () {
     const playerInfos = document.querySelectorAll(".player-info");
     const playerStreakInfos = document.querySelectorAll(".player-streak-info");
     const playerWinLosses = document.querySelectorAll(".win-loss");
+    const gameContainer = document.querySelector(".game-container");
     const roundInfoContainer = document.querySelector(".round-info-container");
     const gameMode = document.querySelector("#static-mode-label");
     const boardSection = document.querySelector("#board-section");
@@ -157,17 +158,6 @@ const GameScreenFunctionalityModule = (function () {
     }
 
     const gameBoardListeners = () => {
-
-        nextRound.addEventListener("click", () => {
-            if (!GameMasterModule.hasMoreRoundsAvailable()) {
-                removeDynamicNodes();
-                dynamicNodes = [];
-                GameMasterModule.newRound();
-                setupDynamicUI(GameMasterModule.getGameData());
-                nextRound.disabled = true;
-            }
-        })
-
         board.addEventListener("click", (e) => {
             const element = e.target;
             const { turnFailed, gameEnded, roundEnded, isWinnerFound, isBoardFull, currentActivePlayerMark } = GameMasterModule.playMove(element.dataset.row, element.dataset.col);
@@ -193,6 +183,30 @@ const GameScreenFunctionalityModule = (function () {
             } else {
                 updateActivePlayer();
             }
+        })
+
+        nextRound.addEventListener("click", () => {
+            if (!GameMasterModule.hasMoreRoundsAvailable()) {
+                removeDynamicNodes();
+                dynamicNodes = [];
+                GameMasterModule.newRound();
+                setupDynamicUI(GameMasterModule.getGameData());
+                nextRound.disabled = true;
+            }
+        })
+
+        endGame.addEventListener("click", () => {
+            GameMasterModule.resetGame();
+            LandingScreenFunctionalityModule.toggleShrinkFade(gameContainer)
+        })
+
+        gameContainer.addEventListener("animationend", () => {
+            const landingScreen = document.querySelector(".landing-page");
+            removeDynamicNodes();
+            resetStaticNodes();
+            LandingScreenFunctionalityModule.toggleRemoveNode(gameContainer);
+            LandingScreenFunctionalityModule.toggleShrinkFade(gameContainer);
+            LandingScreenFunctionalityModule.toggleRemoveNode(landingScreen);
         })
     }
 
