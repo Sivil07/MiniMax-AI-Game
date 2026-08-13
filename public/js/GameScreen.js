@@ -149,10 +149,13 @@ const GameScreenFunctionalityModule = (function () {
 
     const gameBoardListeners = () => {
         nextRound.addEventListener("click", (e) => {
-            removeDynamicNodes();
-            dynamicNodes = [];
-            GameMasterModule.newRound();
-            setupDynamicUI(GameMasterModule.getGameData());
+            if (!GameMasterModule.hasReachedMaxRounds()) {
+                removeDynamicNodes();
+                dynamicNodes = [];
+                GameMasterModule.newRound();
+                setupDynamicUI(GameMasterModule.getGameData());
+                nextRound.disabled = true;
+            }
         })
 
         board.addEventListener("click", (e) => {
@@ -174,6 +177,7 @@ const GameScreenFunctionalityModule = (function () {
 
             if (isWinnerFound) {
                 console.log("winnerFound")
+                nextRound.disabled = GameMasterModule.hasReachedMaxRounds();
             } else if (isBoardFull) {
                 console.log("Board Full")
             } else {
