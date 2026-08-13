@@ -10,7 +10,8 @@ const GameScreenFunctionalityModule = (function () {
     const p1Name = document.querySelector("#static-player-one-name");
     const p2Mark = document.querySelector("#static-player-two-mark");
     const p2Name = document.querySelector("#static-player-two-name");
-    const nextRound = document.querySelector("#next-round")
+    const nextRound = document.querySelector("#next-round");
+    const endGame = document.querySelector("#end-game");
     let dynamicNodes = []
 
     const initializeGameScreen = () => {
@@ -156,8 +157,9 @@ const GameScreenFunctionalityModule = (function () {
     }
 
     const gameBoardListeners = () => {
-        nextRound.addEventListener("click", (e) => {
-            if (!GameMasterModule.hasReachedMaxRounds()) {
+
+        nextRound.addEventListener("click", () => {
+            if (!GameMasterModule.hasMoreRoundsAvailable()) {
                 removeDynamicNodes();
                 dynamicNodes = [];
                 GameMasterModule.newRound();
@@ -185,7 +187,7 @@ const GameScreenFunctionalityModule = (function () {
 
             if (isWinnerFound) {
                 console.log("winnerFound")
-                nextRound.disabled = GameMasterModule.hasReachedMaxRounds();
+                nextRound.disabled = GameMasterModule.hasMoreRoundsAvailable();
             } else if (isBoardFull) {
                 console.log("Board Full")
             } else {

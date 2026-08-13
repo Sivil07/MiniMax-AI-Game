@@ -12,7 +12,7 @@ const GameMasterModule = (function () {
 
     const getActivePlayer = () => activePlayer;
     const getInactivePlayer = () => inactivePlayer;
-    const hasReachedMaxRounds = () => roundCount === maxRounds;
+    const hasMoreRoundsAvailable = () => roundCount === maxRounds;
     const incrementCount = (num) => roundCount += num;
 
     const switchPlayers = () => {
@@ -94,12 +94,12 @@ const GameMasterModule = (function () {
     }
 
     const playMove = (row, col) => {
-        if (gameOver && hasReachedMaxRounds()) {
-            return { gameEnded: true }
+        if (gameOver && hasMoreRoundsAvailable()) {
+            return { roundEnded: true }
         }
 
-        if (gameOver && !hasReachedMaxRounds()) {
-            return { roundEnded: true }
+        if (gameOver && !hasMoreRoundsAvailable()) {
+            return { gameEnded: true }
 
         }
         return applyMove(row, col)
@@ -164,6 +164,6 @@ const GameMasterModule = (function () {
         setupGame,
         getGameData,
         getActivePlayer,
-        hasReachedMaxRounds,
+        hasMoreRoundsAvailable,
     }
 })();
