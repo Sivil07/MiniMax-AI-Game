@@ -100,16 +100,21 @@ const LandingScreenFunctionalityModule = (function () {
     // Starting state: bot mode one, player one as X, difficulty set to easy
     const initializeDefaultFormState = () => {
         const modeBot = document.querySelector("#mode-bot");
+        const playerOneInput = document.querySelector("#player-one-input");
         const playerOneXMark = document.querySelector("#player-one-mark-x");
-        const difficultyEasy = document.querySelector("#difficulty-easy")
+        const playerTwoInput = document.querySelector("#player-two");
+        const difficultyEasy = document.querySelector("#difficulty-easy");
 
         modeBot.checked = true;
         handleModeChange(modeBot)
 
+        difficultyEasy.checked = true;
+
+        playerOneInput.value = "";
         playerOneXMark.checked = true;
         handleMarkSelections(playerOneXMark);
 
-        difficultyEasy.checked = true;
+        playerTwoInput.value = "Bot";
         return;
     }
 
@@ -189,8 +194,8 @@ const LandingScreenFunctionalityModule = (function () {
 
         form.addEventListener("animationend", () => {
             const loadingScreen = document.querySelector(".loading-screen");
-            form.classList.add("remove-node")
-            form.classList.toggle("shrink-fade")
+            toggleRemoveNode(form)
+            toggleShrinkFade(form)
             toggleRemoveNode(loadingScreen);
         })
 
