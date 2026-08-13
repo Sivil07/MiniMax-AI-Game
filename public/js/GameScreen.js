@@ -161,15 +161,9 @@ const GameScreenFunctionalityModule = (function () {
     const gameBoardListeners = () => {
         board.addEventListener("click", (e) => {
             const element = e.target;
-            const { turnFailed, gameEnded, roundEnded, isWinnerFound, isBoardFull, currentActivePlayerMark } = GameMasterModule.playMove(element.dataset.row, element.dataset.col);
+            const { turnFailed, isWinnerFound, isBoardFull, currentActivePlayerMark } = GameMasterModule.playMove(element.dataset.row, element.dataset.col);
 
-            if (gameEnded) {
-                console.log("Game already Ended")
-                return;
-            } else if (roundEnded) {
-                console.log("Round already ended")
-                return;
-            } else if (turnFailed) {
+            if (turnFailed) {
                 console.log("The turn failed")
                 return;
             }

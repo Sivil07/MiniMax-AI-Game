@@ -103,11 +103,11 @@ const GameMasterModule = (function () {
 
     const playMove = (row, col) => {
         if (gameOver && hasMoreRoundsAvailable()) {
-            return { roundEnded: true }
+            return { turnFailed: true }
         }
 
         if (gameOver && !hasMoreRoundsAvailable()) {
-            return { gameEnded: true }
+            return { turnFailed: true }
 
         }
         return applyMove(row, col)
