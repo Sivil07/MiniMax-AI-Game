@@ -10,6 +10,8 @@ const GameScreenFunctionalityModule = (function () {
     const p1Name = document.querySelector("#static-player-one-name");
     const p2Mark = document.querySelector("#static-player-two-mark");
     const p2Name = document.querySelector("#static-player-two-name");
+    const nextRound = document.querySelector("#next-round")
+    let dynamicNodes = []
 
     const initializeGameScreen = () => {
         setupStaticUI(GameMasterModule.getGameData());
@@ -20,6 +22,12 @@ const GameScreenFunctionalityModule = (function () {
         const activePlayerNode = document.querySelector("#player-turn");
         activePlayerNode.remove();
         loadIntoBoardSection(GameMasterModule.getActivePlayer().getName());
+    }
+
+    const removeDynamicNodes = () => {
+        for (const node of dynamicNodes) {
+            node.remove();
+        }
     }
 
     const createActivePlayer = (activePlayerName) => {
@@ -52,11 +60,13 @@ const GameScreenFunctionalityModule = (function () {
 
     const loadIntoRoundInfoContainer = (roundCount) => {
         const roundNumNode = createRoundNumber(roundCount);
+        dynamicNodes.push(roundNumNode);
         roundInfoContainer.prepend(roundNumNode);
     }
 
     const loadIntoBoardSection = (activePlayerName) => {
         const activePName = createActivePlayer(activePlayerName);
+        dynamicNodes.push(activePName);
         boardSection.prepend(activePName);
     }
 
@@ -66,6 +76,7 @@ const GameScreenFunctionalityModule = (function () {
         const p1Score = createWinScore(playerOneWins, "score");
         const p2Score = createWinScore(playerTwoWins, "score");
 
+        dynamicNodes.push(p1Score, p2Score);
         p1Info.appendChild(p1Score);
         p2Info.appendChild(p2Score);
     }
@@ -76,6 +87,7 @@ const GameScreenFunctionalityModule = (function () {
         const p1Streak = createPlayerStatistic("Streak", playerOneStreak, "streak");
         const p2Streak = createPlayerStatistic("Streak", playerTwoStreak, "streak");
 
+        dynamicNodes.push(p1Streak, p2Streak);
         p1StreakInfo.prepend(p1Streak);
         p2StreakInfo.prepend(p2Streak);
     }
@@ -87,6 +99,7 @@ const GameScreenFunctionalityModule = (function () {
         const p2Wins = createPlayerStatistic("W", playerTwoWins, "wins");
         const p2Losses = createPlayerStatistic("L", playerTwoLosses, "losses");
 
+        dynamicNodes.push(p1Wins, p1Losses, p2Wins, p2Losses);
         p1WinLoss.append(p1Wins, p1Losses);
         p2WinLoss.append(p2Wins, p2Losses);
     }
