@@ -51,11 +51,12 @@ const GameMasterModule = (function () {
         mode = "Player vs Player"
     }
 
-    const playAI = (board) => {
+    const playAI = () => {
+        const board = GameBoardModule.boardWithSquareValues();
         const humanMarker = playerOne.getMark();
         const aiMarker = playerTwo.getMark();
         const [row, col] = AIModelModule.findBestMove(board, difficulty, aiMarker, humanMarker)
-        applyMove(row, col);
+        return applyMove(row, col);
     }
 
     const setupGame = ({ difficultyOption, opponentType, playerOneMark, playerOneName, playerTwoMark, playerTwoName }) => {
@@ -136,16 +137,14 @@ const GameMasterModule = (function () {
             getActivePlayer().updateStreak("draw");
             getInactivePlayer().updateStreak("draw")
         } else {
-            switchPlayers();
+            switchPlayers(); 
             console.log(`${getActivePlayer().getName()}'s turn.`)
         }
         GameBoardModule.displayBoard();
 
-        if (!gameOver && isAIOn && getActivePlayer() === playerTwo) {
-            playAI(board)
-        }
+        const isAITurn = !gameOver && isAIOn && getActivePlayer() === playerTwo;
 
-        return { turnFailed, isWinnerFound, isBoardFull, currentActivePlayerMark };
+        return { turnFailed, isWinnerFound, isBoardFull, currentActivePlayerMark, isAITurn, row, col };
     }
 
     const getGameData = () => {
@@ -173,5 +172,6 @@ const GameMasterModule = (function () {
         getGameData,
         getActivePlayer,
         hasMoreRoundsAvailable,
+        playAI,
     }
 })();
