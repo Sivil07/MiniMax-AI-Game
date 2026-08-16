@@ -15,7 +15,6 @@
     --primary-clr: #6B7280;
     --o-mark-clr: #00E5FF;
     --o-highlight: rgba(61, 220, 224, 0.25);
-    ;
     --x-mark-clr: #FF4D8D;
     --x-highlight: rgba(255, 77, 141, 0.25);
     --dual-mark-clr: linear-gradient(to right, var(--x-mark-clr), var(--o-mark-clr));
@@ -349,7 +348,6 @@ input[type="radio"] {
     height: 500px;
     font-size: 1.5rem;
     border-radius: 1.5rem;
-    border: 1px solid var(--x-highlight);
     padding: 1.5rem;
     display: grid;
     grid-template-columns: 1fr;
@@ -365,20 +363,17 @@ input[type="radio"] {
     align-items: center;
     gap: 1rem;
     border-bottom: 1px solid var(--border-clr);
-    padding: 1rem;  
+    padding: 1rem;
 }
 
 .mark-badge {
-    color: var(--x-mark-clr);
-    border: 1px solid var(--x-mark-clr);
     border-radius: 1.5rem;
     padding: 1rem;
-    background-color: var(--x-highlight);
 }
 
 .score {
-    color: var(--x-mark-clr)
-} 
+    color: var(--universal-clr)
+}
 
 .player-streak-info {
     display: flex;
@@ -450,12 +445,13 @@ input[type="radio"] {
 /* Utilities */
 
 @keyframes shrinkFade {
-    0% { 
+    0% {
         opacity: 1;
         transform: scale(1);
     }
-    100% { 
-        opacity: 0; 
+
+    100% {
+        opacity: 0;
         transform: scale(0.9);
     }
 }
@@ -498,11 +494,29 @@ input[type="radio"] {
     border: 1px solid var(--o-highlight);
 }
 
+.x-badge-coloring {
+    color: var(--x-mark-clr);
+    border: 1px solid var(--x-mark-clr);
+    background-color: var(--x-highlight);
+}
+
+.o-badge-coloring {
+    color: var(--o-mark-clr);
+    border: 1px solid var(--o-mark-clr);
+    background-color: var(--o-highlight);
+
+}
+
 /* Landing Page Animations */
 
 @keyframes animateGradient {
-    0%   { background-position: 0%; }
-    100% { background-position: 100%; }
+    0% {
+        background-position: 0%;
+    }
+
+    100% {
+        background-position: 100%;
+    }
 }
 
 .animate-gradient {
@@ -516,9 +530,14 @@ input[type="radio"] {
 /* Loading Page Animations */
 
 @keyframes spinRing {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-} 
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
 
 .spin {
     animation-name: spinRing;
@@ -528,9 +547,17 @@ input[type="radio"] {
 }
 
 @keyframes pulseOMark {
-    0% { opacity: 1;}
-    50% { opacity: 0.5;}
-    100% { opacity: 1;}
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .pulse-O {
@@ -540,9 +567,17 @@ input[type="radio"] {
 }
 
 @keyframes pulseXMark {
-    0% { opacity: 0.5;}
-    50% { opacity: 1;}
-    100% { opacity: 0.5;}
+    0% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
 }
 
 .pulse-X {
@@ -552,8 +587,13 @@ input[type="radio"] {
 }
 
 @keyframes loadingBar {
-    0% { width: 0% }
-    100% {width: 100%}
+    0% {
+        width: 0%
+    }
+
+    100% {
+        width: 100%
+    }
 }
 
 .loading-bar {
