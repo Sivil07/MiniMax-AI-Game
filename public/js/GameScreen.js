@@ -191,7 +191,11 @@ const GameScreenFunctionalityModule = (function () {
 
             if (isAiTurn) {
                 const aiResult = GameMasterModule.playAI();
-                renderMoveResult(aiResult);
+                setTimeout(() => {
+                    renderMoveResult(aiResult);
+
+                }, 1000)
+
             }
         })
 
