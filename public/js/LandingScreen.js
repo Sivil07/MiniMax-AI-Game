@@ -8,6 +8,10 @@ const LandingScreenFunctionalityModule = (function () {
         element.classList.toggle("shrink-fade");
     }
 
+    const togglePointerEvents = (element) => {
+        element.classList.toggle("prevent-click");
+    }
+
     // Adds/removes the highlight style on an element
     const toggleActionHighlight = (element, isHighlight) => {
         element.classList.toggle("highlight-container", isHighlight);
@@ -216,5 +220,5 @@ const LandingScreenFunctionalityModule = (function () {
     initializeDefaultFormState();
     attachLandingListeners();
 
-    return { toggleRemoveNode, toggleShrinkFade }
+    return { toggleRemoveNode, toggleShrinkFade, togglePointerEvents }
 })();

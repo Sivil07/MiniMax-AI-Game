@@ -466,6 +466,10 @@ input[type="radio"] {
     animation-iteration-count: 1;
 }
 
+.prevent-click {
+    pointer-events: none;
+}
+
 .remove-node {
     display: none;
 }
