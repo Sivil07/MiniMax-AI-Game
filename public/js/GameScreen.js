@@ -158,25 +158,39 @@ const GameScreenFunctionalityModule = (function () {
         loadIntoBoard();
     }
 
+    const renderMoveResult = (result) => {
+        const { turnFailed, isWinnerFound, isBoardFull, currentActivePlayerMark, isAITurn, row, col } = result
+
+        if (turnFailed) {
+            console.log("The turn failed")
+            return;
+        }
+        const square = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+        square.textContent = currentActivePlayerMark;
+
+        if (isWinnerFound) {
+            console.log("winnerFound")
+            nextRound.disabled = GameMasterModule.hasMoreRoundsAvailable();
+        } else if (isBoardFull) {
+            console.log("Board Full")
+            nextRound.disabled = GameMasterModule.hasMoreRoundsAvailable();
+        } else {
+            updateActivePlayer();
+        }
+
+        return isAITurn;
+    }
+
     const gameBoardListeners = () => {
         board.addEventListener("click", (e) => {
             const element = e.target;
-            const { turnFailed, isWinnerFound, isBoardFull, currentActivePlayerMark } = GameMasterModule.playMove(element.dataset.row, element.dataset.col);
 
-            if (turnFailed) {
-                console.log("The turn failed")
-                return;
-            }
+            const humanResult = GameMasterModule.playMove(element.dataset.row, element.dataset.col);
+            const isAiTurn = renderMoveResult(humanResult);
 
-            element.textContent = currentActivePlayerMark;
-
-            if (isWinnerFound) {
-                console.log("winnerFound")
-                nextRound.disabled = GameMasterModule.hasMoreRoundsAvailable();
-            } else if (isBoardFull) {
-                console.log("Board Full")
-            } else {
-                updateActivePlayer();
+            if (isAiTurn) {
+                const aiResult = GameMasterModule.playAI();
+                renderMoveResult(aiResult);
             }
         })
 
