@@ -7,8 +7,10 @@ const GameScreenFunctionalityModule = (function () {
     const gameMode = document.querySelector("#static-mode-label");
     const boardSection = document.querySelector("#board-section");
     const board = document.querySelector(".board");
+    const p1Side = document.querySelector("#player-one-side")
     const p1Mark = document.querySelector("#static-player-one-mark");
     const p1Name = document.querySelector("#static-player-one-name");
+    const p2Side = document.querySelector("#player-two-side")
     const p2Mark = document.querySelector("#static-player-two-mark");
     const p2Name = document.querySelector("#static-player-two-name");
     const nextRound = document.querySelector("#next-round");
@@ -32,12 +34,20 @@ const GameScreenFunctionalityModule = (function () {
         }
     }
 
+    const resetColoring = () => {
+        p1Side.classList.remove("highlight-card-red", "highlight-card-blue");
+        p2Side.classList.remove("highlight-card-red", "highlight-card-blue")
+        p1Mark.classList.remove("x-badge-coloring", "o-badge-coloring");
+        p2Mark.classList.remove("x-badge-coloring", "o-badge-coloring");
+    }
+
     const resetStaticNodes = () => {
         gameMode.textContent = "";
         p1Name.textContent = "";
         p2Name.textContent = "";
         p1Mark.textContent = "";
         p2Mark.textContent = "";
+        resetColoring();
     }
 
     const createActivePlayer = (activePlayerName) => {
@@ -140,6 +150,21 @@ const GameScreenFunctionalityModule = (function () {
         p2WinLoss.append(p2Wins, p2Losses);
     }
 
+    const setupCardColoring = (player1Mark) => {
+        console.log(player1Mark)
+        if (player1Mark === "X") {
+            p1Side.classList.add("highlight-card-red")
+            p1Mark.classList.add("x-badge-coloring");
+            p2Side.classList.add("highlight-card-blue")
+            p2Mark.classList.add("o-badge-coloring")
+        } else {
+            p1Side.classList.add("highlight-card-blue")
+            p1Mark.classList.add("o-badge-coloring");
+            p2Side.classList.add("highlight-card-red")
+            p2Mark.classList.add("x-badge-coloring")
+        }
+    }
+
     const setupStaticUI = ({ mode, playerOneName, playerOneMark, playerTwoName, playerTwoMark }) => {
         gameMode.textContent = mode;
         p1Name.textContent = playerOneName;
@@ -148,6 +173,7 @@ const GameScreenFunctionalityModule = (function () {
         p2Mark.textContent = playerTwoMark;
         endGame.disabled = false;
         board.classList.remove("prevent-click");
+        setupCardColoring(playerOneMark);
     }
 
     const setupDynamicUI = ({ roundCount, playerOneWins, playerTwoWins, playerOneStreak, playerTwoStreak, playerOneLosses, playerTwoLosses }) => {
@@ -193,9 +219,7 @@ const GameScreenFunctionalityModule = (function () {
                 const aiResult = GameMasterModule.playAI();
                 setTimeout(() => {
                     renderMoveResult(aiResult);
-
                 }, 1000)
-
             }
         })
 
