@@ -279,14 +279,16 @@ const GameScreenFunctionalityModule = (function () {
             LandingScreenFunctionalityModule.togglePointerEvents(board);
         })
 
-        gameContainer.addEventListener("animationend", () => {
-            const landingScreen = document.querySelector(".landing-page");
-            resetStaticNodes();
-            removeDynamicNodes();
-            dynamicColoring.clear();
-            LandingScreenFunctionalityModule.toggleRemoveNode(gameContainer);
-            LandingScreenFunctionalityModule.toggleShrinkFade(gameContainer);
-            LandingScreenFunctionalityModule.toggleRemoveNode(landingScreen);
+        gameContainer.addEventListener("animationend", (e) => {
+            if (e.animationName === "shrinkFade") {
+                const landingScreen = document.querySelector(".landing-page");
+                resetStaticNodes();
+                removeDynamicNodes();
+                dynamicColoring.clear();
+                LandingScreenFunctionalityModule.toggleRemoveNode(gameContainer);
+                LandingScreenFunctionalityModule.toggleShrinkFade(gameContainer);
+                LandingScreenFunctionalityModule.toggleRemoveNode(landingScreen);
+            }
         })
     }
 

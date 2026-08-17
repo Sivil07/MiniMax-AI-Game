@@ -618,3 +618,25 @@ input[type="radio"] {
     animation-duration: 2.5s;
     animation-iteration-count: 1;
 }
+
+/* Game Screen Animations */
+
+@keyframes scaleTurn {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.scale-turn {
+    animation-name: scaleTurn;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
