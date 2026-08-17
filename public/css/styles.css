@@ -394,8 +394,8 @@ input[type="radio"] {
 
 #player-turn {
     align-self: center;
-    background-color: var(--x-highlight);
-    color: var(--x-mark-clr);
+    /* background-color: var(--x-highlight); */
+    /* color: var(--x-mark-clr); */
     padding: 0.5rem 6rem;
     border-radius: 2rem;
 }
@@ -500,6 +500,16 @@ input[type="radio"] {
 
 .o-mark-coloring {
     color: var(--o-mark-clr);
+}
+
+.x-hue-coloring {
+    color: var(--x-mark-clr);
+    background-color: var(--x-highlight);
+}
+
+.o-hue-coloring {
+    color: var(--o-mark-clr);
+    background-color: var(--o-highlight);
 }
 
 .x-badge-coloring {

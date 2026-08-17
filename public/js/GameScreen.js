@@ -21,6 +21,7 @@ const GameScreenFunctionalityModule = (function () {
     const initializeGameScreen = () => {
         setupDynamicUI(GameMasterModule.getGameData());
         setupStaticUI(GameMasterModule.getGameData());
+        setActivePlayerColor()
     }
 
     const updateActivePlayer = () => {
@@ -158,6 +159,18 @@ const GameScreenFunctionalityModule = (function () {
         p2WinLoss.append(p2Wins, p2Losses);
     }
 
+    const setActivePlayerColor = () => {
+        const playerTurn = document.querySelector("#player-turn");
+
+        if (GameMasterModule.getActivePlayer().getMark() === "X") {
+            playerTurn.classList.remove("o-hue-coloring");
+            playerTurn.classList.add("x-hue-coloring")
+        } else {
+            playerTurn.classList.remove("x-hue-coloring");
+            playerTurn.classList.add("o-hue-coloring")
+        }
+    }
+
     const setupCardColoring = (player1Mark) => {
         if (player1Mark === "X") {
             p1Side.classList.add("highlight-card-red")
@@ -238,10 +251,12 @@ const GameScreenFunctionalityModule = (function () {
             const humanResult = GameMasterModule.playMove(element.dataset.row, element.dataset.col);
             const isAiTurn = renderMoveResult(humanResult);
 
+            setActivePlayerColor()
             if (isAiTurn) {
                 const aiResult = GameMasterModule.playAI();
                 setTimeout(() => {
                     renderMoveResult(aiResult);
+                    setActivePlayerColor()
                 }, 1000)
             }
         })
@@ -252,6 +267,7 @@ const GameScreenFunctionalityModule = (function () {
                 dynamicNodes = [];
                 GameMasterModule.newRound();
                 setupDynamicUI(GameMasterModule.getGameData());
+                setActivePlayerColor();
                 nextRound.disabled = true;
             }
         })
