@@ -494,6 +494,14 @@ input[type="radio"] {
     border: 1px solid var(--o-highlight);
 }
 
+.x-mark-coloring {
+    color: var(--x-mark-clr);
+}
+
+.o-mark-coloring {
+    color: var(--o-mark-clr);
+}
+
 .x-badge-coloring {
     color: var(--x-mark-clr);
     border: 1px solid var(--x-mark-clr);
@@ -504,7 +512,6 @@ input[type="radio"] {
     color: var(--o-mark-clr);
     border: 1px solid var(--o-mark-clr);
     background-color: var(--o-highlight);
-
 }
 
 /* Landing Page Animations */
