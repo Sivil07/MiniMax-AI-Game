@@ -5,7 +5,7 @@ const WinDetectionModule = (function () {
         for (let row = 0; row < rowNum; row++) {
             const [squareOne, squareTwo, squareThree] = board[row];
             if (squareOne === mark && squareTwo === mark && squareThree === mark) {
-                return true;
+                return { isWinner: true, coordinates: [[row, 0], [row, 1], [row, 2]] };
             }
         }
         return false;
@@ -19,7 +19,7 @@ const WinDetectionModule = (function () {
             const colTwo = board[1][col];
             const colThree = board[2][col];
             if (colOne === mark && colTwo === mark && colThree === mark) {
-                return true;
+                return { isWinner: true, coordinates: [[0, col], [1, col], [2, col]] };
             }
         }
         return false;
@@ -29,18 +29,29 @@ const WinDetectionModule = (function () {
         const topRightDiagonal = board[0][0] === mark && board[1][1] === mark && board[2][2] === mark;
         const topLeftDiagonal = board[0][2] === mark && board[1][1] === mark && board[2][0] === mark;
 
-        return topRightDiagonal || topLeftDiagonal;
+        let winningMatch;
+        if (topRightDiagonal) {
+            winningMatch = [[0, 0], [1, 1], [2, 2]]
+        } else if (topLeftDiagonal) {
+            winningMatch = [[0, 2], [1, 1], [2, 0]]
+        }
+
+        const result = topRightDiagonal || topLeftDiagonal;
+
+        return { isWinner: result, coordinates: winningMatch }
     }
 
     const isWinnerFound = (mark, board) => {
-        const checkHorizontal = horizontalChecks(board, mark);
-        const checkVertical = verticalChecks(board, mark);
-        const checkDiagonal = diagonalChecks(board, mark);
+        const horizontalResult = horizontalChecks(board, mark);
+        const verticalResult = verticalChecks(board, mark);
+        const diagonalResult = diagonalChecks(board, mark);
 
-        if (checkHorizontal || checkVertical || checkDiagonal) {
-            return true;
-        }
-        return false;
+        if (horizontalResult.isWinner) return horizontalResult;
+        if (verticalResult.isWinner) return verticalResult;
+        if (diagonalResult.isWinner) return diagonalResult;
+
+        return { isWinner: false, coordinates: null }
+
     }
 
     return { isWinnerFound }
