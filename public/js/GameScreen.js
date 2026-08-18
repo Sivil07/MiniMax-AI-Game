@@ -221,8 +221,20 @@ const GameScreenFunctionalityModule = (function () {
         loadIntoBoard();
     }
 
+    const applyWinningStyles = (coordinates) => {
+
+        for (let index = 0; index < coordinates.length; index++) {
+            [row, col] = coordinates[index]
+            const square = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+            setTimeout(() => {
+                square.classList.add("winning-match")
+                square.classList.add("highlight-win")
+            }, index * 400)
+        }
+    }
+
     const renderMoveResult = (result) => {
-        const { turnFailed, isWinnerFound, isBoardFull, currentActivePlayerMark, isAITurn, row, col } = result
+        const { turnFailed, isWinnerFound, isBoardFull, currentActivePlayerMark, isAITurn, row, col, coordinates } = result
 
         if (turnFailed) {
             console.log("The turn failed")
@@ -233,6 +245,7 @@ const GameScreenFunctionalityModule = (function () {
 
         if (isWinnerFound) {
             console.log("winnerFound")
+            applyWinningStyles(coordinates)
             nextRound.disabled = GameMasterModule.hasMoreRoundsAvailable();
         } else if (isBoardFull) {
             console.log("Board Full")
