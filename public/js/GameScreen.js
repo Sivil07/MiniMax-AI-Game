@@ -15,8 +15,9 @@ const GameScreenFunctionalityModule = (function () {
     const p2Name = document.querySelector("#static-player-two-name");
     const nextRound = document.querySelector("#next-round");
     const endGame = document.querySelector("#end-game");
+    const winningPlayer = document.querySelector(".backdrop-content")
     let dynamicColoring = new Map();
-    let dynamicNodes = []
+    let dynamicNodes = [];
 
     const initializeGameScreen = () => {
         setupDynamicUI(GameMasterModule.getGameData());
@@ -233,8 +234,12 @@ const GameScreenFunctionalityModule = (function () {
         }
     }
 
+    const setWinningPlayer = (winnerName) => {
+        winningPlayer.textContent = `${winnerName} Wins!`
+    }
+
     const renderMoveResult = (result) => {
-        const { turnFailed, isWinnerFound, isBoardFull, currentActivePlayerMark, isAITurn, row, col, coordinates } = result
+        const { turnFailed, isWinnerFound, isBoardFull, currentActivePlayerMark, isAITurn, row, col, coordinates, currentActivePlayerName } = result
 
         if (turnFailed) {
             console.log("The turn failed")
@@ -246,6 +251,7 @@ const GameScreenFunctionalityModule = (function () {
         if (isWinnerFound) {
             console.log("winnerFound")
             applyWinningStyles(coordinates)
+            setWinningPlayer(currentActivePlayerName)
             nextRound.disabled = GameMasterModule.hasMoreRoundsAvailable();
         } else if (isBoardFull) {
             console.log("Board Full")
