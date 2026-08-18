@@ -307,6 +307,12 @@ const GameScreenFunctionalityModule = (function () {
                 LandingScreenFunctionalityModule.toggleRemoveNode(landingScreen);
             }
         })
+
+        boardSection.addEventListener("animationend", (e) => {
+            if (e.animationName === "scaleTurn") {
+                LandingScreenFunctionalityModule.togglePointerEvents(gameContainer);
+            }
+        })
     }
 
     gameBoardListeners()

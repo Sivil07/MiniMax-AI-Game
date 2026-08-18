@@ -14,6 +14,7 @@ const LoadingScreenFunctionalityModule = (function () {
                 LandingScreenFunctionalityModule.toggleRemoveNode(loadingScreen);
                 LandingScreenFunctionalityModule.toggleShrinkFade(loadingScreen);
                 LandingScreenFunctionalityModule.toggleRemoveNode(gameContainer);
+                LandingScreenFunctionalityModule.togglePointerEvents(gameContainer)
                 const playerTurn = document.querySelector("#player-turn");
                 playerTurn.classList.add("scale-turn")
             }
