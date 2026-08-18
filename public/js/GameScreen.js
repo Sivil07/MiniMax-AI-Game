@@ -260,6 +260,7 @@ const GameScreenFunctionalityModule = (function () {
     const gameBoardListeners = () => {
         board.addEventListener("click", (e) => {
             const element = e.target;
+            LandingScreenFunctionalityModule.togglePreventClick(board)
 
             const humanResult = GameMasterModule.playMove(element.dataset.row, element.dataset.col);
             const isAiTurn = renderMoveResult(humanResult);
@@ -269,10 +270,13 @@ const GameScreenFunctionalityModule = (function () {
                 const aiResult = GameMasterModule.playAI();
                 setTimeout(() => {
                     renderMoveResult(aiResult);
+                    LandingScreenFunctionalityModule.togglePreventClick(board)
                     setActivePlayerColor()
                 }, 1000)
+            } else {
+                LandingScreenFunctionalityModule.togglePreventClick(board)
             }
-        })
+        });
 
         nextRound.addEventListener("click", () => {
             if (!GameMasterModule.hasMoreRoundsAvailable()) {

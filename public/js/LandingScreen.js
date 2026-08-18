@@ -8,6 +8,10 @@ const LandingScreenFunctionalityModule = (function () {
         element.classList.toggle("shrink-fade");
     }
 
+    const togglePreventClick = (element) => {
+        element.classList.toggle("prevent-click")
+    }
+
     const togglePointerEvents = (element) => {
         element.classList.toggle("prevent-click");
     }
@@ -225,5 +229,5 @@ const LandingScreenFunctionalityModule = (function () {
     initializeDefaultFormState();
     attachLandingListeners();
 
-    return { toggleRemoveNode, toggleShrinkFade, togglePointerEvents }
+    return { toggleRemoveNode, toggleShrinkFade, togglePointerEvents, togglePreventClick }
 })();
