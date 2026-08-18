@@ -187,6 +187,8 @@ const LandingScreenFunctionalityModule = (function () {
 
         form.addEventListener("submit", (e) => {
             e.preventDefault();
+            const startGameButton = document.querySelector(".start-game");
+            startGameButton.disabled = true;
 
             const cleanData = getLandingPageFormData(form);
             GameMasterModule.setupGame(cleanData);
@@ -197,6 +199,9 @@ const LandingScreenFunctionalityModule = (function () {
 
         form.addEventListener("animationend", () => {
             const loadingScreen = document.querySelector(".loading-screen");
+            const startGameButton = document.querySelector(".start-game");
+            startGameButton.disabled = false;
+
             initializeDefaultFormState();
             toggleRemoveNode(form)
             toggleShrinkFade(form)
