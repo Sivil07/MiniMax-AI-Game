@@ -121,10 +121,13 @@ const GameMasterModule = (function () {
         let isWinnerFound = false;
         let isBoardFull = false;
         let currentActivePlayerMark = activePlayer.getMark();
-
+        let coordinates;
+        const winResult = WinDetectionModule.isWinnerFound(getActivePlayer().getMark(), board);
+        
         if (!result.success) {
             turnFailed = true;
-        } else if (WinDetectionModule.isWinnerFound(getActivePlayer().getMark(), board)) {
+        } else if (winResult.isWinner) {
+            coordinates = winResult.coordinates;
             gameOver = true;
             isWinnerFound = true;
             recordWinLoss();
@@ -137,14 +140,14 @@ const GameMasterModule = (function () {
             getActivePlayer().updateStreak("draw");
             getInactivePlayer().updateStreak("draw")
         } else {
-            switchPlayers(); 
+            switchPlayers();
             console.log(`${getActivePlayer().getName()}'s turn.`)
         }
         GameBoardModule.displayBoard();
 
         const isAITurn = !gameOver && isAIOn && getActivePlayer() === playerTwo;
 
-        return { turnFailed, isWinnerFound, isBoardFull, currentActivePlayerMark, isAITurn, row, col };
+        return { turnFailed, isWinnerFound, isBoardFull, currentActivePlayerMark, isAITurn, row, col, coordinates };
     }
 
     const getGameData = () => {
