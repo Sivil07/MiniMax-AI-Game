@@ -121,6 +121,7 @@ const GameMasterModule = (function () {
         let isWinnerFound = false;
         let isBoardFull = false;
         let currentActivePlayerMark = activePlayer.getMark();
+        let currentActivePlayerName = activePlayer.getName();
         let coordinates;
         const winResult = WinDetectionModule.isWinnerFound(getActivePlayer().getMark(), board);
         
@@ -147,7 +148,7 @@ const GameMasterModule = (function () {
 
         const isAITurn = !gameOver && isAIOn && getActivePlayer() === playerTwo;
 
-        return { turnFailed, isWinnerFound, isBoardFull, currentActivePlayerMark, isAITurn, row, col, coordinates };
+        return { turnFailed, isWinnerFound, isBoardFull, currentActivePlayerMark, isAITurn, row, col, coordinates, currentActivePlayerName };
     }
 
     const getGameData = () => {
