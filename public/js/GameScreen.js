@@ -271,7 +271,6 @@ const GameScreenFunctionalityModule = (function () {
             console.log("winnerFound")
             applyWinningStyles(coordinates)
             setWinningPlayer(currentActivePlayerName)
-            nextRound.disabled = GameMasterModule.hasMoreRoundsAvailable();
         } else if (isBoardFull) {
             console.log("Board Full")
             nextRound.disabled = GameMasterModule.hasMoreRoundsAvailable();
@@ -310,7 +309,7 @@ const GameScreenFunctionalityModule = (function () {
                 LandingScreenFunctionalityModule.toggleNotShowBackdrop(backdrop)
                 LandingScreenFunctionalityModule.toggleShowBackdrop(backdrop)
                 LandingScreenFunctionalityModule.toggleHideWinningPlayerName(winningPlayer);
-                console.log("yes")
+                LandingScreenFunctionalityModule.toggleScaleWinnerName(winningPlayer);
             }
         })
 
@@ -337,6 +336,13 @@ const GameScreenFunctionalityModule = (function () {
                 LandingScreenFunctionalityModule.toggleRemoveNode(gameContainer);
                 LandingScreenFunctionalityModule.toggleShrinkFade(gameContainer);
                 LandingScreenFunctionalityModule.toggleRemoveNode(landingScreen);
+            }
+        })
+
+        winningPlayer.addEventListener("animationend", (e) => {
+            if (e.animationName === "scaleWinnerName") {
+                LandingScreenFunctionalityModule.toggleScaleWinnerName(winningPlayer);
+                nextRound.disabled = GameMasterModule.hasMoreRoundsAvailable();
             }
         })
 

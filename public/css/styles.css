@@ -684,3 +684,23 @@ input[type="radio"] {
     animation-duration: 0.5s;
     animation-iteration-count: 2;
 }
+
+@keyframes scaleWinnerName {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.4)
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.scale-winner {
+    animation-name: scaleWinnerName;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+}

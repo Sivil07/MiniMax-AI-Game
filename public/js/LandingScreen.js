@@ -6,7 +6,10 @@ const LandingScreenFunctionalityModule = (function () {
 
     const toggleHideWinningPlayerName = (element) => {
         element.classList.toggle("hide-winning-player");
+    }
 
+    const toggleScaleWinnerName = (element) => {
+        element.classList.toggle("scale-winner")
     }
 
     const toggleNotShowBackdrop = (element) => {
@@ -242,5 +245,5 @@ const LandingScreenFunctionalityModule = (function () {
     initializeDefaultFormState();
     attachLandingListeners();
 
-    return { toggleRemoveNode, toggleShrinkFade, togglePointerEvents, togglePreventClick, toggleNotShowBackdrop, toggleShowBackdrop, toggleHideWinningPlayerName }
+    return { toggleRemoveNode, toggleShrinkFade, togglePointerEvents, togglePreventClick, toggleNotShowBackdrop, toggleShowBackdrop, toggleHideWinningPlayerName, toggleScaleWinnerName }
 })();
