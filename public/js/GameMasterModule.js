@@ -9,9 +9,15 @@ const GameMasterModule = (function () {
     let inactivePlayer;
     let difficulty;
     let mode;
+    let boardCoordinates = [
+        [0, 0], [0, 1], [0, 2],
+        [1, 0], [1, 1], [1, 2],
+        [2, 0], [2, 1], [2, 2]
+    ];
 
     const getActivePlayer = () => activePlayer;
     const getInactivePlayer = () => inactivePlayer;
+    const getBoardCoordinates = () => boardCoordinates;
     const hasMoreRoundsAvailable = () => roundCount === maxRounds;
     const incrementCount = (num) => roundCount += num;
 
@@ -124,7 +130,7 @@ const GameMasterModule = (function () {
         let currentActivePlayerName = activePlayer.getName();
         let coordinates;
         const winResult = WinDetectionModule.isWinnerFound(getActivePlayer().getMark(), board);
-        
+
         if (!result.success) {
             turnFailed = true;
         } else if (winResult.isWinner) {
@@ -177,5 +183,6 @@ const GameMasterModule = (function () {
         getActivePlayer,
         hasMoreRoundsAvailable,
         playAI,
+        getBoardCoordinates,
     }
 })();
