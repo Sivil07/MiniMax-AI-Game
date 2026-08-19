@@ -2,8 +2,8 @@ const UtilityHandlerModule = (function () {
     const toggleRemoveNodeFromLayout = (element) => {
         element.classList.toggle("remove-node")
     }
-    const toggleHideWinningPlayerName = (element) => {
-        element.classList.toggle("hide-winning-player");
+    const toggleHideRoundEndMessage = (element) => {
+        element.classList.toggle("round-end-msg-hidden");
     }
 
     const toggleNotShowBackdrop = (element) => {
@@ -40,10 +40,9 @@ const UtilityHandlerModule = (function () {
         element.classList.toggle("scale-winner")
     }
 
-
     return {
         toggleRemoveNodeFromLayout,
-        toggleHideWinningPlayerName,
+        toggleHideRoundEndMessage,
         toggleScaleWinnerName,
         toggleNotShowBackdrop,
         toggleShowBackdrop,
