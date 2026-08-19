@@ -410,13 +410,17 @@ input[type="radio"] {
 }
 
 .backdrop {
+    font-family: "Inter", sans-serif;
     position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 2rem;
     width: 100%;
     height: 100%;
+    color: #FFD166;
+    letter-spacing: 0.5rem;
+    text-transform: uppercase;
 }
 
 .square {
