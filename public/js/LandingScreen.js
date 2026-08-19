@@ -1,36 +1,4 @@
 const LandingScreenFunctionalityModule = (function () {
-    // Adds/removes selected node from layout
-    const toggleRemoveNode = (element) => {
-        element.classList.toggle("remove-node")
-    }
-
-    const toggleHideWinningPlayerName = (element) => {
-        element.classList.toggle("hide-winning-player");
-    }
-
-    const toggleScaleWinnerName = (element) => {
-        element.classList.toggle("scale-winner")
-    }
-
-    const toggleNotShowBackdrop = (element) => {
-        element.classList.toggle("backdrop-not-shown")
-    }
-
-    const toggleShowBackdrop = (element) => {
-        element.classList.toggle("backdrop-shown")
-    }
-
-    const toggleShrinkFade = (element) => {
-        element.classList.toggle("shrink-fade");
-    }
-
-    const togglePreventClick = (element) => {
-        element.classList.toggle("prevent-click")
-    }
-
-    const togglePointerEvents = (element) => {
-        element.classList.toggle("prevent-click");
-    }
 
     // Adds/removes the highlight style on an element
     const toggleActionHighlight = (element, isHighlight) => {
@@ -215,8 +183,6 @@ const LandingScreenFunctionalityModule = (function () {
             GameScreenFunctionalityModule.initializeGameScreen();
 
             UtilityHandlerModule.toggleShrinkFade(form);
-
-            // toggleShrinkFade(form);
         });
 
         form.addEventListener("animationend", () => {
@@ -227,7 +193,6 @@ const LandingScreenFunctionalityModule = (function () {
             initializeDefaultFormState();
             UtilityHandlerModule.toggleRemoveNodeFromLayout(form)
             UtilityHandlerModule.toggleShrinkFade(form)
-            // toggleShrinkFade(form)
             UtilityHandlerModule.toggleRemoveNodeFromLayout(loadingScreen)
         })
 
@@ -248,5 +213,4 @@ const LandingScreenFunctionalityModule = (function () {
     initializeDefaultFormState();
     attachLandingListeners();
 
-    return { toggleRemoveNode, toggleShrinkFade, togglePointerEvents, togglePreventClick, toggleNotShowBackdrop, toggleShowBackdrop, toggleHideWinningPlayerName, toggleScaleWinnerName }
 })();

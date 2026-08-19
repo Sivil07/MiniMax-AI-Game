@@ -13,13 +13,9 @@ const LoadingScreenFunctionalityModule = (function () {
             if (e.animationName === "shrinkFade") {
                 const gameContainer = document.querySelector(".game-container")
                 UtilityHandlerModule.toggleRemoveNodeFromLayout(loadingScreen);
-                // LandingScreenFunctionalityModule.toggleRemoveNode(loadingScreen);
                 UtilityHandlerModule.toggleShrinkFade(loadingScreen)
-                // LandingScreenFunctionalityModule.toggleShrinkFade(loadingScreen);
                 UtilityHandlerModule.toggleRemoveNodeFromLayout(gameContainer)
-                // LandingScreenFunctionalityModule.toggleRemoveNode(gameContainer);
                 UtilityHandlerModule.togglePointerEvents(gameContainer)
-                // LandingScreenFunctionalityModule.togglePointerEvents(gameContainer)
                 const playerTurn = document.querySelector("#player-turn");
                 playerTurn.classList.add("scale-turn")
             }

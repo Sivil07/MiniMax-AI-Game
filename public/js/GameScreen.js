@@ -256,11 +256,8 @@ const GameScreenFunctionalityModule = (function () {
         if (backdropClasses.includes("backdrop-shown")) {
             winAnimationCount = 0;
             UtilityHandlerModule.toggleNotShowBackdrop(backdrop)
-            // LandingScreenFunctionalityModule.toggleNotShowBackdrop(backdrop);
             UtilityHandlerModule.toggleShowBackdrop(backdrop)
-            // LandingScreenFunctionalityModule.toggleShowBackdrop(backdrop);
             UtilityHandlerModule.toggleHideWinningPlayerName(winningPlayer);
-            // LandingScreenFunctionalityModule.toggleHideWinningPlayerName(winningPlayer);
         }
     }
 
@@ -302,7 +299,6 @@ const GameScreenFunctionalityModule = (function () {
         board.addEventListener("click", (e) => {
             const element = e.target;
             UtilityHandlerModule.togglePreventClick(board)
-            // LandingScreenFunctionalityModule.togglePreventClick(board)
 
             const humanResult = GameMasterModule.playMove(element.dataset.row, element.dataset.col);
             const isAiTurn = renderMoveResult(humanResult);
@@ -313,12 +309,10 @@ const GameScreenFunctionalityModule = (function () {
                 setTimeout(() => {
                     renderMoveResult(aiResult);
                     UtilityHandlerModule.togglePreventClick(board)
-                    // LandingScreenFunctionalityModule.togglePreventClick(board)
                     setActivePlayerColor()
                 }, 1000)
             } else {
                 UtilityHandlerModule.togglePreventClick(board)
-                // LandingScreenFunctionalityModule.togglePreventClick(board)
             }
         });
 
@@ -333,13 +327,9 @@ const GameScreenFunctionalityModule = (function () {
             winAnimationCount++
             if (e.animationName === "highlightWin" & winAnimationCount === 3) {
                 UtilityHandlerModule.toggleNotShowBackdrop(backdrop);
-                // LandingScreenFunctionalityModule.toggleNotShowBackdrop(backdrop)
                 UtilityHandlerModule.toggleShowBackdrop(backdrop);
-                // LandingScreenFunctionalityModule.toggleShowBackdrop(backdrop)
                 UtilityHandlerModule.toggleHideWinningPlayerName(winningPlayer);
-                // LandingScreenFunctionalityModule.toggleHideWinningPlayerName(winningPlayer);
                 UtilityHandlerModule.toggleScaleWinnerName(winningPlayer);
-                // LandingScreenFunctionalityModule.toggleScaleWinnerName(winningPlayer);
             }
         })
 
@@ -352,10 +342,8 @@ const GameScreenFunctionalityModule = (function () {
         endGame.addEventListener("click", () => {
             GameMasterModule.resetGame();
             UtilityHandlerModule.toggleShrinkFade(gameContainer)
-            // LandingScreenFunctionalityModule.toggleShrinkFade(gameContainer)
             endGame.disabled = true;
             UtilityHandlerModule.togglePointerEvents(board);
-            // LandingScreenFunctionalityModule.togglePointerEvents(board);
             resetBackDrop();
         })
 
@@ -366,18 +354,14 @@ const GameScreenFunctionalityModule = (function () {
                 removeDynamicNodes();
                 dynamicColoring.clear();
                 UtilityHandlerModule.toggleRemoveNodeFromLayout(gameContainer);
-                // LandingScreenFunctionalityModule.toggleRemoveNode(gameContainer);
                 UtilityHandlerModule.toggleShrinkFade(gameContainer)
-                // LandingScreenFunctionalityModule.toggleShrinkFade(gameContainer);
                 UtilityHandlerModule.toggleRemoveNodeFromLayout(landingScreen);
-                // LandingScreenFunctionalityModule.toggleRemoveNode(landingScreen);
             }
         })
 
         winningPlayer.addEventListener("animationend", (e) => {
             if (e.animationName === "scaleWinnerName") {
                 UtilityHandlerModule.toggleScaleWinnerName(winningPlayer)
-                // LandingScreenFunctionalityModule.toggleScaleWinnerName(winningPlayer);
                 nextRound.disabled = GameMasterModule.hasMoreRoundsAvailable();
                 endGame.disabled = false;
             }
@@ -386,7 +370,6 @@ const GameScreenFunctionalityModule = (function () {
         boardSection.addEventListener("animationend", (e) => {
             if (e.animationName === "scaleTurn") {
                 UtilityHandlerModule.togglePointerEvents(gameContainer);
-                // LandingScreenFunctionalityModule.togglePointerEvents(gameContainer);
             }
         })
     }
