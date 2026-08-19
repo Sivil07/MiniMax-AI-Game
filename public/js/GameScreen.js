@@ -238,9 +238,11 @@ const GameScreenFunctionalityModule = (function () {
                 if (winnerFound) {
                     square.classList.add("highlight-win-border")
                     square.classList.add("highlight-win")
+                    backdrop.classList.add("winner-msg-color")
                 } else if (boardFull) {
                     square.classList.add("highlight-draw-border");
                     square.classList.add("highlight-draw");
+                    backdrop.classList.add("draw-msg-color")
                 }
 
             }, index * animationSpeed)
@@ -273,11 +275,13 @@ const GameScreenFunctionalityModule = (function () {
             resetAnimationCounters();
             UtilityHandlerModule.toggleNotShowBackdrop(backdrop)
             UtilityHandlerModule.toggleShowBackdrop(backdrop)
-            UtilityHandlerModule.toggleHideWinningPlayerName(roundEndMessage);
+            UtilityHandlerModule.toggleHideRoundEndMessage(roundEndMessage);
             UtilityHandlerModule.toggleButtonHighlights(endGame);
             UtilityHandlerModule.toggleButtonHighlights(nextRound);
             UtilityHandlerModule.togglePulsateButtons(endGame);
             UtilityHandlerModule.togglePulsateButtons(nextRound);
+            backdrop.classList.remove("winner-msg-color")
+            backdrop.classList.remove("draw-msg-color")
         }
     }
 
@@ -351,7 +355,7 @@ const GameScreenFunctionalityModule = (function () {
             if (shouldTriggerRoundEnd) {
                 UtilityHandlerModule.toggleNotShowBackdrop(backdrop);
                 UtilityHandlerModule.toggleShowBackdrop(backdrop);
-                UtilityHandlerModule.toggleHideWinningPlayerName(roundEndMessage);
+                UtilityHandlerModule.toggleHideRoundEndMessage(roundEndMessage);
                 UtilityHandlerModule.toggleScaleWinnerName(roundEndMessage);
                 UtilityHandlerModule.toggleButtonHighlights(endGame);
                 UtilityHandlerModule.toggleButtonHighlights(nextRound);
