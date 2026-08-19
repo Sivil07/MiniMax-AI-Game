@@ -438,23 +438,21 @@ input[type="radio"] {
 #game-controls {
     display: flex;
     justify-content: center;
+    gap: 2rem;
 }
 
 .control-item {
     font-size: 1.5rem;
     color: var(--primary-clr);
     background-color: transparent;
-    border: none;
+    border: 1px solid var(--primary-clr);
     padding: 1rem;
     transition: all 0.3s ease;
+    border-radius: 1rem;
 }
 
 .control-item:hover {
     color: var(--o-mark-clr)
-}
-
-#next-round {
-    border-left: 1px solid var(--border-clr);
 }
 
 /* Utilities */
