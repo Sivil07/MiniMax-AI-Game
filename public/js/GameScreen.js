@@ -258,6 +258,8 @@ const GameScreenFunctionalityModule = (function () {
             UtilityHandlerModule.toggleNotShowBackdrop(backdrop)
             UtilityHandlerModule.toggleShowBackdrop(backdrop)
             UtilityHandlerModule.toggleHideWinningPlayerName(winningPlayer);
+            UtilityHandlerModule.toggleButtonHighlights(endGame);
+            UtilityHandlerModule.toggleButtonHighlights(nextRound);
         }
     }
 
@@ -330,6 +332,8 @@ const GameScreenFunctionalityModule = (function () {
                 UtilityHandlerModule.toggleShowBackdrop(backdrop);
                 UtilityHandlerModule.toggleHideWinningPlayerName(winningPlayer);
                 UtilityHandlerModule.toggleScaleWinnerName(winningPlayer);
+                UtilityHandlerModule.toggleButtonHighlights(endGame);
+                UtilityHandlerModule.toggleButtonHighlights(nextRound);
             }
         })
 

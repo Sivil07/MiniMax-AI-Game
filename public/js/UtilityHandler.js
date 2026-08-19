@@ -30,6 +30,10 @@ const UtilityHandlerModule = (function () {
         element.classList.toggle("prevent-click");
     }
 
+    const toggleButtonHighlights = (element) => {
+        element.classList.toggle("highlight-buttons")
+    }
+
     return {
         toggleRemoveNodeFromLayout,
         toggleHideWinningPlayerName,
@@ -39,5 +43,6 @@ const UtilityHandlerModule = (function () {
         toggleShrinkFade,
         togglePreventClick,
         togglePointerEvents,
+        toggleButtonHighlights,
     }
 })();
