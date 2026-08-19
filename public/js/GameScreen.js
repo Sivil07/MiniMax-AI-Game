@@ -42,6 +42,11 @@ const GameScreenFunctionalityModule = (function () {
         }
     }
 
+    const turnPlayerTurnInvisible = () => {
+        const playerTurn = document.querySelector("#player-turn");
+        playerTurn.classList.add("is-invisible")
+    }
+
     const resetColoring = () => {
         p1Side.classList.remove("highlight-card-red", "highlight-card-blue");
         p2Side.classList.remove("highlight-card-red", "highlight-card-blue")
@@ -328,10 +333,12 @@ const GameScreenFunctionalityModule = (function () {
             console.log("winnerFound")
             applyRoundEndSquareStyles(coordinates, isWinnerFound, isBoardFull)
             setRoundEndMessage(currentActivePlayerName, "Wins")
+            turnPlayerTurnInvisible()
         } else if (isBoardFull) {
             console.log("Board Full")
             applyRoundEndSquareStyles(GameMasterModule.getBoardCoordinates(), isWinnerFound, isBoardFull)
             setRoundEndMessage("Draw", "")
+            turnPlayerTurnInvisible()
             nextRound.disabled = GameMasterModule.hasMoreRoundsAvailable();
         } else {
             updateActivePlayer();
