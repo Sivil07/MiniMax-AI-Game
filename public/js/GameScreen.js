@@ -339,7 +339,7 @@ const GameScreenFunctionalityModule = (function () {
         });
 
         board.addEventListener("animationstart", (e) => {
-            if (e.animationName === "highlightWin") {
+            if (e.animationName === "highlightWin" || e.animationName === "highlightDraw") {
                 endGame.disabled = true;
             }
         })
