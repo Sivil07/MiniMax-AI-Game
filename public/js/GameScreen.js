@@ -21,6 +21,7 @@ const GameScreenFunctionalityModule = (function () {
     let dynamicNodes = [];
     let roundEndAnimationCount = 0;
     let expectedAnimationCount = 0;
+    let animationSpeed = 0;
 
     const initializeGameScreen = () => {
         setupDynamicUI(GameMasterModule.getGameData());
@@ -228,6 +229,7 @@ const GameScreenFunctionalityModule = (function () {
 
     const applyRoundEndStyles = (coordinates, winnerFound, boardFull) => {
         expectedAnimationCount = coordinates.length === 3 ? 3 : 9;
+        animationSpeed = coordinates.length === 3 ? 400 : 100;
 
         for (let index = 0; index < coordinates.length; index++) {
             [row, col] = coordinates[index]
@@ -241,12 +243,18 @@ const GameScreenFunctionalityModule = (function () {
                     square.classList.add("highlight-draw");
                 }
 
-            }, index * 400)
+            }, index * animationSpeed)
         }
     }
 
     const setRoundEndMessage = (primaryText, extraText) => {
         roundEndMessage.textContent = `${primaryText} ${extraText}!`
+    }
+
+    const resetAnimationCounters = () => {
+        roundEndAnimationCount = 0;
+        expectedAnimationCount = 0;
+        animationSpeed = 0;
     }
 
     const setSquareMarkColor = (square, text) => {
@@ -262,8 +270,7 @@ const GameScreenFunctionalityModule = (function () {
         const backdropClasses = [...backdrop.classList];
 
         if (backdropClasses.includes("backdrop-shown")) {
-            roundEndAnimationCount = 0;
-            expectedAnimationCount = 0;
+            resetAnimationCounters();
             UtilityHandlerModule.toggleNotShowBackdrop(backdrop)
             UtilityHandlerModule.toggleShowBackdrop(backdrop)
             UtilityHandlerModule.toggleHideWinningPlayerName(roundEndMessage);
