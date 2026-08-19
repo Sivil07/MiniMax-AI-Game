@@ -302,6 +302,12 @@ const GameScreenFunctionalityModule = (function () {
             }
         });
 
+        board.addEventListener("animationstart", (e) => {
+            if (e.animationName === "highlightWin") {
+                endGame.disabled = true;
+            }
+        })
+
         board.addEventListener("animationend", (e) => {
             console.log(winAnimationCount)
             winAnimationCount++
@@ -343,6 +349,7 @@ const GameScreenFunctionalityModule = (function () {
             if (e.animationName === "scaleWinnerName") {
                 LandingScreenFunctionalityModule.toggleScaleWinnerName(winningPlayer);
                 nextRound.disabled = GameMasterModule.hasMoreRoundsAvailable();
+                endGame.disabled = false;
             }
         })
 
