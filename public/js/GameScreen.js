@@ -16,10 +16,11 @@ const GameScreenFunctionalityModule = (function () {
     const nextRound = document.querySelector("#next-round");
     const endGame = document.querySelector("#end-game");
     const backdrop = document.querySelector(".backdrop")
-    const winningPlayer = document.querySelector(".backdrop-content")
+    const roundEndMessage = document.querySelector(".backdrop-content")
     let dynamicColoring = new Map();
     let dynamicNodes = [];
     let winAnimationCount = 0;
+    let expectedAnimationCount = 0;
 
     const initializeGameScreen = () => {
         setupDynamicUI(GameMasterModule.getGameData());
@@ -225,20 +226,27 @@ const GameScreenFunctionalityModule = (function () {
         loadIntoBoard();
     }
 
-    const applyWinningStyles = (coordinates) => {
+    const applyRoundEndStyles = (coordinates, winnerFound, boardFull) => {
+        expectedAnimationCount = coordinates.length === 3 ? 3 : 9;
 
         for (let index = 0; index < coordinates.length; index++) {
             [row, col] = coordinates[index]
             const square = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
             setTimeout(() => {
-                square.classList.add("winning-match")
-                square.classList.add("highlight-win")
+                if (winnerFound) {
+                    square.classList.add("highlight-win-border")
+                    square.classList.add("highlight-win")
+                } else if (boardFull) {
+                    square.classList.add("highlight-draw-border");
+                    square.classList.add("highlight-draw");
+                }
+
             }, index * 400)
         }
     }
 
-    const setWinningPlayer = (winnerName) => {
-        winningPlayer.textContent = `${winnerName} Wins!`
+    const setRoundEndMessage = (primaryText, extraText) => {
+        roundEndMessage.textContent = `${primaryText} ${extraText}!`
     }
 
     const setSquareMarkColor = (square, text) => {
@@ -255,9 +263,10 @@ const GameScreenFunctionalityModule = (function () {
 
         if (backdropClasses.includes("backdrop-shown")) {
             winAnimationCount = 0;
+            expectedAnimationCount = 0;
             UtilityHandlerModule.toggleNotShowBackdrop(backdrop)
             UtilityHandlerModule.toggleShowBackdrop(backdrop)
-            UtilityHandlerModule.toggleHideWinningPlayerName(winningPlayer);
+            UtilityHandlerModule.toggleHideWinningPlayerName(roundEndMessage);
             UtilityHandlerModule.toggleButtonHighlights(endGame);
             UtilityHandlerModule.toggleButtonHighlights(nextRound);
             UtilityHandlerModule.togglePulsateButtons(endGame);
@@ -287,10 +296,12 @@ const GameScreenFunctionalityModule = (function () {
 
         if (isWinnerFound) {
             console.log("winnerFound")
-            applyWinningStyles(coordinates)
-            setWinningPlayer(currentActivePlayerName)
+            applyRoundEndStyles(coordinates, isWinnerFound, isBoardFull)
+            setRoundEndMessage(currentActivePlayerName, "Wins")
         } else if (isBoardFull) {
             console.log("Board Full")
+            applyRoundEndStyles(GameMasterModule.getBoardCoordinates(), isWinnerFound, isBoardFull)
+            setRoundEndMessage("Draw", "")
             nextRound.disabled = GameMasterModule.hasMoreRoundsAvailable();
         } else {
             updateActivePlayer();
@@ -329,11 +340,12 @@ const GameScreenFunctionalityModule = (function () {
         board.addEventListener("animationend", (e) => {
             console.log(winAnimationCount)
             winAnimationCount++
-            if (e.animationName === "highlightWin" & winAnimationCount === 3) {
+            const shouldTriggerRoundEnd = winAnimationCount === expectedAnimationCount && (e.animationName === "highlightWin" || e.animationName === "highlightDraw")
+            if (shouldTriggerRoundEnd) {
                 UtilityHandlerModule.toggleNotShowBackdrop(backdrop);
                 UtilityHandlerModule.toggleShowBackdrop(backdrop);
-                UtilityHandlerModule.toggleHideWinningPlayerName(winningPlayer);
-                UtilityHandlerModule.toggleScaleWinnerName(winningPlayer);
+                UtilityHandlerModule.toggleHideWinningPlayerName(roundEndMessage);
+                UtilityHandlerModule.toggleScaleWinnerName(roundEndMessage);
                 UtilityHandlerModule.toggleButtonHighlights(endGame);
                 UtilityHandlerModule.toggleButtonHighlights(nextRound);
                 UtilityHandlerModule.togglePulsateButtons(endGame);
@@ -367,9 +379,9 @@ const GameScreenFunctionalityModule = (function () {
             }
         })
 
-        winningPlayer.addEventListener("animationend", (e) => {
+        roundEndMessage.addEventListener("animationend", (e) => {
             if (e.animationName === "scaleWinnerName") {
-                UtilityHandlerModule.toggleScaleWinnerName(winningPlayer)
+                UtilityHandlerModule.toggleScaleWinnerName(roundEndMessage)
                 nextRound.disabled = GameMasterModule.hasMoreRoundsAvailable();
                 endGame.disabled = false;
             }
