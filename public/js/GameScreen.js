@@ -19,7 +19,7 @@ const GameScreenFunctionalityModule = (function () {
     const roundEndMessage = document.querySelector(".backdrop-content")
     let dynamicColoring = new Map();
     let dynamicNodes = [];
-    let winAnimationCount = 0;
+    let roundEndAnimationCount = 0;
     let expectedAnimationCount = 0;
 
     const initializeGameScreen = () => {
@@ -262,7 +262,7 @@ const GameScreenFunctionalityModule = (function () {
         const backdropClasses = [...backdrop.classList];
 
         if (backdropClasses.includes("backdrop-shown")) {
-            winAnimationCount = 0;
+            roundEndAnimationCount = 0;
             expectedAnimationCount = 0;
             UtilityHandlerModule.toggleNotShowBackdrop(backdrop)
             UtilityHandlerModule.toggleShowBackdrop(backdrop)
@@ -338,9 +338,9 @@ const GameScreenFunctionalityModule = (function () {
         })
 
         board.addEventListener("animationend", (e) => {
-            console.log(winAnimationCount)
-            winAnimationCount++
-            const shouldTriggerRoundEnd = winAnimationCount === expectedAnimationCount && (e.animationName === "highlightWin" || e.animationName === "highlightDraw")
+            console.log(roundEndAnimationCount)
+            roundEndAnimationCount++
+            const shouldTriggerRoundEnd = roundEndAnimationCount === expectedAnimationCount && (e.animationName === "highlightWin" || e.animationName === "highlightDraw")
             if (shouldTriggerRoundEnd) {
                 UtilityHandlerModule.toggleNotShowBackdrop(backdrop);
                 UtilityHandlerModule.toggleShowBackdrop(backdrop);
