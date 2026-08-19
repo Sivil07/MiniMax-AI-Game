@@ -241,6 +241,15 @@ const GameScreenFunctionalityModule = (function () {
         winningPlayer.textContent = `${winnerName} Wins!`
     }
 
+    const setSquareMarkColor = (square, text) => {
+        square.textContent = text;
+        if (text === "X") {
+            square.classList.add("x-mark-coloring")
+        } else {
+            square.classList.add("o-mark-coloring")
+        }
+    }
+
     const resetBackDrop = () => {
         const backdropClasses = [...backdrop.classList];
 
@@ -270,7 +279,7 @@ const GameScreenFunctionalityModule = (function () {
             return;
         }
         const square = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
-        square.textContent = currentActivePlayerMark;
+        setSquareMarkColor(square, currentActivePlayerMark)
 
         if (isWinnerFound) {
             console.log("winnerFound")
