@@ -6,20 +6,12 @@ const UtilityHandlerModule = (function () {
         element.classList.toggle("hide-winning-player");
     }
 
-    const toggleScaleWinnerName = (element) => {
-        element.classList.toggle("scale-winner")
-    }
-
     const toggleNotShowBackdrop = (element) => {
         element.classList.toggle("backdrop-not-shown")
     }
 
     const toggleShowBackdrop = (element) => {
         element.classList.toggle("backdrop-shown")
-    }
-
-    const toggleShrinkFade = (element) => {
-        element.classList.toggle("shrink-fade");
     }
 
     const togglePreventClick = (element) => {
@@ -34,6 +26,21 @@ const UtilityHandlerModule = (function () {
         element.classList.toggle("highlight-buttons")
     }
 
+    // Animations toggles
+
+    const togglePulsateButtons = (element) => {
+        element.classList.toggle("pulse-round-end-buttons")
+    }
+
+    const toggleShrinkFade = (element) => {
+        element.classList.toggle("shrink-fade");
+    }
+
+    const toggleScaleWinnerName = (element) => {
+        element.classList.toggle("scale-winner")
+    }
+
+
     return {
         toggleRemoveNodeFromLayout,
         toggleHideWinningPlayerName,
@@ -44,5 +51,6 @@ const UtilityHandlerModule = (function () {
         togglePreventClick,
         togglePointerEvents,
         toggleButtonHighlights,
+        togglePulsateButtons,
     }
 })();

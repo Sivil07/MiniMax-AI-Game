@@ -714,3 +714,20 @@ input[type="radio"] {
     animation-duration: 0.5s;
     animation-iteration-count: 1;
 }
+
+@keyframes pulseRoundEndButtons {
+    0% {
+        box-shadow: 1px 1px 1px var(--winning-clr);
+    }
+
+    100% {
+        box-shadow: 1px 1px 15px var(--winning-clr);
+    }  
+}
+
+.pulse-round-end-buttons {
+    animation-name: pulseRoundEndButtons;
+    animation-duration: 0.7s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}

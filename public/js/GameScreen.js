@@ -260,6 +260,8 @@ const GameScreenFunctionalityModule = (function () {
             UtilityHandlerModule.toggleHideWinningPlayerName(winningPlayer);
             UtilityHandlerModule.toggleButtonHighlights(endGame);
             UtilityHandlerModule.toggleButtonHighlights(nextRound);
+            UtilityHandlerModule.togglePulsateButtons(endGame);
+            UtilityHandlerModule.togglePulsateButtons(nextRound);
         }
     }
 
@@ -334,6 +336,8 @@ const GameScreenFunctionalityModule = (function () {
                 UtilityHandlerModule.toggleScaleWinnerName(winningPlayer);
                 UtilityHandlerModule.toggleButtonHighlights(endGame);
                 UtilityHandlerModule.toggleButtonHighlights(nextRound);
+                UtilityHandlerModule.togglePulsateButtons(endGame);
+                UtilityHandlerModule.togglePulsateButtons(nextRound);
             }
         })
 
