@@ -22,14 +22,22 @@ const UtilityHandlerModule = (function () {
         element.classList.toggle("prevent-click");
     }
 
-    const toggleButtonHighlights = (element) => {
-        element.classList.toggle("highlight-buttons")
+    const toggleWinButtonsHighlights = (element) => {
+        element.classList.toggle("highlight-win-buttons")
+    }
+
+    const toggleDrawButtonHighlights = (element) => {
+        element.classList.toggle("highlight-draw-buttons")
     }
 
     // Animations toggles
 
-    const togglePulsateButtons = (element) => {
-        element.classList.toggle("pulse-round-end-buttons")
+    const togglePulseWinButtons = (element) => {
+        element.classList.toggle("pulse-win-buttons")
+    }
+
+    const togglePulseDrawButtons = (element) => {
+        element.classList.toggle("pulse-draw-buttons");
     }
 
     const toggleShrinkFade = (element) => {
@@ -49,7 +57,8 @@ const UtilityHandlerModule = (function () {
         toggleShrinkFade,
         togglePreventClick,
         togglePointerEvents,
-        toggleButtonHighlights,
-        togglePulsateButtons,
+        toggleWinButtonsHighlights,
+        togglePulseWinButtons,
+        togglePulseDrawButtons,
     }
 })();

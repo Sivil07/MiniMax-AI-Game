@@ -551,10 +551,16 @@ input[type="radio"] {
     border: 1px solid gray;
 }
 
-.highlight-buttons {
+.highlight-win-buttons {
     background-color: black;
     color: var(--universal-clr);
-    border: 1px solid var(--o-mark-clr)
+    border: 1px solid var(--o-mark-clr);
+}
+
+.highlight-draw-buttons {
+    background-color: black;
+    color: var(--universal-clr);
+    border: 1px solid gray;
 }
 
 .draw-msg-color {
@@ -743,7 +749,7 @@ input[type="radio"] {
     animation-iteration-count: 1;
 }
 
-@keyframes pulseRoundEndButtons {
+@keyframes pulseWinButtons {
     0% {
         box-shadow: 1px 1px 1px var(--winning-clr);
     }
@@ -753,8 +759,25 @@ input[type="radio"] {
     }
 }
 
-.pulse-round-end-buttons {
-    animation-name: pulseRoundEndButtons;
+.pulse-win-buttons {
+    animation-name: pulseWinButtons;
+    animation-duration: 0.7s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes pulseDrawButtons {
+    0% {
+        box-shadow: 1px 1px 1px gray;
+    }
+
+    100% {
+        box-shadow: 1px 1px 15px gray;
+    }
+}
+
+.pulse-draw-buttons {
+    animation-name: pulseDrawButtons;
     animation-duration: 0.7s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
