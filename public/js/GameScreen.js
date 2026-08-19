@@ -240,6 +240,23 @@ const GameScreenFunctionalityModule = (function () {
         winningPlayer.textContent = `${winnerName} Wins!`
     }
 
+    const resetBackDrop = () => {
+        winAnimationCount = 0;
+        LandingScreenFunctionalityModule.toggleNotShowBackdrop(backdrop);
+        LandingScreenFunctionalityModule.toggleShowBackdrop(backdrop);
+        LandingScreenFunctionalityModule.toggleHideWinningPlayerName(winningPlayer);
+    }
+
+    const resetForNextRound = () => {
+        removeDynamicNodes();
+        dynamicNodes = [];
+        GameMasterModule.newRound();
+        setupDynamicUI(GameMasterModule.getGameData());
+        setActivePlayerColor();
+        nextRound.disabled = true;
+        resetBackDrop();
+    }
+
     const renderMoveResult = (result) => {
         const { turnFailed, isWinnerFound, isBoardFull, currentActivePlayerMark, isAITurn, row, col, coordinates, currentActivePlayerName } = result
 
@@ -299,12 +316,7 @@ const GameScreenFunctionalityModule = (function () {
 
         nextRound.addEventListener("click", () => {
             if (!GameMasterModule.hasMoreRoundsAvailable()) {
-                removeDynamicNodes();
-                dynamicNodes = [];
-                GameMasterModule.newRound();
-                setupDynamicUI(GameMasterModule.getGameData());
-                setActivePlayerColor();
-                nextRound.disabled = true;
+                resetForNextRound();
             }
         })
 
@@ -313,6 +325,7 @@ const GameScreenFunctionalityModule = (function () {
             LandingScreenFunctionalityModule.toggleShrinkFade(gameContainer)
             endGame.disabled = true;
             LandingScreenFunctionalityModule.togglePointerEvents(board);
+            resetBackDrop();
         })
 
         gameContainer.addEventListener("animationend", (e) => {
