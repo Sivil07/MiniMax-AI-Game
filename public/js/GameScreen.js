@@ -255,9 +255,12 @@ const GameScreenFunctionalityModule = (function () {
 
         if (backdropClasses.includes("backdrop-shown")) {
             winAnimationCount = 0;
-            LandingScreenFunctionalityModule.toggleNotShowBackdrop(backdrop);
-            LandingScreenFunctionalityModule.toggleShowBackdrop(backdrop);
-            LandingScreenFunctionalityModule.toggleHideWinningPlayerName(winningPlayer);
+            UtilityHandlerModule.toggleNotShowBackdrop(backdrop)
+            // LandingScreenFunctionalityModule.toggleNotShowBackdrop(backdrop);
+            UtilityHandlerModule.toggleShowBackdrop(backdrop)
+            // LandingScreenFunctionalityModule.toggleShowBackdrop(backdrop);
+            UtilityHandlerModule.toggleHideWinningPlayerName(winningPlayer);
+            // LandingScreenFunctionalityModule.toggleHideWinningPlayerName(winningPlayer);
         }
     }
 
@@ -298,7 +301,8 @@ const GameScreenFunctionalityModule = (function () {
     const gameBoardListeners = () => {
         board.addEventListener("click", (e) => {
             const element = e.target;
-            LandingScreenFunctionalityModule.togglePreventClick(board)
+            UtilityHandlerModule.togglePreventClick(board)
+            // LandingScreenFunctionalityModule.togglePreventClick(board)
 
             const humanResult = GameMasterModule.playMove(element.dataset.row, element.dataset.col);
             const isAiTurn = renderMoveResult(humanResult);
@@ -308,11 +312,13 @@ const GameScreenFunctionalityModule = (function () {
                 const aiResult = GameMasterModule.playAI();
                 setTimeout(() => {
                     renderMoveResult(aiResult);
-                    LandingScreenFunctionalityModule.togglePreventClick(board)
+                    UtilityHandlerModule.togglePreventClick(board)
+                    // LandingScreenFunctionalityModule.togglePreventClick(board)
                     setActivePlayerColor()
                 }, 1000)
             } else {
-                LandingScreenFunctionalityModule.togglePreventClick(board)
+                UtilityHandlerModule.togglePreventClick(board)
+                // LandingScreenFunctionalityModule.togglePreventClick(board)
             }
         });
 
@@ -326,10 +332,14 @@ const GameScreenFunctionalityModule = (function () {
             console.log(winAnimationCount)
             winAnimationCount++
             if (e.animationName === "highlightWin" & winAnimationCount === 3) {
-                LandingScreenFunctionalityModule.toggleNotShowBackdrop(backdrop)
-                LandingScreenFunctionalityModule.toggleShowBackdrop(backdrop)
-                LandingScreenFunctionalityModule.toggleHideWinningPlayerName(winningPlayer);
-                LandingScreenFunctionalityModule.toggleScaleWinnerName(winningPlayer);
+                UtilityHandlerModule.toggleNotShowBackdrop(backdrop);
+                // LandingScreenFunctionalityModule.toggleNotShowBackdrop(backdrop)
+                UtilityHandlerModule.toggleShowBackdrop(backdrop);
+                // LandingScreenFunctionalityModule.toggleShowBackdrop(backdrop)
+                UtilityHandlerModule.toggleHideWinningPlayerName(winningPlayer);
+                // LandingScreenFunctionalityModule.toggleHideWinningPlayerName(winningPlayer);
+                UtilityHandlerModule.toggleScaleWinnerName(winningPlayer);
+                // LandingScreenFunctionalityModule.toggleScaleWinnerName(winningPlayer);
             }
         })
 
@@ -341,9 +351,11 @@ const GameScreenFunctionalityModule = (function () {
 
         endGame.addEventListener("click", () => {
             GameMasterModule.resetGame();
-            LandingScreenFunctionalityModule.toggleShrinkFade(gameContainer)
+            UtilityHandlerModule.toggleShrinkFade(gameContainer)
+            // LandingScreenFunctionalityModule.toggleShrinkFade(gameContainer)
             endGame.disabled = true;
-            LandingScreenFunctionalityModule.togglePointerEvents(board);
+            UtilityHandlerModule.togglePointerEvents(board);
+            // LandingScreenFunctionalityModule.togglePointerEvents(board);
             resetBackDrop();
         })
 
@@ -353,15 +365,19 @@ const GameScreenFunctionalityModule = (function () {
                 resetStaticNodes();
                 removeDynamicNodes();
                 dynamicColoring.clear();
-                LandingScreenFunctionalityModule.toggleRemoveNode(gameContainer);
-                LandingScreenFunctionalityModule.toggleShrinkFade(gameContainer);
-                LandingScreenFunctionalityModule.toggleRemoveNode(landingScreen);
+                UtilityHandlerModule.toggleRemoveNodeFromLayout(gameContainer);
+                // LandingScreenFunctionalityModule.toggleRemoveNode(gameContainer);
+                UtilityHandlerModule.toggleShrinkFade(gameContainer)
+                // LandingScreenFunctionalityModule.toggleShrinkFade(gameContainer);
+                UtilityHandlerModule.toggleRemoveNodeFromLayout(landingScreen);
+                // LandingScreenFunctionalityModule.toggleRemoveNode(landingScreen);
             }
         })
 
         winningPlayer.addEventListener("animationend", (e) => {
             if (e.animationName === "scaleWinnerName") {
-                LandingScreenFunctionalityModule.toggleScaleWinnerName(winningPlayer);
+                UtilityHandlerModule.toggleScaleWinnerName(winningPlayer)
+                // LandingScreenFunctionalityModule.toggleScaleWinnerName(winningPlayer);
                 nextRound.disabled = GameMasterModule.hasMoreRoundsAvailable();
                 endGame.disabled = false;
             }
@@ -369,7 +385,8 @@ const GameScreenFunctionalityModule = (function () {
 
         boardSection.addEventListener("animationend", (e) => {
             if (e.animationName === "scaleTurn") {
-                LandingScreenFunctionalityModule.togglePointerEvents(gameContainer);
+                UtilityHandlerModule.togglePointerEvents(gameContainer);
+                // LandingScreenFunctionalityModule.togglePointerEvents(gameContainer);
             }
         })
     }

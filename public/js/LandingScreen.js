@@ -214,7 +214,9 @@ const LandingScreenFunctionalityModule = (function () {
             GameMasterModule.setupGame(cleanData);
             GameScreenFunctionalityModule.initializeGameScreen();
 
-            toggleShrinkFade(form);
+            UtilityHandlerModule.toggleShrinkFade(form);
+
+            // toggleShrinkFade(form);
         });
 
         form.addEventListener("animationend", () => {
@@ -223,9 +225,10 @@ const LandingScreenFunctionalityModule = (function () {
             startGameButton.disabled = false;
 
             initializeDefaultFormState();
-            toggleRemoveNode(form)
-            toggleShrinkFade(form)
-            toggleRemoveNode(loadingScreen);
+            UtilityHandlerModule.toggleRemoveNodeFromLayout(form)
+            UtilityHandlerModule.toggleShrinkFade(form)
+            // toggleShrinkFade(form)
+            UtilityHandlerModule.toggleRemoveNodeFromLayout(loadingScreen)
         })
 
         document.body.addEventListener("change", (e) => {
