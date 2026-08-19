@@ -22,6 +22,7 @@ const GameScreenFunctionalityModule = (function () {
     let roundEndAnimationCount = 0;
     let expectedAnimationCount = 0;
     let animationSpeed = 0;
+    let roundOutcome;
 
     const initializeGameScreen = () => {
         setupDynamicUI(GameMasterModule.getGameData());
@@ -176,6 +177,21 @@ const GameScreenFunctionalityModule = (function () {
         }
     }
 
+    const applyRoundEndButtonStyles = () => {
+        if (roundOutcome.isWinner) {
+            UtilityHandlerModule.toggleWinButtonsHighlights(endGame);
+            UtilityHandlerModule.toggleWinButtonsHighlights(nextRound);
+            UtilityHandlerModule.togglePulseWinButtons(endGame);
+            UtilityHandlerModule.togglePulseWinButtons(nextRound);
+
+        } else if (roundOutcome.isBoardFull) {
+            UtilityHandlerModule.toggleDrawButtonHighlights(endGame);
+            UtilityHandlerModule.toggleDrawButtonHighlights(nextRound);
+            UtilityHandlerModule.togglePulseDrawButtons(endGame);
+            UtilityHandlerModule.togglePulseDrawButtons(nextRound);
+        }
+    }
+
     const setupCardColoring = (player1Mark) => {
         if (player1Mark === "X") {
             p1Side.classList.add("highlight-card-red")
@@ -227,9 +243,10 @@ const GameScreenFunctionalityModule = (function () {
         loadIntoBoard();
     }
 
-    const applyRoundEndStyles = (coordinates, winnerFound, boardFull) => {
+    const applyRoundEndSquareStyles = (coordinates, winnerFound, boardFull) => {
         expectedAnimationCount = coordinates.length === 3 ? 3 : 9;
         animationSpeed = coordinates.length === 3 ? 400 : 100;
+        roundOutcome = { isWinner: winnerFound, isBoardFull: boardFull }
 
         for (let index = 0; index < coordinates.length; index++) {
             [row, col] = coordinates[index]
@@ -276,12 +293,14 @@ const GameScreenFunctionalityModule = (function () {
             UtilityHandlerModule.toggleNotShowBackdrop(backdrop)
             UtilityHandlerModule.toggleShowBackdrop(backdrop)
             UtilityHandlerModule.toggleHideRoundEndMessage(roundEndMessage);
-            UtilityHandlerModule.toggleButtonHighlights(endGame);
-            UtilityHandlerModule.toggleButtonHighlights(nextRound);
-            UtilityHandlerModule.togglePulsateButtons(endGame);
-            UtilityHandlerModule.togglePulsateButtons(nextRound);
+            applyRoundEndButtonStyles()
+            // UtilityHandlerModule.toggleWinButtonsHighlights(endGame);
+            // UtilityHandlerModule.toggleWinButtonsHighlights(nextRound);
+            // UtilityHandlerModule.togglePulseWinButtons(endGame);
+            // UtilityHandlerModule.togglePulseWinButtons(nextRound);
             backdrop.classList.remove("winner-msg-color")
             backdrop.classList.remove("draw-msg-color")
+            roundOutcome = undefined;
         }
     }
 
@@ -307,11 +326,11 @@ const GameScreenFunctionalityModule = (function () {
 
         if (isWinnerFound) {
             console.log("winnerFound")
-            applyRoundEndStyles(coordinates, isWinnerFound, isBoardFull)
+            applyRoundEndSquareStyles(coordinates, isWinnerFound, isBoardFull)
             setRoundEndMessage(currentActivePlayerName, "Wins")
         } else if (isBoardFull) {
             console.log("Board Full")
-            applyRoundEndStyles(GameMasterModule.getBoardCoordinates(), isWinnerFound, isBoardFull)
+            applyRoundEndSquareStyles(GameMasterModule.getBoardCoordinates(), isWinnerFound, isBoardFull)
             setRoundEndMessage("Draw", "")
             nextRound.disabled = GameMasterModule.hasMoreRoundsAvailable();
         } else {
@@ -357,10 +376,11 @@ const GameScreenFunctionalityModule = (function () {
                 UtilityHandlerModule.toggleShowBackdrop(backdrop);
                 UtilityHandlerModule.toggleHideRoundEndMessage(roundEndMessage);
                 UtilityHandlerModule.toggleScaleWinnerName(roundEndMessage);
-                UtilityHandlerModule.toggleButtonHighlights(endGame);
-                UtilityHandlerModule.toggleButtonHighlights(nextRound);
-                UtilityHandlerModule.togglePulsateButtons(endGame);
-                UtilityHandlerModule.togglePulsateButtons(nextRound);
+                applyRoundEndButtonStyles();
+                // UtilityHandlerModule.toggleWinButtonsHighlights(endGame);
+                // UtilityHandlerModule.toggleWinButtonsHighlights(nextRound);
+                // UtilityHandlerModule.togglePulseWinButtons(endGame);
+                // UtilityHandlerModule.togglePulseWinButtons(nextRound);
             }
         })
 

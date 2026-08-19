@@ -58,6 +58,7 @@ const UtilityHandlerModule = (function () {
         togglePreventClick,
         togglePointerEvents,
         toggleWinButtonsHighlights,
+        toggleDrawButtonHighlights,
         togglePulseWinButtons,
         togglePulseDrawButtons,
     }
