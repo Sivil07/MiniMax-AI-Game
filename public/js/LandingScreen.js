@@ -4,6 +4,19 @@ const LandingScreenFunctionalityModule = (function () {
         element.classList.toggle("remove-node")
     }
 
+    const toggleHideWinningPlayerName = (element) => {
+        element.classList.toggle("hide-winning-player");
+
+    }
+
+    const toggleNotShowBackdrop = (element) => {
+        element.classList.toggle("backdrop-not-shown")
+    }
+
+    const toggleShowBackdrop = (element) => {
+        element.classList.toggle("backdrop-shown")
+    }
+
     const toggleShrinkFade = (element) => {
         element.classList.toggle("shrink-fade");
     }
@@ -229,5 +242,5 @@ const LandingScreenFunctionalityModule = (function () {
     initializeDefaultFormState();
     attachLandingListeners();
 
-    return { toggleRemoveNode, toggleShrinkFade, togglePointerEvents, togglePreventClick }
+    return { toggleRemoveNode, toggleShrinkFade, togglePointerEvents, togglePreventClick, toggleNotShowBackdrop, toggleShowBackdrop, toggleHideWinningPlayerName }
 })();

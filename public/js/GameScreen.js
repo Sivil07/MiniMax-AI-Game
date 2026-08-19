@@ -15,9 +15,11 @@ const GameScreenFunctionalityModule = (function () {
     const p2Name = document.querySelector("#static-player-two-name");
     const nextRound = document.querySelector("#next-round");
     const endGame = document.querySelector("#end-game");
+    const backdrop = document.querySelector(".backdrop")
     const winningPlayer = document.querySelector(".backdrop-content")
     let dynamicColoring = new Map();
     let dynamicNodes = [];
+    let winAnimationCount = 0;
 
     const initializeGameScreen = () => {
         setupDynamicUI(GameMasterModule.getGameData());
@@ -283,6 +285,17 @@ const GameScreenFunctionalityModule = (function () {
                 LandingScreenFunctionalityModule.togglePreventClick(board)
             }
         });
+
+        board.addEventListener("animationend", (e) => {
+            console.log(winAnimationCount)
+            winAnimationCount++
+            if (e.animationName === "highlightWin" & winAnimationCount === 3) {
+                LandingScreenFunctionalityModule.toggleNotShowBackdrop(backdrop)
+                LandingScreenFunctionalityModule.toggleShowBackdrop(backdrop)
+                LandingScreenFunctionalityModule.toggleHideWinningPlayerName(winningPlayer);
+                console.log("yes")
+            }
+        })
 
         nextRound.addEventListener("click", () => {
             if (!GameMasterModule.hasMoreRoundsAvailable()) {
