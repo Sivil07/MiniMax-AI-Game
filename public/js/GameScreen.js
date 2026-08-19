@@ -210,6 +210,7 @@ const GameScreenFunctionalityModule = (function () {
         p1Mark.textContent = playerOneMark;
         p2Mark.textContent = playerTwoMark;
         endGame.disabled = false;
+        nextRound.disabled = true;
         board.classList.remove("prevent-click");
         setupCardColoring(playerOneMark);
         setDynamicColoring(playerOneMark);
@@ -241,10 +242,14 @@ const GameScreenFunctionalityModule = (function () {
     }
 
     const resetBackDrop = () => {
-        winAnimationCount = 0;
-        LandingScreenFunctionalityModule.toggleNotShowBackdrop(backdrop);
-        LandingScreenFunctionalityModule.toggleShowBackdrop(backdrop);
-        LandingScreenFunctionalityModule.toggleHideWinningPlayerName(winningPlayer);
+        const backdropClasses = [...backdrop.classList];
+
+        if (backdropClasses.includes("backdrop-shown")) {
+            winAnimationCount = 0;
+            LandingScreenFunctionalityModule.toggleNotShowBackdrop(backdrop);
+            LandingScreenFunctionalityModule.toggleShowBackdrop(backdrop);
+            LandingScreenFunctionalityModule.toggleHideWinningPlayerName(winningPlayer);
+        }
     }
 
     const resetForNextRound = () => {
