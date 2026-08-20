@@ -14,8 +14,8 @@ const UtilityHandlerModule = (function () {
         element.classList.toggle("backdrop-shown")
     }
 
-    const togglePreventClick = (element) => {
-        element.classList.toggle("prevent-click")
+    const togglePreventClick = (element, shouldPrevent) => {
+        element.classList.toggle("prevent-click", shouldPrevent)
     }
 
     const togglePointerEvents = (element) => {

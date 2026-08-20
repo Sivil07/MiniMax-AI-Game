@@ -25,6 +25,7 @@ const GameScreenFunctionalityModule = (function () {
     let animationSpeed = 0;
     let roundOutcome;
     let moveResult;
+    let waitingForAIRender = false;
 
     const initializeGameScreen = () => {
         setupDynamicUI(GameMasterModule.getGameData());
@@ -352,6 +353,12 @@ const GameScreenFunctionalityModule = (function () {
         }
     }
 
+    const allowBoardInteraction = () => {
+        if (!waitingForAIRender)  {
+            UtilityHandlerModule.togglePreventClick(board, false)
+        }
+    }
+
     const renderMoveResult = () => {
         const { isWinnerFound, coordinates, isBoardFull, currentActivePlayerName } = moveResult
         if (isWinnerFound) {
@@ -377,6 +384,8 @@ const GameScreenFunctionalityModule = (function () {
             console.log("The turn failed")
             return;
         }
+
+        UtilityHandlerModule.togglePreventClick(board, true);
         const square = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
         setSquareMarkColor(square, currentActivePlayerMark)
         moveResult = { isWinnerFound, coordinates, isBoardFull, currentActivePlayerName }
@@ -434,19 +443,20 @@ const GameScreenFunctionalityModule = (function () {
 
         board.addEventListener("click", (e) => {
             const element = e.target;
-            UtilityHandlerModule.togglePreventClick(board)
 
             const humanResult = GameMasterModule.playMove(element.dataset.row, element.dataset.col);
             const isAiTurn = processMove(humanResult);
 
             if (isAiTurn) {
+                waitingForAIRender = true;
                 const aiResult = GameMasterModule.playAI();
                 setTimeout(() => {
+                    // UtilityHandlerModule.togglePreventClick(board)
                     processMove(aiResult);
-                    UtilityHandlerModule.togglePreventClick(board)
+                    waitingForAIRender = false;
                 }, 1000)
             } else {
-                UtilityHandlerModule.togglePreventClick(board)
+                // UtilityHandlerModule.togglePreventClick(board)
             }
         });
 
@@ -454,6 +464,10 @@ const GameScreenFunctionalityModule = (function () {
             if (e.animationName === "animateMark") {
                 renderMoveResult()
                 setActivePlayerColor()
+                
+                allowBoardInteraction();
+
+                // UtilityHandlerModule.togglePreventClick(board)
                 return;
             }
 
