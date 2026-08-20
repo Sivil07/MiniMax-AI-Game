@@ -285,14 +285,15 @@ const GameScreenFunctionalityModule = (function () {
         for (let index = 0; index < coordinates.length; index++) {
             [row, col] = coordinates[index]
             const square = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+            const squareContainer = square.parentNode;
             setTimeout(() => {
                 if (winnerFound) {
-                    square.classList.add("highlight-win-border")
-                    square.classList.add("highlight-win")
+                    squareContainer.classList.add("highlight-win-border")
+                    squareContainer.classList.add("highlight-win")
                     backdrop.classList.add("winner-msg-color")
                 } else if (boardFull) {
-                    square.classList.add("highlight-draw-border");
-                    square.classList.add("highlight-draw");
+                    squareContainer.classList.add("highlight-draw-border");
+                    squareContainer.classList.add("highlight-draw");
                     backdrop.classList.add("draw-msg-color")
                 }
 
