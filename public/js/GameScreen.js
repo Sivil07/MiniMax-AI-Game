@@ -317,6 +317,7 @@ const GameScreenFunctionalityModule = (function () {
         } else {
             square.classList.add("o-mark-coloring")
         }
+        square.classList.add("animate-mark")
     }
 
     const resetBackDrop = () => {
