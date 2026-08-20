@@ -38,31 +38,9 @@ const GameScreenFunctionalityModule = (function () {
         loadIntoBoardSection(GameMasterModule.getActivePlayer().getName());
     }
 
-    const removeDynamicNodes = () => {
-        for (const node of dynamicNodes) {
-            node.remove();
-        }
-    }
-
     const turnPlayerTurnInvisible = () => {
         const playerTurn = document.querySelector("#player-turn");
         playerTurn.classList.add("is-invisible")
-    }
-
-    const resetColoring = () => {
-        p1Side.classList.remove("highlight-card-red", "highlight-card-blue");
-        p2Side.classList.remove("highlight-card-red", "highlight-card-blue")
-        p1Mark.classList.remove("x-badge-coloring", "o-badge-coloring");
-        p2Mark.classList.remove("x-badge-coloring", "o-badge-coloring");
-    }
-
-    const resetStaticNodes = () => {
-        gameMode.textContent = "";
-        p1Name.textContent = "";
-        p2Name.textContent = "";
-        p1Mark.textContent = "";
-        p2Mark.textContent = "";
-        resetColoring();
     }
 
     const createMaxRoundsMessage = () => {
@@ -115,19 +93,62 @@ const GameScreenFunctionalityModule = (function () {
         return squareContainer;
     }
 
-    const setupSquares = () => {
-        const squareContainerNodes = [];
-        for (let row = 0; row < 3; row++) {
-            for (let col = 0; col < 3; col++) {
-                const squareContainer = createSquareContainer();
-                const square = createSquare(row, col);
-                squareContainer.appendChild(square)
-                dynamicNodes.push(squareContainer);
-                squareContainerNodes.push(squareContainer);
-            }
+
+
+    const removeDynamicNodes = () => {
+        for (const node of dynamicNodes) {
+            node.remove();
         }
-        return squareContainerNodes;
     }
+
+    const resetColoring = () => {
+        p1Side.classList.remove("highlight-card-red", "highlight-card-blue");
+        p2Side.classList.remove("highlight-card-red", "highlight-card-blue")
+        p1Mark.classList.remove("x-badge-coloring", "o-badge-coloring");
+        p2Mark.classList.remove("x-badge-coloring", "o-badge-coloring");
+    }
+
+    const resetStaticNodes = () => {
+        gameMode.textContent = "";
+        p1Name.textContent = "";
+        p2Name.textContent = "";
+        p1Mark.textContent = "";
+        p2Mark.textContent = "";
+        resetColoring();
+    }
+
+    const resetAnimationCounters = () => {
+        roundEndAnimationCount = 0;
+        expectedAnimationCount = 0;
+        animationSpeed = 0;
+    }
+
+    const resetBackDrop = () => {
+        const backdropClasses = [...backdrop.classList];
+
+        if (backdropClasses.includes("backdrop-shown")) {
+            resetAnimationCounters();
+            UtilityHandlerModule.toggleNotShowBackdrop(backdrop)
+            UtilityHandlerModule.toggleShowBackdrop(backdrop)
+            UtilityHandlerModule.toggleHideRoundEndMessage(roundEndMessage);
+            applyRoundEndButtonStyles()
+            backdrop.classList.remove("winner-msg-color")
+            backdrop.classList.remove("draw-msg-color")
+            roundOutcome = undefined;
+            moveResult = undefined;
+        }
+    }
+
+    const resetForNextRound = () => {
+        removeDynamicNodes();
+        dynamicNodes = [];
+        GameMasterModule.newRound();
+        setupDynamicUI(GameMasterModule.getGameData());
+        setActivePlayerColor();
+        nextRound.disabled = true;
+        resetBackDrop();
+    }
+
 
     const loadIntoBoard = () => {
         board.append(...setupSquares())
@@ -140,7 +161,6 @@ const GameScreenFunctionalityModule = (function () {
             gameControls.appendChild(maxRoundsMessage);
         }
     }
-
 
     const loadIntoRoundInfoContainer = (roundCount) => {
         const roundNumNode = createRoundNumber(roundCount);
@@ -195,6 +215,22 @@ const GameScreenFunctionalityModule = (function () {
         p2WinLoss.append(p2Wins, p2Losses);
     }
 
+
+    const setupSquares = () => {
+        const squareContainerNodes = [];
+        for (let row = 0; row < 3; row++) {
+            for (let col = 0; col < 3; col++) {
+                const squareContainer = createSquareContainer();
+                const square = createSquare(row, col);
+                squareContainer.appendChild(square)
+                dynamicNodes.push(squareContainer);
+                squareContainerNodes.push(squareContainer);
+            }
+        }
+        return squareContainerNodes;
+    }
+
+
     const setActivePlayerColor = () => {
         const playerTurn = document.querySelector("#player-turn");
 
@@ -204,26 +240,6 @@ const GameScreenFunctionalityModule = (function () {
         } else {
             playerTurn.classList.remove("x-hue-coloring");
             playerTurn.classList.add("o-hue-coloring")
-        }
-    }
-
-    const applyRoundEndButtonStyles = () => {
-        const checkForEndGame = GameMasterModule.getGameOver() && GameMasterModule.hasMoreRoundsAvailable()
-
-        if (checkForEndGame) {
-            UtilityHandlerModule.toggleEndGameButtonHighlight(endGame);
-            UtilityHandlerModule.togglePulseEndGameButton(endGame)
-            loadIntoGameControls()
-        } else if (roundOutcome.isWinner) {
-            UtilityHandlerModule.toggleWinButtonsHighlights(endGame);
-            UtilityHandlerModule.toggleWinButtonsHighlights(nextRound);
-            UtilityHandlerModule.togglePulseWinButtons(endGame);
-            UtilityHandlerModule.togglePulseWinButtons(nextRound);
-        } else if (roundOutcome.isBoardFull) {
-            UtilityHandlerModule.toggleDrawButtonHighlights(endGame);
-            UtilityHandlerModule.toggleDrawButtonHighlights(nextRound);
-            UtilityHandlerModule.togglePulseDrawButtons(endGame);
-            UtilityHandlerModule.togglePulseDrawButtons(nextRound);
         }
     }
 
@@ -278,6 +294,40 @@ const GameScreenFunctionalityModule = (function () {
         loadIntoBoard();
     }
 
+    const setRoundEndMessage = (primaryText, extraText) => {
+        roundEndMessage.textContent = `${primaryText} ${extraText}!`
+    }
+
+    const setSquareMarkColor = (square, text) => {
+        square.textContent = text;
+        if (text === "X") {
+            square.classList.add("x-mark-coloring")
+        } else {
+            square.classList.add("o-mark-coloring")
+        }
+        square.classList.add("animate-mark")
+    }
+
+    const applyRoundEndButtonStyles = () => {
+        const checkForEndGame = GameMasterModule.getGameOver() && GameMasterModule.hasMoreRoundsAvailable()
+
+        if (checkForEndGame) {
+            UtilityHandlerModule.toggleEndGameButtonHighlight(endGame);
+            UtilityHandlerModule.togglePulseEndGameButton(endGame)
+            loadIntoGameControls()
+        } else if (roundOutcome.isWinner) {
+            UtilityHandlerModule.toggleWinButtonsHighlights(endGame);
+            UtilityHandlerModule.toggleWinButtonsHighlights(nextRound);
+            UtilityHandlerModule.togglePulseWinButtons(endGame);
+            UtilityHandlerModule.togglePulseWinButtons(nextRound);
+        } else if (roundOutcome.isBoardFull) {
+            UtilityHandlerModule.toggleDrawButtonHighlights(endGame);
+            UtilityHandlerModule.toggleDrawButtonHighlights(nextRound);
+            UtilityHandlerModule.togglePulseDrawButtons(endGame);
+            UtilityHandlerModule.togglePulseDrawButtons(nextRound);
+        }
+    }
+
     const applyRoundEndSquareStyles = (coordinates, winnerFound, boardFull) => {
         expectedAnimationCount = coordinates.length === 3 ? 3 : 9;
         animationSpeed = coordinates.length === 3 ? 400 : 100;
@@ -300,52 +350,6 @@ const GameScreenFunctionalityModule = (function () {
 
             }, index * animationSpeed)
         }
-    }
-
-    const setRoundEndMessage = (primaryText, extraText) => {
-        roundEndMessage.textContent = `${primaryText} ${extraText}!`
-    }
-
-    const resetAnimationCounters = () => {
-        roundEndAnimationCount = 0;
-        expectedAnimationCount = 0;
-        animationSpeed = 0;
-    }
-
-    const setSquareMarkColor = (square, text) => {
-        square.textContent = text;
-        if (text === "X") {
-            square.classList.add("x-mark-coloring")
-        } else {
-            square.classList.add("o-mark-coloring")
-        }
-        square.classList.add("animate-mark")
-    }
-
-    const resetBackDrop = () => {
-        const backdropClasses = [...backdrop.classList];
-
-        if (backdropClasses.includes("backdrop-shown")) {
-            resetAnimationCounters();
-            UtilityHandlerModule.toggleNotShowBackdrop(backdrop)
-            UtilityHandlerModule.toggleShowBackdrop(backdrop)
-            UtilityHandlerModule.toggleHideRoundEndMessage(roundEndMessage);
-            applyRoundEndButtonStyles()
-            backdrop.classList.remove("winner-msg-color")
-            backdrop.classList.remove("draw-msg-color")
-            roundOutcome = undefined;
-            moveResult = undefined;
-        }
-    }
-
-    const resetForNextRound = () => {
-        removeDynamicNodes();
-        dynamicNodes = [];
-        GameMasterModule.newRound();
-        setupDynamicUI(GameMasterModule.getGameData());
-        setActivePlayerColor();
-        nextRound.disabled = true;
-        resetBackDrop();
     }
 
     const renderMoveResult = () => {
@@ -377,25 +381,57 @@ const GameScreenFunctionalityModule = (function () {
         setSquareMarkColor(square, currentActivePlayerMark)
         moveResult = { isWinnerFound, coordinates, isBoardFull, currentActivePlayerName }
 
-        // if (isWinnerFound) {
-        //     console.log("winnerFound")
-        //     applyRoundEndSquareStyles(coordinates, isWinnerFound, isBoardFull)
-        //     setRoundEndMessage(currentActivePlayerName, "Wins")
-        //     turnPlayerTurnInvisible()
-        // } else if (isBoardFull) {
-        //     console.log("Board Full")
-        //     applyRoundEndSquareStyles(GameMasterModule.getBoardCoordinates(), isWinnerFound, isBoardFull)
-        //     setRoundEndMessage("Draw", "")
-        //     turnPlayerTurnInvisible()
-        //     nextRound.disabled = GameMasterModule.hasMoreRoundsAvailable();
-        // } else {
-        //     updateActivePlayer();
-        // }
-
         return isAITurn;
     }
 
     const gameBoardListeners = () => {
+
+        boardSection.addEventListener("animationend", (e) => {
+            if (e.animationName === "scaleTurn") {
+                UtilityHandlerModule.togglePointerEvents(gameContainer);
+            }
+        });
+
+        nextRound.addEventListener("click", () => {
+            if (!GameMasterModule.hasMoreRoundsAvailable()) {
+                resetForNextRound();
+            }
+        });
+
+        roundEndMessage.addEventListener("animationend", (e) => {
+            if (e.animationName === "scaleWinnerName") {
+                UtilityHandlerModule.toggleScaleWinnerName(roundEndMessage)
+                nextRound.disabled = GameMasterModule.hasMoreRoundsAvailable();
+                endGame.disabled = false;
+            }
+        })
+
+        endGame.addEventListener("click", () => {
+            resetBackDrop();
+            GameMasterModule.resetGame();
+            UtilityHandlerModule.toggleShrinkFade(gameContainer)
+            endGame.disabled = true;
+            UtilityHandlerModule.togglePointerEvents(board);
+        });
+
+        gameContainer.addEventListener("animationend", (e) => {
+            if (e.animationName === "shrinkFade") {
+                const landingScreen = document.querySelector(".landing-page");
+                resetStaticNodes();
+                removeDynamicNodes();
+                dynamicColoring.clear();
+                UtilityHandlerModule.toggleRemoveNodeFromLayout(gameContainer);
+                UtilityHandlerModule.toggleShrinkFade(gameContainer)
+                UtilityHandlerModule.toggleRemoveNodeFromLayout(landingScreen);
+            }
+        });
+
+        board.addEventListener("animationstart", (e) => {
+            if (e.animationName === "highlightWin" || e.animationName === "highlightDraw") {
+                endGame.disabled = true;
+            }
+        })
+
         board.addEventListener("click", (e) => {
             const element = e.target;
             UtilityHandlerModule.togglePreventClick(board)
@@ -414,12 +450,6 @@ const GameScreenFunctionalityModule = (function () {
             }
         });
 
-        board.addEventListener("animationstart", (e) => {
-            if (e.animationName === "highlightWin" || e.animationName === "highlightDraw") {
-                endGame.disabled = true;
-            }
-        })
-
         board.addEventListener("animationend", (e) => {
             if (e.animationName === "animateMark") {
                 renderMoveResult()
@@ -436,64 +466,10 @@ const GameScreenFunctionalityModule = (function () {
                 UtilityHandlerModule.toggleScaleWinnerName(roundEndMessage);
                 applyRoundEndButtonStyles();
             }
-        })
-
-        // board.addEventListener("animationend", (e) => {
-        //     console.log(roundEndAnimationCount)
-        //     roundEndAnimationCount++
-        //     const shouldTriggerRoundEnd = roundEndAnimationCount === expectedAnimationCount && (e.animationName === "highlightWin" || e.animationName === "highlightDraw")
-        //     if (shouldTriggerRoundEnd) {
-        //         UtilityHandlerModule.toggleNotShowBackdrop(backdrop);
-        //         UtilityHandlerModule.toggleShowBackdrop(backdrop);
-        //         UtilityHandlerModule.toggleHideRoundEndMessage(roundEndMessage);
-        //         UtilityHandlerModule.toggleScaleWinnerName(roundEndMessage);
-        //         applyRoundEndButtonStyles();
-        //     }
-        // })
-
-        nextRound.addEventListener("click", () => {
-            if (!GameMasterModule.hasMoreRoundsAvailable()) {
-                resetForNextRound();
-            }
-        })
-
-        endGame.addEventListener("click", () => {
-            resetBackDrop();
-            GameMasterModule.resetGame();
-            UtilityHandlerModule.toggleShrinkFade(gameContainer)
-            endGame.disabled = true;
-            UtilityHandlerModule.togglePointerEvents(board);
-        })
-
-        gameContainer.addEventListener("animationend", (e) => {
-            if (e.animationName === "shrinkFade") {
-                const landingScreen = document.querySelector(".landing-page");
-                resetStaticNodes();
-                removeDynamicNodes();
-                dynamicColoring.clear();
-                UtilityHandlerModule.toggleRemoveNodeFromLayout(gameContainer);
-                UtilityHandlerModule.toggleShrinkFade(gameContainer)
-                UtilityHandlerModule.toggleRemoveNodeFromLayout(landingScreen);
-            }
-        })
-
-        roundEndMessage.addEventListener("animationend", (e) => {
-            if (e.animationName === "scaleWinnerName") {
-                UtilityHandlerModule.toggleScaleWinnerName(roundEndMessage)
-                nextRound.disabled = GameMasterModule.hasMoreRoundsAvailable();
-                endGame.disabled = false;
-            }
-        })
-
-        boardSection.addEventListener("animationend", (e) => {
-            if (e.animationName === "scaleTurn") {
-                UtilityHandlerModule.togglePointerEvents(gameContainer);
-            }
-        })
+        });
     }
 
     gameBoardListeners()
 
     return { initializeGameScreen }
-
 })();
