@@ -24,6 +24,7 @@ const GameScreenFunctionalityModule = (function () {
     let expectedAnimationCount = 0;
     let animationSpeed = 0;
     let roundOutcome;
+    let moveResult;
 
     const initializeGameScreen = () => {
         setupDynamicUI(GameMasterModule.getGameData());
@@ -355,21 +356,22 @@ const GameScreenFunctionalityModule = (function () {
         }
         const square = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
         setSquareMarkColor(square, currentActivePlayerMark)
+        moveResult = { isWinnerFound, coordinates, isBoardFull, currentActivePlayerName }
 
-        if (isWinnerFound) {
-            console.log("winnerFound")
-            applyRoundEndSquareStyles(coordinates, isWinnerFound, isBoardFull)
-            setRoundEndMessage(currentActivePlayerName, "Wins")
-            turnPlayerTurnInvisible()
-        } else if (isBoardFull) {
-            console.log("Board Full")
-            applyRoundEndSquareStyles(GameMasterModule.getBoardCoordinates(), isWinnerFound, isBoardFull)
-            setRoundEndMessage("Draw", "")
-            turnPlayerTurnInvisible()
-            nextRound.disabled = GameMasterModule.hasMoreRoundsAvailable();
-        } else {
-            updateActivePlayer();
-        }
+        // if (isWinnerFound) {
+        //     console.log("winnerFound")
+        //     applyRoundEndSquareStyles(coordinates, isWinnerFound, isBoardFull)
+        //     setRoundEndMessage(currentActivePlayerName, "Wins")
+        //     turnPlayerTurnInvisible()
+        // } else if (isBoardFull) {
+        //     console.log("Board Full")
+        //     applyRoundEndSquareStyles(GameMasterModule.getBoardCoordinates(), isWinnerFound, isBoardFull)
+        //     setRoundEndMessage("Draw", "")
+        //     turnPlayerTurnInvisible()
+        //     nextRound.disabled = GameMasterModule.hasMoreRoundsAvailable();
+        // } else {
+        //     updateActivePlayer();
+        // }
 
         return isAITurn;
     }
