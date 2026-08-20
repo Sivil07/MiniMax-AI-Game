@@ -108,16 +108,24 @@ const GameScreenFunctionalityModule = (function () {
         return square;
     }
 
+    const createSquareContainer = () => {
+        const squareContainer = document.createElement("div");
+        squareContainer.classList.add("square-container");
+        return squareContainer;
+    }
+
     const setupSquares = () => {
-        const squareNodes = [];
+        const squareContainerNodes = [];
         for (let row = 0; row < 3; row++) {
             for (let col = 0; col < 3; col++) {
+                const squareContainer = createSquareContainer();
                 const square = createSquare(row, col);
-                dynamicNodes.push(square);
-                squareNodes.push(square);
+                squareContainer.appendChild(square)
+                dynamicNodes.push(squareContainer);
+                squareContainerNodes.push(squareContainer);
             }
         }
-        return squareNodes;
+        return squareContainerNodes;
     }
 
     const loadIntoBoard = () => {
