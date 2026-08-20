@@ -347,6 +347,24 @@ const GameScreenFunctionalityModule = (function () {
         resetBackDrop();
     }
 
+    const renderMoveResult = () => {
+        const { isWinnerFound, coordinates, isBoardFull, currentActivePlayerName } = moveResult
+        if (isWinnerFound) {
+            console.log("winnerFound")
+            applyRoundEndSquareStyles(coordinates, isWinnerFound, isBoardFull)
+            setRoundEndMessage(currentActivePlayerName, "Wins")
+            turnPlayerTurnInvisible()
+        } else if (isBoardFull) {
+            console.log("Board Full")
+            applyRoundEndSquareStyles(GameMasterModule.getBoardCoordinates(), isWinnerFound, isBoardFull)
+            setRoundEndMessage("Draw", "")
+            turnPlayerTurnInvisible()
+            nextRound.disabled = GameMasterModule.hasMoreRoundsAvailable();
+        } else {
+            updateActivePlayer();
+        }
+    }
+
     const processMove = (result) => {
         const { turnFailed, isWinnerFound, isBoardFull, currentActivePlayerMark, isAITurn, row, col, coordinates, currentActivePlayerName } = result
 
