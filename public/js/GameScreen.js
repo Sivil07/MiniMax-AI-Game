@@ -422,9 +422,13 @@ const GameScreenFunctionalityModule = (function () {
         })
 
         board.addEventListener("animationend", (e) => {
-            console.log(roundEndAnimationCount)
+            if (e.animationName === "animateMark") {
+                renderMoveResult()
+                return;
+            }
+
             roundEndAnimationCount++
-            const shouldTriggerRoundEnd = roundEndAnimationCount === expectedAnimationCount && (e.animationName === "highlightWin" || e.animationName === "highlightDraw")
+            const shouldTriggerRoundEnd = roundEndAnimationCount === expectedAnimationCount && (e.animationName === "highlightWin" || e.animationName === "highlightDraw");
             if (shouldTriggerRoundEnd) {
                 UtilityHandlerModule.toggleNotShowBackdrop(backdrop);
                 UtilityHandlerModule.toggleShowBackdrop(backdrop);
@@ -433,6 +437,19 @@ const GameScreenFunctionalityModule = (function () {
                 applyRoundEndButtonStyles();
             }
         })
+
+        // board.addEventListener("animationend", (e) => {
+        //     console.log(roundEndAnimationCount)
+        //     roundEndAnimationCount++
+        //     const shouldTriggerRoundEnd = roundEndAnimationCount === expectedAnimationCount && (e.animationName === "highlightWin" || e.animationName === "highlightDraw")
+        //     if (shouldTriggerRoundEnd) {
+        //         UtilityHandlerModule.toggleNotShowBackdrop(backdrop);
+        //         UtilityHandlerModule.toggleShowBackdrop(backdrop);
+        //         UtilityHandlerModule.toggleHideRoundEndMessage(roundEndMessage);
+        //         UtilityHandlerModule.toggleScaleWinnerName(roundEndMessage);
+        //         applyRoundEndButtonStyles();
+        //     }
+        // })
 
         nextRound.addEventListener("click", () => {
             if (!GameMasterModule.hasMoreRoundsAvailable()) {
