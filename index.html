@@ -76,7 +76,6 @@
     </div>
     <main class="game-container remove-node">
         <section class="round-info-container">
-            <!-- <p id="round-number" class="round-info">Round 3</p> -->
             <p id="static-mode-label" class="round-info"></p>
         </section>
         <section class="game">
@@ -84,28 +83,14 @@
                 <div class="player-info">
                     <p id="static-player-one-mark" class="mark-badge"></p>
                     <p id="static-player-one-name" class="player-username"></p>
-                    <!-- <p id="player-one-score" class="score">2</p> -->
                 </div>
                 <div class="player-streak-info">
-                    <!-- <p id="player-one-streak" class="streak">Streak 2</p> -->
                     <div class="win-loss">
-                        <!-- <p id="player-one-wins" class="wins">W 2</p> -->
-                        <!-- <p id="player-one-losses" class="losses">L 1</p> -->
                     </div>
                 </div>
             </div>
             <div id="board-section">
-                <!-- <p id="player-turn">Bot's Turn</p> -->
                 <div class="board">
-                    <!-- <button type="button" class="square" data-row="0" data-col="0"></button>
-                    <button type="button" class="square" data-row="0" data-col="1"></button>
-                    <button type="button" class="square" data-row="0" data-col="2"></button>
-                    <button type="button" class="square" data-row="1" data-col="0"></button>
-                    <button type="button" class="square" data-row="1" data-col="1"></button>
-                    <button type="button" class="square" data-row="1" data-col="2"></button>
-                    <button type="button" class="square" data-row="2" data-col="0"></button>
-                    <button type="button" class="square" data-row="2" data-col="1"></button>
-                    <button type="button" class="square" data-row="2" data-col="2"></button> -->
                     <div class="backdrop backdrop-not-shown">
                         <p class="backdrop-content prevent-click round-end-msg-hidden"></p>
                     </div>
@@ -115,20 +100,18 @@
                 <div class="player-info">
                     <p id="static-player-two-mark" class="mark-badge"></p>
                     <p id="static-player-two-name" class="player-username"></p>
-                    <!-- <p id="player-two-score" class="score">0</p> -->
                 </div>
                 <div class="player-streak-info">
-                    <!-- <p id="player-two-streak" class="streak">Streak 0</p> -->
                     <div class="win-loss">
-                        <!-- <p id="player-two-wins" class="wins">W 1</p> -->
-                        <!-- <p id="player-two-losses" class="losses">L 2</p> -->
                     </div>
                 </div>
             </div>
         </section>
         <section id="game-controls">
-            <button id="end-game" type="button" class="control-item">End Game</button>
-            <button id="next-round" type="button" class="control-item" disabled>Next Round</button>
+            <div class="game-actions">
+                <button id="end-game" type="button" class="control-item">End Game</button>
+                <button id="next-round" type="button" class="control-item" disabled>Next Round</button>
+            </div>
         </section>
     </main>
     <script src="./public/js/UtilityHandler.js" defer></script>
@@ -143,5 +126,4 @@
     <script src="./public/js/LoadingScreen.js" defer></script>
     <script src="./public/js/GameScreen.js" defer></script>
 </body>
-
 </html>
