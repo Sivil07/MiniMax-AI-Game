@@ -16,6 +16,7 @@ const GameMasterModule = (function () {
     ];
 
     const getActivePlayer = () => activePlayer;
+    const getGameOver = () => gameOver;
     const getInactivePlayer = () => inactivePlayer;
     const getBoardCoordinates = () => boardCoordinates;
     const hasMoreRoundsAvailable = () => roundCount === maxRounds;
@@ -184,5 +185,6 @@ const GameMasterModule = (function () {
         hasMoreRoundsAvailable,
         playAI,
         getBoardCoordinates,
+        getGameOver,
     }
 })();
