@@ -347,7 +347,7 @@ const GameScreenFunctionalityModule = (function () {
         resetBackDrop();
     }
 
-    const renderMoveResult = (result) => {
+    const processMove = (result) => {
         const { turnFailed, isWinnerFound, isBoardFull, currentActivePlayerMark, isAITurn, row, col, coordinates, currentActivePlayerName } = result
 
         if (turnFailed) {
@@ -382,13 +382,13 @@ const GameScreenFunctionalityModule = (function () {
             UtilityHandlerModule.togglePreventClick(board)
 
             const humanResult = GameMasterModule.playMove(element.dataset.row, element.dataset.col);
-            const isAiTurn = renderMoveResult(humanResult);
+            const isAiTurn = processMove(humanResult);
 
             setActivePlayerColor()
             if (isAiTurn) {
                 const aiResult = GameMasterModule.playAI();
                 setTimeout(() => {
-                    renderMoveResult(aiResult);
+                    processMove(aiResult);
                     UtilityHandlerModule.togglePreventClick(board)
                     setActivePlayerColor()
                 }, 1000)
