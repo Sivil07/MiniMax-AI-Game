@@ -16,7 +16,8 @@ const GameScreenFunctionalityModule = (function () {
     const nextRound = document.querySelector("#next-round");
     const endGame = document.querySelector("#end-game");
     const backdrop = document.querySelector(".backdrop")
-    const roundEndMessage = document.querySelector(".backdrop-content")
+    const roundEndMessage = document.querySelector(".backdrop-content");
+    const gameControls = document.querySelector("#game-controls");
     let dynamicColoring = new Map();
     let dynamicNodes = [];
     let roundEndAnimationCount = 0;
@@ -61,6 +62,13 @@ const GameScreenFunctionalityModule = (function () {
         p1Mark.textContent = "";
         p2Mark.textContent = "";
         resetColoring();
+    }
+
+    const createMaxRoundsMessage = () => {
+        const maxRoundMsg = document.createElement("p");
+        maxRoundMsg.classList.add("max-rounds");
+        maxRoundMsg.textContent = "max rounds reached - click End Game to start a new session"
+        return maxRoundMsg;
     }
 
     const createActivePlayer = (activePlayerName) => {
@@ -114,6 +122,14 @@ const GameScreenFunctionalityModule = (function () {
 
     const loadIntoBoard = () => {
         board.append(...setupSquares())
+    }
+
+    const loadIntoGameControls = () => {
+        if (gameControls.childElementCount < 2) {
+            const maxRoundsMessage = createMaxRoundsMessage();
+            dynamicNodes.push(maxRoundsMessage);
+            gameControls.appendChild(maxRoundsMessage);
+        }
     }
 
 
@@ -188,6 +204,7 @@ const GameScreenFunctionalityModule = (function () {
         if (checkForEndGame) {
             UtilityHandlerModule.toggleEndGameButtonHighlight(endGame);
             UtilityHandlerModule.togglePulseEndGameButton(endGame)
+            loadIntoGameControls()
         } else if (roundOutcome.isWinner) {
             UtilityHandlerModule.toggleWinButtonsHighlights(endGame);
             UtilityHandlerModule.toggleWinButtonsHighlights(nextRound);
