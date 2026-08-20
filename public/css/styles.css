@@ -33,12 +33,21 @@ body {
         linear-gradient(to bottom, var(--grid-pattern));
     background-size: 50px 50px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 2rem;
 }
 
 input[type="radio"] {
     display: none;
+}
+
+.footer {
+    color: var(--primary-clr);
+    font-size: 2rem;
+    font-family: "SpaceMono";
+    letter-spacing: 0.5rem;
 }
 
 
