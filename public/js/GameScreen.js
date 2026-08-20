@@ -183,12 +183,16 @@ const GameScreenFunctionalityModule = (function () {
     }
 
     const applyRoundEndButtonStyles = () => {
-        if (roundOutcome.isWinner) {
+        const checkForEndGame = GameMasterModule.getGameOver() && GameMasterModule.hasMoreRoundsAvailable()
+
+        if (checkForEndGame) {
+            UtilityHandlerModule.toggleEndGameButtonHighlight(endGame);
+            UtilityHandlerModule.togglePulseEndGameButton(endGame)
+        } else if (roundOutcome.isWinner) {
             UtilityHandlerModule.toggleWinButtonsHighlights(endGame);
             UtilityHandlerModule.toggleWinButtonsHighlights(nextRound);
             UtilityHandlerModule.togglePulseWinButtons(endGame);
             UtilityHandlerModule.togglePulseWinButtons(nextRound);
-
         } else if (roundOutcome.isBoardFull) {
             UtilityHandlerModule.toggleDrawButtonHighlights(endGame);
             UtilityHandlerModule.toggleDrawButtonHighlights(nextRound);
@@ -299,10 +303,6 @@ const GameScreenFunctionalityModule = (function () {
             UtilityHandlerModule.toggleShowBackdrop(backdrop)
             UtilityHandlerModule.toggleHideRoundEndMessage(roundEndMessage);
             applyRoundEndButtonStyles()
-            // UtilityHandlerModule.toggleWinButtonsHighlights(endGame);
-            // UtilityHandlerModule.toggleWinButtonsHighlights(nextRound);
-            // UtilityHandlerModule.togglePulseWinButtons(endGame);
-            // UtilityHandlerModule.togglePulseWinButtons(nextRound);
             backdrop.classList.remove("winner-msg-color")
             backdrop.classList.remove("draw-msg-color")
             roundOutcome = undefined;
@@ -384,10 +384,6 @@ const GameScreenFunctionalityModule = (function () {
                 UtilityHandlerModule.toggleHideRoundEndMessage(roundEndMessage);
                 UtilityHandlerModule.toggleScaleWinnerName(roundEndMessage);
                 applyRoundEndButtonStyles();
-                // UtilityHandlerModule.toggleWinButtonsHighlights(endGame);
-                // UtilityHandlerModule.toggleWinButtonsHighlights(nextRound);
-                // UtilityHandlerModule.togglePulseWinButtons(endGame);
-                // UtilityHandlerModule.togglePulseWinButtons(nextRound);
             }
         })
 
@@ -398,11 +394,11 @@ const GameScreenFunctionalityModule = (function () {
         })
 
         endGame.addEventListener("click", () => {
+            resetBackDrop();
             GameMasterModule.resetGame();
             UtilityHandlerModule.toggleShrinkFade(gameContainer)
             endGame.disabled = true;
             UtilityHandlerModule.togglePointerEvents(board);
-            resetBackDrop();
         })
 
         gameContainer.addEventListener("animationend", (e) => {
