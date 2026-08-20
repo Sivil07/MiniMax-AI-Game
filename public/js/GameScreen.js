@@ -334,6 +334,7 @@ const GameScreenFunctionalityModule = (function () {
             backdrop.classList.remove("winner-msg-color")
             backdrop.classList.remove("draw-msg-color")
             roundOutcome = undefined;
+            moveResult = undefined;
         }
     }
 
@@ -402,13 +403,11 @@ const GameScreenFunctionalityModule = (function () {
             const humanResult = GameMasterModule.playMove(element.dataset.row, element.dataset.col);
             const isAiTurn = processMove(humanResult);
 
-            setActivePlayerColor()
             if (isAiTurn) {
                 const aiResult = GameMasterModule.playAI();
                 setTimeout(() => {
                     processMove(aiResult);
                     UtilityHandlerModule.togglePreventClick(board)
-                    setActivePlayerColor()
                 }, 1000)
             } else {
                 UtilityHandlerModule.togglePreventClick(board)
@@ -424,6 +423,7 @@ const GameScreenFunctionalityModule = (function () {
         board.addEventListener("animationend", (e) => {
             if (e.animationName === "animateMark") {
                 renderMoveResult()
+                setActivePlayerColor()
                 return;
             }
 
