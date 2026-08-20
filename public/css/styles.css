@@ -453,10 +453,6 @@ input[type="radio"] {
     border-radius: 1rem;
 }
 
-.control-item:hover {
-    color: var(--o-mark-clr)
-}
-
 /* Utilities */
 
 @keyframes shrinkFade {
@@ -561,6 +557,12 @@ input[type="radio"] {
     background-color: black;
     color: var(--universal-clr);
     border: 1px solid gray;
+}
+
+.highlight-end-game-button {
+    background-color: black;
+    color: var(--universal-clr);
+    border: 1px solid green;
 }
 
 .draw-msg-color {
@@ -778,6 +780,23 @@ input[type="radio"] {
 
 .pulse-draw-buttons {
     animation-name: pulseDrawButtons;
+    animation-duration: 0.7s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes pulseEndGameButton {
+    0% {
+        box-shadow: 1px 1px 1px green;
+    }
+
+    100% {
+        box-shadow: 1px 1px 15px green;
+    }
+}
+
+.pulse-end-game-button {
+    animation-name: pulseEndGameButton;
     animation-duration: 0.7s;
     animation-iteration-count: infinite;
     animation-direction: alternate;

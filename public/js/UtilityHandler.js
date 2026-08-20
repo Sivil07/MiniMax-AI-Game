@@ -30,6 +30,10 @@ const UtilityHandlerModule = (function () {
         element.classList.toggle("highlight-draw-buttons")
     }
 
+    const toggleEndGameButtonHighlight = (element) => {
+        element.classList.toggle("highlight-end-game-button");
+    }
+
     // Animations toggles
 
     const togglePulseWinButtons = (element) => {
@@ -38,6 +42,10 @@ const UtilityHandlerModule = (function () {
 
     const togglePulseDrawButtons = (element) => {
         element.classList.toggle("pulse-draw-buttons");
+    }
+
+    const togglePulseEndGameButton = (element) => {
+        element.classList.toggle("pulse-end-game-button")
     }
 
     const toggleShrinkFade = (element) => {
@@ -61,5 +69,7 @@ const UtilityHandlerModule = (function () {
         toggleDrawButtonHighlights,
         togglePulseWinButtons,
         togglePulseDrawButtons,
+        togglePulseEndGameButton,
+        toggleEndGameButtonHighlight,
     }
 })();
