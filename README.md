@@ -15,7 +15,9 @@ This is a single page tic tac toe game split into *three screens*. The *first* i
 - **Screen Transitions** -- Animated transitions between the landing page, loading screen, and game board. Other animations include the round end scenarios, which highlights the winning line or draw before moving to the next round, as well as the animation used when placing a mark on a square.
 - **Audio** -- Sound effects for placing marks on the board and for notifying the player when a round has ended.
 
-### 🎥 Live Previews 
+### 🎥 Live Previews
+
+- 🌐 <a href="https://sivil07.github.io/Tick-Tac-Toe/" alt="Live Site">Live Site</a>
 
 #### 🤖 Player Vs Bot
 https://github.com/user-attachments/assets/9208b4d6-84bc-4e6e-9709-fa54a5138317
