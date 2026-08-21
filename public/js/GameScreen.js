@@ -30,13 +30,13 @@ const GameScreenFunctionalityModule = (function () {
     const initializeGameScreen = () => {
         setupDynamicUI(GameMasterModule.getGameData());
         setupStaticUI(GameMasterModule.getGameData());
-        setActivePlayerColor()
+        setActivePlayerColor(GameMasterModule.getActivePlayer().getMark())
     }
 
     const updateActivePlayer = () => {
         const activePlayerNode = document.querySelector("#player-turn");
         activePlayerNode.remove();
-        loadIntoBoardSection(GameMasterModule.getActivePlayer().getName());
+        loadIntoBoardSection(moveResult.nextPlayerName);
     }
 
     const turnPlayerTurnInvisible = () => {
@@ -145,7 +145,7 @@ const GameScreenFunctionalityModule = (function () {
         dynamicNodes = [];
         GameMasterModule.newRound();
         setupDynamicUI(GameMasterModule.getGameData());
-        setActivePlayerColor();
+        setActivePlayerColor(GameMasterModule.getActivePlayer().getMark());
         nextRound.disabled = true;
         resetBackDrop();
     }
@@ -232,10 +232,10 @@ const GameScreenFunctionalityModule = (function () {
     }
 
 
-    const setActivePlayerColor = () => {
+    const setActivePlayerColor = (mark) => {
         const playerTurn = document.querySelector("#player-turn");
 
-        if (GameMasterModule.getActivePlayer().getMark() === "X") {
+        if (mark === "X") {
             playerTurn.classList.remove("o-hue-coloring");
             playerTurn.classList.add("x-hue-coloring")
         } else {
@@ -378,7 +378,7 @@ const GameScreenFunctionalityModule = (function () {
     }
 
     const processMove = (result) => {
-        const { turnFailed, isWinnerFound, isBoardFull, currentActivePlayerMark, isAITurn, row, col, coordinates, currentActivePlayerName } = result
+        const { turnFailed, isWinnerFound, isBoardFull, currentActivePlayerMark, isAITurn, row, col, coordinates, currentActivePlayerName, nextPlayerName, nextPlayerMark } = result
 
         if (turnFailed) {
             console.log("The turn failed")
@@ -388,7 +388,7 @@ const GameScreenFunctionalityModule = (function () {
         UtilityHandlerModule.togglePreventClick(board, true);
         const square = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
         setSquareMarkColor(square, currentActivePlayerMark)
-        moveResult = { isWinnerFound, coordinates, isBoardFull, currentActivePlayerName }
+        moveResult = { isWinnerFound, coordinates, isBoardFull, currentActivePlayerName, nextPlayerName, nextPlayerMark }
 
         return isAITurn;
     }
@@ -463,7 +463,7 @@ const GameScreenFunctionalityModule = (function () {
         board.addEventListener("animationend", (e) => {
             if (e.animationName === "animateMark") {
                 renderMoveResult()
-                setActivePlayerColor()
+                setActivePlayerColor(moveResult.nextPlayerMark)
                 
                 allowBoardInteraction();
 
