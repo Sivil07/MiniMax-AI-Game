@@ -1,6 +1,6 @@
 # Tick-Tac-Toe
 
-A Tic Tac Toe game built using JavaScript, HTML, and CSS as part of The Odin Project curriculum.
+A Tic Tac Toe game built using JavaScript, HTML, and CSS as part of <a href="https://www.theodinproject.com/" alt="The Odin Project">The Odin Project</a> curriculum.
 
 ## About the Project 
 
@@ -10,7 +10,7 @@ This is a single page tic tac toe game split into three screens. The first is a 
 
 - **AI Opponent** -- Uses the minimax algorithm with alpha-beta pruning, with adjustable difficulty
 - **Difficulty Selection** -- Players can set the AI's difficulty from Easy to Expert when playing against the bot. ( *game is solvable with normal minmax so may not make a difference* )
-- **Mode Selection** -- Players can choose (**Player vs Player**) or **Player vs AI** mode.
+- **Mode Selection** -- Players can choose **Player vs Player** or **Player vs AI** mode.
 - **Rounds** -- Matches are played over 3 rounds, with running win/loss/streak tracking for both players.
 - **Screen Transitions** -- Animated transitions between the landing page, loading screen, and game board. Other animations include round end sequences that highlight the winning line or a draw before moving into the next round.
 - **Audio** -- Sound effects for placing marks on the board and for notifying the player when a round has ended.
@@ -19,14 +19,17 @@ This is a single page tic tac toe game split into three screens. The first is a 
 
 ### Built With 
 
+- <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML">
+- <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS">
+- <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" alt="JavaScript">
+
 ### Closing Remarks 
 
 This project was a lot for me. Originally, I was going to implement a normal two player game. However, I wanted to challenge myself so I decided to add an AI component. It took a while to understand the algorithm behind it and actually implement it into the project.
 
 When it came to the UI, it required tracking all the moving parts and understanding how they fit together since I incorporated animated transitions between screens and used the data from the landing page's form to setup the game.
 
-Also, it required keeping the internal game state and the UI in sync. This was became
-tricky animations and audio were involved since a few things could visually lag behind what had already happened internally. 
+Also, it required keeping the internal game state and the UI in sync. This was became tricky animations and audio were involved since a few things could visually lag behind what had already happened internally. 
 
 It took a while to work through, but I got there.
 
@@ -39,13 +42,13 @@ If you want to set this project up locally on your machine, please follow the di
 1. Clone the repo
 
 ```
-git clone https:
+git https://github.com/Sivil07/Tick-Tac-Toe.git
 ```
 
 2. Enter the directory
 
 ```
-cd M
+cd Tick-Tac-Toe
 ```
 
 3. Open in VS Code
@@ -61,4 +64,6 @@ code .
 
 ## Acknowledgements
 
-The two pieces of audio are used from Pixabay 
+The two pieces of audio are used from <a href="https://pixabay.com/" alt="Pixabay">Pixbay</a>
+- <a href="https://pixabay.com/sound-effects/film-special-effects-level-complete-394515/" alt="RoundCompleteAudio">RoundCompleteAudio</a>
+- <a href="https://pixabay.com/sound-effects/film-special-effects-button-394464/" alt="placeMarkAudio">placeMarkAudio</a>
