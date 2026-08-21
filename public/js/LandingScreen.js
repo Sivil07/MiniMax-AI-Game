@@ -1,4 +1,4 @@
-const LandingScreenFunctionalityModule = (function () {
+const LandingScreenModule = (function () {
 
     // Adds/removes the highlight style on an element
     const toggleActionHighlight = (element, isHighlight) => {

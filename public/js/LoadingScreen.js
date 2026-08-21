@@ -1,4 +1,4 @@
-const LoadingScreenFunctionalityModule = (function () {
+const LoadingScreenModule = (function () {
 
     const attachLoadingListeners = () => {
         const loadingScreen = document.querySelector(".loading-screen");
@@ -6,7 +6,6 @@ const LoadingScreenFunctionalityModule = (function () {
 
         progressFill.addEventListener("animationend", () => {
             UtilityHandlerModule.toggleShrinkFade(loadingScreen)
-            // LandingScreenFunctionalityModule.toggleShrinkFade(loadingScreen);
         })
 
         loadingScreen.addEventListener(("animationend"), (e) => {
