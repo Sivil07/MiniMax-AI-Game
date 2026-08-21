@@ -11,11 +11,17 @@ This is a single page tic tac toe game split into three screens. The first is a 
 - **AI Opponent** -- Uses the minimax algorithm with alpha-beta pruning, with adjustable difficulty
 - **Difficulty Selection** -- Players can set the AI's difficulty from Easy to Expert when playing against the bot. ( *game is solvable with normal minmax so may not make a difference* )
 - **Mode Selection** -- Players can choose **Player vs Player** or **Player vs AI** mode.
-- **Rounds** -- Matches are played over 3 rounds, with running win/loss/streak tracking for both players.
+- **Rounds** -- Matches are played over 4 rounds, with running win/loss/streak tracking for both players.
 - **Screen Transitions** -- Animated transitions between the landing page, loading screen, and game board. Other animations include the round end scenarios, which highlights the winning line or draw before moving to the next round, as well as the animation used when placing a mark on a square.
 - **Audio** -- Sound effects for placing marks on the board and for notifying the player when a round has ended.
 
 ### Live Previews 
+
+#### Player Vs Bot
+https://github.com/user-attachments/assets/9208b4d6-84bc-4e6e-9709-fa54a5138317
+
+#### Player Vs Player
+https://github.com/user-attachments/assets/5c0a831d-630a-431a-bcd9-823b673665ef
 
 ### Built With 
 
