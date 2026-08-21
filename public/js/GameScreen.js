@@ -398,7 +398,7 @@ const GameScreenFunctionalityModule = (function () {
 
         boardSection.addEventListener("animationend", (e) => {
             if (e.animationName === "scaleTurn") {
-                UtilityHandlerModule.togglePointerEvents(gameContainer);
+                gameContainer.classList.toggle("prevent-click")
             }
         });
 

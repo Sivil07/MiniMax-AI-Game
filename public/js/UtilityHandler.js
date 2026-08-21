@@ -18,10 +18,6 @@ const UtilityHandlerModule = (function () {
         element.classList.toggle("prevent-click", shouldPrevent)
     }
 
-    const togglePointerEvents = (element) => {
-        element.classList.toggle("prevent-click");
-    }
-
     const toggleWinButtonsHighlights = (element) => {
         element.classList.toggle("highlight-win-buttons")
     }
@@ -64,7 +60,6 @@ const UtilityHandlerModule = (function () {
         toggleShowBackdrop,
         toggleShrinkFade,
         togglePreventClick,
-        togglePointerEvents,
         toggleWinButtonsHighlights,
         toggleDrawButtonHighlights,
         togglePulseWinButtons,

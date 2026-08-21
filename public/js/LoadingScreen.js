@@ -14,7 +14,7 @@ const LoadingScreenModule = (function () {
                 UtilityHandlerModule.toggleRemoveNodeFromLayout(loadingScreen);
                 UtilityHandlerModule.toggleShrinkFade(loadingScreen)
                 UtilityHandlerModule.toggleRemoveNodeFromLayout(gameContainer)
-                UtilityHandlerModule.togglePointerEvents(gameContainer)
+                gameContainer.classList.toggle("prevent-click")
                 const playerTurn = document.querySelector("#player-turn");
                 playerTurn.classList.add("scale-turn")
             }
