@@ -1212,16 +1212,16 @@ We evaluate every group found in the horizontal, vertical, and diagonal directio
 Below are the scoring steps for the unfinished board:
 
 - Horizontal Groups 
-  1. [x] [O] [X]  -> Blocked Move --> Group Score: 0
-  2. [x] [ ] [O]  -> Blocked Move --> Group Score: 0
-  3. [O] [ ] [ ]  -> Human Advantage --> Group Score: -25
+  1. [ X ] [ O ] [ X ]  -> Blocked Move --> Group Score: 0
+  2. [ X ] [  ] [ O ]  -> Blocked Move --> Group Score: 0
+  3. [ O ] [  ] [  ]  -> Human Advantage --> Group Score: -25
 - Vertical Groups
-  1. [x] [x] [O]  -> Blocked move --> Group Score: 0
-  2. [O] [ ] [ ]  -> Human Advantage --> Group Score: -25
-  3. [X] [O] [ ]  -> Blocked Move --> Group Score: 0
+  1. [ X ] [ X ] [ O ]  -> Blocked move --> Group Score: 0
+  2. [ O ] [  ] [  ]  -> Human Advantage --> Group Score: -25
+  3. [ X ] [ O ] [  ]  -> Blocked Move --> Group Score: 0
 - Diagonal Groups
-  1. [x] [ ] [ ]  -> AI Advantage --> Group Score: 25
-  2. [O] [ ] [X]  -> Block Move --> Group Score: 0
+  1. [ X ] [  ] [  ]  -> AI Advantage --> Group Score: 25
+  2. [ O ] [  ] [ X ]  -> Block Move --> Group Score: 0
 
 
 We add up all the group scores together and arrive at a final score of -25 for the board. Most groups are blocked, and the human has more advantage groups than the AI does.
