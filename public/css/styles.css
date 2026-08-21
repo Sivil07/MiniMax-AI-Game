@@ -312,7 +312,7 @@ input[type="radio"] {
 .game-container {
     display: grid;
     gap: 3rem;
-    grid-template-columns: auto;
+    grid-template-columns: minmax(700px, 1000px);
     grid-template-rows: repeat(3, auto);
     grid-template-areas:
         "Round-Info"
