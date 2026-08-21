@@ -31,7 +31,11 @@ When it came to the UI, it required tracking all the moving parts and understand
 
 Also, it required keeping the internal game state and the UI in sync. This was became tricky animations and audio were involved since a few things could visually lag behind what had already happened internally. 
 
-It took a while to work through, but I got there.
+It took a while to work through, but I managed.
+
+> [!NOTE]
+> `minmaxNotes.md`is a personal reference file I put together while researching the minimax algorithm for the AI. I didn't want to forget the concepts, and I can potentially reuse them in future projects if needed. It walks through the process step by step from understanding basic minmax to alpha beta pruning to the evaluation logic. It isn't meant to serve as any kind of documentation but feel free to look through it. 
+
 
 ## Getting Started 
 
