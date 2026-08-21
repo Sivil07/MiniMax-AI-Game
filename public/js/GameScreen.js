@@ -354,7 +354,7 @@ const GameScreenFunctionalityModule = (function () {
     }
 
     const allowBoardInteraction = () => {
-        if (!waitingForAIRender)  {
+        if (!waitingForAIRender) {
             UtilityHandlerModule.togglePreventClick(board, false)
         }
     }
@@ -388,6 +388,7 @@ const GameScreenFunctionalityModule = (function () {
         UtilityHandlerModule.togglePreventClick(board, true);
         const square = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
         setSquareMarkColor(square, currentActivePlayerMark)
+        AudioModule.playMarkAudio();
         moveResult = { isWinnerFound, coordinates, isBoardFull, currentActivePlayerName, nextPlayerName, nextPlayerMark }
 
         return isAITurn;
@@ -436,6 +437,11 @@ const GameScreenFunctionalityModule = (function () {
         });
 
         board.addEventListener("animationstart", (e) => {
+            if (e.animationName === "animateMark") {
+                AudioModule.playMarkAudio();
+                return;
+            }
+
             if (e.animationName === "highlightWin" || e.animationName === "highlightDraw") {
                 endGame.disabled = true;
             }
@@ -451,12 +457,9 @@ const GameScreenFunctionalityModule = (function () {
                 waitingForAIRender = true;
                 const aiResult = GameMasterModule.playAI();
                 setTimeout(() => {
-                    // UtilityHandlerModule.togglePreventClick(board)
                     processMove(aiResult);
                     waitingForAIRender = false;
                 }, 1000)
-            } else {
-                // UtilityHandlerModule.togglePreventClick(board)
             }
         });
 
@@ -464,10 +467,7 @@ const GameScreenFunctionalityModule = (function () {
             if (e.animationName === "animateMark") {
                 renderMoveResult()
                 setActivePlayerColor(moveResult.nextPlayerMark)
-                
                 allowBoardInteraction();
-
-                // UtilityHandlerModule.togglePreventClick(board)
                 return;
             }
 
@@ -479,6 +479,7 @@ const GameScreenFunctionalityModule = (function () {
                 UtilityHandlerModule.toggleHideRoundEndMessage(roundEndMessage);
                 UtilityHandlerModule.toggleScaleWinnerName(roundEndMessage);
                 applyRoundEndButtonStyles();
+                AudioModule.playRoundCompleteAudio();
             }
         });
     }
