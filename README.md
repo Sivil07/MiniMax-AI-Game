@@ -12,7 +12,7 @@ This is a single page tic tac toe game split into three screens. The first is a 
 - **Difficulty Selection** -- Players can set the AI's difficulty from Easy to Expert when playing against the bot. ( *game is solvable with normal minmax so may not make a difference* )
 - **Mode Selection** -- Players can choose **Player vs Player** or **Player vs AI** mode.
 - **Rounds** -- Matches are played over 3 rounds, with running win/loss/streak tracking for both players.
-- **Screen Transitions** -- Animated transitions between the landing page, loading screen, and game board. Other animations include round end sequences that highlight the winning line or a draw before moving into the next round.
+- **Screen Transitions** -- Animated transitions between the landing page, loading screen, and game board. Other animations include the round end scenarios, which highlights the winning line or draw before moving to the next round, as well as the animation used when placing a mark on a square.
 - **Audio** -- Sound effects for placing marks on the board and for notifying the player when a round has ended.
 
 ### Live Previews 
