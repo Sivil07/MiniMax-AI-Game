@@ -404,10 +404,10 @@ input[type="radio"] {
 
 #player-turn {
     align-self: center;
-    /* background-color: var(--x-highlight); */
-    /* color: var(--x-mark-clr); */
     padding: 0.5rem 6rem;
     border-radius: 2rem;
+    font-size: 1.5rem;
+    letter-spacing: 0.5rem;
 }
 
 .board {
@@ -428,7 +428,6 @@ input[type="radio"] {
     font-size: 2rem;
     width: 100%;
     height: 100%;
-    /* color: var(--winning-clr); */
     letter-spacing: 0.5rem;
     text-transform: uppercase;
 }
@@ -444,14 +443,11 @@ input[type="radio"] {
 }
 
 .square {
-    /* color: var(--universal-clr); */
     font-size: 3rem;
     background-color: transparent;
     border: none;
-    /* border-radius: 1rem; */
-    /* border: 1px solid var(--border-clr); */
-    width: 80%;
-    height: 80%;
+    width: 90%;
+    height: 90%;
 }
 
 /* 6.3 (Game Screen) - Game Controls */
@@ -607,7 +603,7 @@ input[type="radio"] {
 
 .backdrop-shown {
     z-index: 1;
-    backdrop-filter: blur(5px);
+    backdrop-filter: brightness(30%);
 }
 
 .backdrop-not-shown {

@@ -331,7 +331,7 @@ const GameScreenFunctionalityModule = (function () {
 
     const applyRoundEndSquareStyles = (coordinates, winnerFound, boardFull) => {
         expectedAnimationCount = coordinates.length === 3 ? 3 : 9;
-        animationSpeed = coordinates.length === 3 ? 400 : 100;
+        animationSpeed = coordinates.length === 3 ? 300 : 100;
         roundOutcome = { isWinner: winnerFound, isBoardFull: boardFull }
 
         for (let index = 0; index < coordinates.length; index++) {
