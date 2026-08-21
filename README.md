@@ -25,6 +25,35 @@ https://github.com/user-attachments/assets/9208b4d6-84bc-4e6e-9709-fa54a5138317
 #### 👥 Player Vs Player
 https://github.com/user-attachments/assets/5c0a831d-630a-431a-bcd9-823b673665ef
 
+### 📁 Project Structure
+
+```
+Tick-Tac-Toe
+├─ README.md
+├─ index.html
+├─ notes/
+└─ public
+   ├─ assets/
+   │  ├─ audio/
+   │  └─ fonts/
+   ├─ css
+   │  ├─ fonts.css
+   │  └─ styles.css
+   └─ js
+      ├─ AIModelModule.js
+      ├─ AudioModule.js
+      ├─ GameBoardModule.js
+      ├─ GameConstraintsModule.js
+      ├─ GameMasterModule.js
+      ├─ GameScreen.js
+      ├─ LandingScreen.js
+      ├─ LoadingScreen.js
+      ├─ UtilityHandler.js
+      ├─ WinDetectionModule.js
+      ├─ createPlayer.js
+      └─ createSquare.js
+```
+
 ### 🧱 Built With 
 
 - <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML">
