@@ -71,8 +71,10 @@ Also, it required keeping the internal game state and the UI in sync. This was b
 It took a while to work through, but I managed.
 
 > [!NOTE]
+>
 > `minmaxNotes.md`is a personal reference file I put together while researching the minimax algorithm for the AI. I didn't want to forget the concepts, and I can potentially reuse them in future projects if needed. It walks through the process step by step from understanding basic minmax to alpha beta pruning to the evaluation logic. It isn't meant to serve as any kind of documentation but feel free to look through it. 
-
+>
+> `insights.md` is a list of some problems I ran into during the project that I felt were worth highlighting. It's mainly for my own understanding.
 
 ## 📦 Getting Started 
 
@@ -106,5 +108,5 @@ code .
 ## 🙏 Acknowledgements
 
 The two pieces of audio are used from <a href="https://pixabay.com/" alt="Pixabay">Pixbay</a>
-- <a href="https://pixabay.com/sound-effects/film-special-effects-level-complete-394515/" alt="RoundCompleteAudio">RoundCompleteAudio</a>
+- <a href="https://pixabay.com/sound-effects/film-special-effects-level-complete-394515/" alt="RoundCompleteAudio">roundCompleteAudio</a>
 - <a href="https://pixabay.com/sound-effects/film-special-effects-button-394464/" alt="placeMarkAudio">placeMarkAudio</a>
