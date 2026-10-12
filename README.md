@@ -17,7 +17,7 @@ This is a single page tic tac toe game split into *three screens*. The *first* i
 
 ### 🎥 Live Previews
 
-- 🌐 <a href="https://sivil07.github.io/Tick-Tac-Toe/" alt="Live Site">Live Site</a>
+- 🌐 <a href="https://sivil07.github.io/MiniMax-AI-Game/" alt="Live Site">Live Site</a>
 
 #### 🤖 Player Vs Bot
 https://github.com/user-attachments/assets/9208b4d6-84bc-4e6e-9709-fa54a5138317
