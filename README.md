@@ -1,4 +1,4 @@
-# ❌⭕ Tick-Tac-Toe
+# ❌⭕ MiniMax-AI-Game
 
 A Tic Tac Toe game built using JavaScript, HTML, and CSS as part of <a href="https://www.theodinproject.com/" alt="The Odin Project">The Odin Project</a> curriculum.
 
@@ -28,7 +28,7 @@ https://github.com/user-attachments/assets/5c0a831d-630a-431a-bcd9-823b673665ef
 ### 📁 Project Structure
 
 ```
-Tick-Tac-Toe
+MiniMax-AI-Game
 ├─ README.md
 ├─ index.html
 ├─ notes/
